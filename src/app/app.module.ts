@@ -23,6 +23,9 @@ import { VerListaDeReportesComponent } from './components/acoso_laboral/ver-list
 import { EnviarPqrsComponent } from './components/pqrs/enviar-pqrs/enviar-pqrs.component';
 import { VerPqrsEnviadosComponent } from './components/pqrs/ver-pqrs-enviados/ver-pqrs-enviados.component';
 import { VerListaPqrsComponent } from './components/pqrs/ver-lista-pqrs/ver-lista-pqrs.component';
+import { AppRoutingModule } from './app-routing.module';
+
+import { HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -48,9 +51,12 @@ import { VerListaPqrsComponent } from './components/pqrs/ver-lista-pqrs/ver-list
     EnviarPqrsComponent,
     VerPqrsEnviadosComponent,
     VerListaPqrsComponent
+    
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Acta } from 'src/app/_model/Acta';
+import { ActasService } from 'src/app/_service/actas.service';
 
 @Component({
   selector: 'app-crear-acta',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CrearActaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private actasService: ActasService) { 
+   
+  }
 
   ngOnInit(): void {
+
+    let acta: Acta;
+
+    this.actasService.get(1).subscribe(data => {acta = data; console.log(acta)});
+
+
   }
 
 }
