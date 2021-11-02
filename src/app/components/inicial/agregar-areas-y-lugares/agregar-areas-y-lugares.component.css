@@ -1,0 +1,119 @@
+.u-section-1 .u-sheet-1 {
+    min-height: 132px;
+  }
+  
+  .u-section-1 .u-form-1 {
+    height: 77px;
+    width: 655px;
+    margin: 46px auto 9px;
+  }
+  
+  .u-section-1 .u-btn-1 {
+    background-image: none;
+    border-style: none;
+  }
+  
+  @media (max-width: 767px) {
+    .u-section-1 .u-form-1 {
+      width: 540px;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .u-section-1 .u-form-1 {
+      width: 340px;
+    }
+  }.u-section-2 .u-sheet-1 {
+    min-height: 78px;
+  }
+  
+  .u-section-2 .u-form-1 {
+    height: 77px;
+    width: 655px;
+    margin: 1px auto;
+  }
+  
+  .u-section-2 .u-btn-1 {
+    border-style: none none solid;
+    padding: 0;
+  }
+  
+  @media (max-width: 767px) {
+    .u-section-2 .u-form-1 {
+      width: 540px;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .u-section-2 .u-form-1 {
+      width: 340px;
+    }
+  }.u-section-3 .u-sheet-1 {
+    min-height: 270px;
+  }
+  
+  .u-section-3 .u-table-1 {
+    width: 877px;
+    margin: 2px auto 60px;
+  }
+  
+  .u-section-3 .u-table-entity-1 {
+    min-height: 100px;
+  }
+  
+  .u-section-3 .u-table-header-1 {
+    font-weight: 700;
+    background-image: none;
+  }
+  
+  .u-section-3 .u-table-cell-4 {
+    border-style: solid;
+  }
+  
+  .u-section-3 .u-icon-1 {
+    margin-left: 0;
+    color: rgb(17, 17, 17) !important;
+    font-size: 2em;
+  }
+  
+  .u-section-3 .u-icon-2 {
+    color: rgb(17, 17, 17) !important;
+    font-size: 2em;
+  }
+  
+  .u-section-3 .u-icon-3 {
+    margin-left: 0;
+    font-size: 2em;
+    color: rgb(17, 17, 17) !important;
+  }
+  
+  .u-section-3 .u-icon-4 {
+    color: rgb(17, 17, 17) !important;
+    font-size: 2em;
+  }
+  
+  @media (max-width: 991px) {
+    .u-section-3 .u-table-1 {
+      width: 720px;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .u-section-3 .u-table-1 {
+      width: 540px;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .u-section-3 .u-table-1 {
+      width: 340px;
+    }
+  
+    .u-section-3 .u-icon-1 {
+      margin-left: 1px;
+    }
+  
+    .u-section-3 .u-icon-3 {
+      margin-left: 1px;
+    }
+  }

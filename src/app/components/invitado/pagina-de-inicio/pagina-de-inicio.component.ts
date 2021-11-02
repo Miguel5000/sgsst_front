@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaginaDeInicioComponent implements OnInit {
 
-  constructor() { }
+  
+
+  constructor() { 
+
+    
+  }
 
   ngOnInit(): void {
+
   }
 
 }

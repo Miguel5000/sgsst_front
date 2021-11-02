@@ -15,10 +15,6 @@ export class CrearActaComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let acta: Acta;
-
-    this.actasService.get(1).subscribe(data => {acta = data; console.log(acta)});
-
 
   }
 

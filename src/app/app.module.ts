@@ -8,8 +8,7 @@ import { InicioDeSesionComponent } from './components/invitado/inicio-de-sesion/
 import { GeneracionDeClaveComponent } from './components/invitado/generacion-de-clave/generacion-de-clave.component';
 import { CambioDeClaveComponent } from './components/invitado/cambio-de-clave/cambio-de-clave.component';
 import { GenerarCuentasComponent } from './components/inicial/generar-cuentas/generar-cuentas.component';
-import { AgregarAreasComponent } from './components/inicial/agregar-areas/agregar-areas.component';
-import { AgregarLugaresComponent } from './components/inicial/agregar-lugares/agregar-lugares.component';
+import { AgregarAreasYLugaresComponent } from './components/inicial/agregar-areas-y-lugares/agregar-areas-y-lugares.component';
 import { EspacioDeTrabajoYServicioComponent } from './components/inicial/espacio-de-trabajo-y-servicio/espacio-de-trabajo-y-servicio.component';
 import { VerListaDeActasComponent } from './components/acta/ver-lista-de-actas/ver-lista-de-actas.component';
 import { CrearActaComponent } from './components/acta/crear-acta/crear-acta.component';
@@ -18,7 +17,7 @@ import { RegistroDeInformesComponent } from './components/informe/registro-de-in
 import { CrearInformeComponent } from './components/informe/crear-informe/crear-informe.component';
 import { VerInformeComponent } from './components/informe/ver-informe/ver-informe.component';
 import { EnviarReporteComponent } from './components/acoso_laboral/enviar-reporte/enviar-reporte.component';
-import { VerReportesEnviadosComponent } from './components/acoso_laboral/ver-reportes-enviados/ver-reportes-enviados.component';
+import { VerReporteEnviadoComponent } from './components/acoso_laboral/ver-reporte-enviado/ver-reporte-enviado.component';
 import { VerListaDeReportesComponent } from './components/acoso_laboral/ver-lista-de-reportes/ver-lista-de-reportes.component';
 import { EnviarPqrsComponent } from './components/pqrs/enviar-pqrs/enviar-pqrs.component';
 import { VerPqrsEnviadosComponent } from './components/pqrs/ver-pqrs-enviados/ver-pqrs-enviados.component';
@@ -36,8 +35,7 @@ import { HttpClientModule} from '@angular/common/http';
     GeneracionDeClaveComponent,
     CambioDeClaveComponent,
     GenerarCuentasComponent,
-    AgregarAreasComponent,
-    AgregarLugaresComponent,
+    AgregarAreasYLugaresComponent,
     EspacioDeTrabajoYServicioComponent,
     VerListaDeActasComponent,
     CrearActaComponent,
@@ -46,7 +44,7 @@ import { HttpClientModule} from '@angular/common/http';
     CrearInformeComponent,
     VerInformeComponent,
     EnviarReporteComponent,
-    VerReportesEnviadosComponent,
+    VerReporteEnviadoComponent,
     VerListaDeReportesComponent,
     EnviarPqrsComponent,
     VerPqrsEnviadosComponent,

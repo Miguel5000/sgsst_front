@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AgregarLugaresComponent } from './agregar-lugares.component';
+import { VerReporteEnviadoComponent } from './ver-reporte-enviado.component';
 
-describe('AgregarLugaresComponent', () => {
-  let component: AgregarLugaresComponent;
-  let fixture: ComponentFixture<AgregarLugaresComponent>;
+describe('VerReporteEnviadoComponent', () => {
+  let component: VerReporteEnviadoComponent;
+  let fixture: ComponentFixture<VerReporteEnviadoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AgregarLugaresComponent ]
+      declarations: [ VerReporteEnviadoComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AgregarLugaresComponent);
+    fixture = TestBed.createComponent(VerReporteEnviadoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
