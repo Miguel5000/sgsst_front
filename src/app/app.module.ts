@@ -23,8 +23,12 @@ import { EnviarPqrsComponent } from './components/pqrs/enviar-pqrs/enviar-pqrs.c
 import { VerPqrsEnviadosComponent } from './components/pqrs/ver-pqrs-enviados/ver-pqrs-enviados.component';
 import { VerListaPqrsComponent } from './components/pqrs/ver-lista-pqrs/ver-lista-pqrs.component';
 import { AppRoutingModule } from './app-routing.module';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTabsModule } from '@angular/material/tabs';
 import { HttpClientModule} from '@angular/common/http';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ValidacionComponent } from './components/utilitarios/validacion/validacion.component';
 
 @NgModule({
   declarations: [
@@ -48,13 +52,19 @@ import { HttpClientModule} from '@angular/common/http';
     VerListaDeReportesComponent,
     EnviarPqrsComponent,
     VerPqrsEnviadosComponent,
-    VerListaPqrsComponent
+    VerListaPqrsComponent,
+    ValidacionComponent
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSnackBarModule,
+    NoopAnimationsModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

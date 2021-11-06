@@ -26,7 +26,7 @@ const routes: Routes = [
 
   {path: '', component: PaginaDeInicioComponent},
   {path: 'paginaInicio', component: PaginaDeInicioComponent},
-  {path: 'espacioDeTrabajoYUso', component: EspacioDeTrabajoYServicioComponent},
+  {path: 'espacioDeTrabajoYServicio', component: EspacioDeTrabajoYServicioComponent},
   {path: 'enviarReporte', component: EnviarReporteComponent},
   {path: 'listaReportes', component: VerListaDeReportesComponent},
   {path: 'verReporte', component: VerReporteEnviadoComponent},
