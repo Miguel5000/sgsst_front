@@ -27,12 +27,23 @@ const routes: Routes = [
   {path: '', component: PaginaDeInicioComponent},
   {path: 'paginaInicio', component: PaginaDeInicioComponent},
   {path: 'espacioDeTrabajoYServicio', component: EspacioDeTrabajoYServicioComponent},
+  {path: 'servicio/actas', component: EspacioDeTrabajoYServicioComponent},
+    {path: 'servicio/actas/direccion', component: EspacioDeTrabajoYServicioComponent},
+    {path: 'servicio/actas/copasst', component: EspacioDeTrabajoYServicioComponent},
+  {path: 'servicio/evaluacionAnual', component: EspacioDeTrabajoYServicioComponent},
+  {path: 'servicio/acosoLaboral', component: EspacioDeTrabajoYServicioComponent},
+  {path: 'servicio/pqrs', component: EspacioDeTrabajoYServicioComponent},
   {path: 'enviarReporte', component: EnviarReporteComponent},
   {path: 'listaReportes', component: VerListaDeReportesComponent},
+  {path: 'misReportes', component: VerListaDeReportesComponent},
   {path: 'verReporte', component: VerReporteEnviadoComponent},
   {path: "crearActa", component: CrearActaComponent},
   {path: "verActa", component: VerActaComponent},
-  {path: 'listaActas', component: VerListaDeActasComponent},
+  {path: 'servicio/listaActas/direccion/reunion', component: VerListaDeActasComponent},
+  {path: 'servicio/listaActas/direccion/capacitacion', component: VerListaDeActasComponent},
+  {path: 'servicio/listaActas/copasst/reunion', component: VerListaDeActasComponent},
+  {path: 'servicio/listaActas/copasst/capacitacion', component: VerListaDeActasComponent},
+  {path: 'servicio/listaActas/ccl', component: VerListaDeActasComponent},
   {path: "crearInforme", component: CrearInformeComponent},
   {path: 'listaInformes', component: RegistroDeInformesComponent},
   {path: "verInforme", component: VerInformeComponent},
@@ -46,7 +57,8 @@ const routes: Routes = [
   {path: 'registro', component: RegistroComponent},
   {path: 'enviarPqrs', component: EnviarPqrsComponent},
   {path: 'listaPqrs', component: VerListaPqrsComponent},
-  {path: "verPqrs", component: VerPqrsEnviadosComponent}
+  {path: "verPqrs", component: VerPqrsEnviadosComponent},
+  {path: "misPqrs", component: VerListaPqrsComponent}
 
 ];
 
