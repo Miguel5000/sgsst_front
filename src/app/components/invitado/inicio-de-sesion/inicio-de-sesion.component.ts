@@ -82,7 +82,15 @@ export class InicioDeSesionComponent implements OnInit {
 
         data => {console.log(data);
                 sessionStorage.setItem("usuario", JSON.stringify(data));
-                this.router.navigate(['espacioDeTrabajoYUso'])}, 
+
+                this.usuariosService.getRol(data).subscribe( data2 => {
+
+                  sessionStorage.setItem("rol", data2.nombre);
+                  this.router.navigate(['espacioDeTrabajoYServicio']);}
+          
+                );
+
+              }, 
         err => {console.log(err);
               this._snackBar.open("Usuario inexistente", "Cerrar", {duration: 3000});
             }

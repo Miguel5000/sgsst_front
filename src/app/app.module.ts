@@ -26,9 +26,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule} from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ValidacionComponent } from './components/utilitarios/validacion/validacion.component';
+
 
 @NgModule({
   declarations: [
@@ -64,7 +67,9 @@ import { ValidacionComponent } from './components/utilitarios/validacion/validac
     ReactiveFormsModule,
     MatSnackBarModule,
     NoopAnimationsModule,
-    MatTabsModule
+    MatTabsModule,
+    MatToolbarModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
