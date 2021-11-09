@@ -31,7 +31,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule} from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ValidacionComponent } from './components/utilitarios/validacion/validacion.component';
-
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -69,7 +69,8 @@ import { ValidacionComponent } from './components/utilitarios/validacion/validac
     NoopAnimationsModule,
     MatTabsModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

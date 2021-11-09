@@ -21,7 +21,7 @@ export class EmpresasService {
 
   crear(empresa: Empresa){
 
-    return this.http.post(this.URL + "/crear", empresa);
+    return this.http.post<Empresa>(this.URL + "/crear", empresa);
 
   }
 
