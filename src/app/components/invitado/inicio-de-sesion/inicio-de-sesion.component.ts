@@ -36,7 +36,10 @@ export class InicioDeSesionComponent implements OnInit {
       ] ),
       clave: new FormControl('', [
         Validators.required
-      ] )
+      ] ),
+      inputArchivo: new FormControl('', [
+        Validators.required
+      ] ),
 
     });
 
@@ -65,6 +68,22 @@ export class InicioDeSesionComponent implements OnInit {
     }
 
     return mensajeError;
+
+  }
+
+  activarInputFile(){
+
+    let elemento = document.getElementById("archivador") as HTMLElement;
+    elemento.click();
+    return false;
+
+  }
+
+
+
+  ejecucion(){
+
+    console.log("Ejecutando");
 
   }
 

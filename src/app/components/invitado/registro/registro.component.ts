@@ -27,6 +27,8 @@ export class RegistroComponent implements OnInit {
 
   preg: String;
 
+  activacionTipoBrigada: boolean;
+
   constructor(private _snackBar: MatSnackBar,
     private empresasService: EmpresasService,
     private usuariosService: UsuariosService,
@@ -53,6 +55,8 @@ export class RegistroComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.activacionTipoBrigada = false;
     this.empresasService.getBrigadas().subscribe(data => {
       this.brigada = data;
     });
@@ -113,6 +117,10 @@ export class RegistroComponent implements OnInit {
       error.push("Seleccione una brigada");
     }
 
+    if(this.registroForm.controls.contraseña.value != this.registroForm.controls.confirmacion.value){
+      error.push("Las contraseñas no son iguales");
+    }
+
     return error;
   }
 
@@ -160,6 +168,20 @@ export class RegistroComponent implements OnInit {
         duration: 10000
       });
     }
+  }
+
+  habilitarTiposBrigada(valor: string){
+
+    if(valor == "Si"){
+
+      this.activacionTipoBrigada = true;
+
+    }else{
+
+      this.activacionTipoBrigada = false;
+
+    }
+
   }
 
 }

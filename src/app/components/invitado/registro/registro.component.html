@@ -55,7 +55,7 @@
             <div class="u-form-select-wrapper">
               <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>¿Cuenta con brigada?</mat-label>
-                <mat-select formControlName="pregunta" matNativeControl required>
+                <mat-select (selectionChange)="habilitarTiposBrigada($event.value)"  formControlName="pregunta" matNativeControl required>
                   <mat-option value="Si">Si</mat-option>
                   <mat-option value="No">No</mat-option>
                 </mat-select>
@@ -74,7 +74,7 @@
           </div>
           <div class="u-form-group u-form-name u-form-partition-factor-2">
             <label for="select-8aff" class="u-form-control-hidden u-label">Seleccionar</label>
-            <div class="u-form-select-wrapper">
+            <div *ngIf="activacionTipoBrigada == true" class="u-form-select-wrapper">
               <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>Clase de brigada</mat-label>
                 <mat-select matSelect formControlName="brigada" (ngModelChange)="selectBrigada.id" required [disabled]="preg === 'Si' ? true : false">>
