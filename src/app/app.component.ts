@@ -17,6 +17,7 @@ export class AppComponent implements DoCheck {
   activacionDesglose: boolean;
   reader: FileReader;
   apoyo: any;
+  imagenCargada: string;
 
   constructor(private router: Router, private usuariosService: UsuariosService) {
 
@@ -56,7 +57,21 @@ export class AppComponent implements DoCheck {
       let archivo = new Uint8Array(buffer);
       this.usuariosService.guardarArchivo(archivo).subscribe();
     });*/
-    console.log(archivoInput.type);
+    let reader = new FileReader();
+
+    reader.onload = function (e) {
+
+      let elemento = document.getElementById("imagenCargada") as HTMLImageElement; 
+      let resultado= e.target?.result;
+      if(typeof(resultado) == 'string'){
+
+        elemento.src = resultado;
+
+      }
+
+    }
+
+    reader.readAsDataURL(archivoInput);
 
   }
 
