@@ -45,9 +45,9 @@ export class UsuariosService {
 
   }
 
-  cambiarClave(usuario: Usuario){
+  cambiarClave(token: string, clave:any){
 
-    return this.http.put(this.URL + "/cambiarclave", usuario);
+    return this.http.put(this.URL + "/cambiarclave?token="+ token ,clave);
 
   }
 
@@ -63,15 +63,9 @@ export class UsuariosService {
 
   }
 
-  generarToken(usuario: Usuario){
+  generarToken(correo:any){
 
-    return this.http.put(this.URL + "/generartoken", usuario);
-
-  }
-
-  enviarCorreo(usuario: Usuario){
-
-    return this.http.post(this.URL + "/enviarcorreo", usuario);
+    return this.http.put(this.URL + "/generartoken", correo);
 
   }
 
@@ -90,5 +84,4 @@ export class UsuariosService {
     return this.http.put(this.URL + "/guardararchivo", paquete);
 
   }
-
 }
