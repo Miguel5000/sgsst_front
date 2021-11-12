@@ -68,20 +68,4 @@ export class UsuariosService {
     return this.http.put(this.URL + "/generartoken", correo);
 
   }
-
-  guardarArchivo(arregloUint: Uint8Array){
-
-    let bytes:number[];
-    bytes = [];
-
-    arregloUint.forEach(element => {
-      
-      bytes.push(element);      
-
-    });
-
-    let paquete =  {archivo: bytes};
-    return this.http.put(this.URL + "/guardararchivo", paquete);
-
-  }
 }

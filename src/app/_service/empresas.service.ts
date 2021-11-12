@@ -25,6 +25,22 @@ export class EmpresasService {
 
   }
 
+  guardarArchivo(arregloUint: Uint8Array, nombre: string){
+
+    let bytes:number[];
+    bytes = [];
+
+    arregloUint.forEach(element => {
+      
+      bytes.push(element);      
+
+    });
+
+    let paquete =  {archivo: bytes};
+    return this.http.put(this.URL + "/guardararchivo?nombre=" + nombre, paquete);
+
+  }
+
   //Brigada
 
   getBrigadas(){
