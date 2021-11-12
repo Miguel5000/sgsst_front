@@ -32,6 +32,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ValidacionComponent } from './components/utilitarios/validacion/validacion.component';
 import { MatSelectModule } from '@angular/material/select';
+import { MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatTabsModule,
     MatToolbarModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]
