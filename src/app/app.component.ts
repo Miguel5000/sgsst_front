@@ -11,15 +11,12 @@ var jquery: NodeRequire = require("../assets/jquery.js");
 })
 export class AppComponent implements DoCheck {
 
-  inputArchivo: any;
   sesionIniciada: boolean;
   title = 'sgsst-front';
   activacionDesglose: boolean;
-  reader: FileReader;
   apoyo: any;
-  imagenCargada: string;
 
-  constructor(private router: Router, private usuariosService: UsuariosService) {
+  constructor(private router: Router) {
 
     (<any>window).jQuery = jquery;
     (<any>window).$ = jquery;
@@ -50,35 +47,6 @@ export class AppComponent implements DoCheck {
 
   }
 
-  onFileSelected(event: any) {
-
-    let archivoInput:File = event.target.files[0];
-    /*archivoInput.arrayBuffer().then(buffer => {
-      let archivo = new Uint8Array(buffer);
-      this.usuariosService.guardarArchivo(archivo).subscribe();
-    });*/
-    let reader = new FileReader();
-
-    reader.onload = function (e) {
-
-      let elemento = document.getElementById("imagenCargada") as HTMLImageElement; 
-      let resultado= e.target?.result;
-      if(typeof(resultado) == 'string'){
-
-        elemento.src = resultado;
-
-      }
-
-    }
-
-    reader.readAsDataURL(archivoInput);
-
-  }
-
-  
-
-
-
   onResize(event: any) {
     let ancho = event.target.innerWidth;
     if (ancho > 992) {
@@ -92,6 +60,7 @@ export class AppComponent implements DoCheck {
 
     sessionStorage.removeItem("usuario");
     sessionStorage.removeItem("rol");
+    sessionStorage.removeItem("empresa");
     this.router.navigate(["/paginaInicio"]);
 
   }

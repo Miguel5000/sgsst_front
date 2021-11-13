@@ -13,5 +13,6 @@ export class Acta{
     tema: string;
     desarrollo: string;
     conclusion: string;
+    publicacion: boolean;
 
 }

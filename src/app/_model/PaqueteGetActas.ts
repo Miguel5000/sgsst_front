@@ -7,5 +7,6 @@ export class PaqueteGetActas{
     Grupo: GrupoSgsst;
     TipoActa: TipoActa;
     Empresa: Empresa;
+    Publicacion: boolean;
 
 }

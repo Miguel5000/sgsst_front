@@ -26,6 +26,7 @@ const routes: Routes = [
 
   {path: '', component: PaginaDeInicioComponent},
   {path: 'paginaInicio', component: PaginaDeInicioComponent},
+//Espacio de trabajo y servicio
   {path: 'espacioDeTrabajoYServicio', component: EspacioDeTrabajoYServicioComponent},
   {path: 'servicio/actas', component: EspacioDeTrabajoYServicioComponent},
     {path: 'servicio/actas/direccion', component: EspacioDeTrabajoYServicioComponent},
@@ -49,6 +50,7 @@ const routes: Routes = [
     {path: 'trabajo/secretarioCopasst/actas/reuniones', component: VerListaDeActasComponent},
   {path: 'trabajo/miembroCcl/actas', component: VerListaDeActasComponent},
   {path: 'trabajo/secretarioCcl/actas', component: VerListaDeActasComponent},
+//Fin espacio de trabajo y servicio
   {path: 'enviarReporte', component: EnviarReporteComponent},
   {path: 'listaReportes', component: VerListaDeReportesComponent},
   {path: 'misReportes', component: VerListaDeReportesComponent},
