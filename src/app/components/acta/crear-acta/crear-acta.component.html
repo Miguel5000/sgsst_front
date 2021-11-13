@@ -120,16 +120,21 @@
             </tr>
           </thead>
           <tbody class="u-table-body">
-            <tr style="height: 75px;">
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 1</td>
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-            </tr>
-            <tr style="height: 76px;">
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 2</td>
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
+            <tr *ngFor="let subtemaInterfaz of subtemasInterfaz" style="height: 75px;">
+              <td *ngIf="!editableSubtemas[subtemasInterfaz.indexOf(subtemaInterfaz)]" (click)="hacerSubtemaEditable(subtemasInterfaz.indexOf(subtemaInterfaz))" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{subtemaInterfaz.nombre}}</td>
+              <td *ngIf="!editableSubtemas[subtemasInterfaz.indexOf(subtemaInterfaz)]" (click)="hacerSubtemaEditable(subtemasInterfaz.indexOf(subtemaInterfaz))"  class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{subtemaInterfaz.areaDeInteres}}</td>
+              <td *ngIf="editableSubtemas[subtemasInterfaz.indexOf(subtemaInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                <input [(ngModel)]="subtemaInterfaz.nombre" value="{{subtemaInterfaz.nombre}}" type="text">
+              </td>
+              <td *ngIf="editableSubtemas[subtemasInterfaz.indexOf(subtemaInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                <input [(ngModel)]="subtemaInterfaz.areaDeInteres" value="{{subtemaInterfaz.areaDeInteres}}" type="text">
+                <button (click)="hacerSubtemasNoEditables()">✓</button><button (click)="eliminarSubtema(subtemasInterfaz.indexOf(subtemaInterfaz))">x</button>
+              </td>
             </tr>
           </tbody>
         </table>
+        <a (click)="agregarSubtema()" class="u-btn u-btn-submit u-button-style u-palette-5-dark-2 u-btn-1">Agregar<br>
+        </a>
       </div>
 
       <div *ngIf="rol != 'Director del SGSST'"  class="u-align-center u-table u-table-responsive u-table-1">

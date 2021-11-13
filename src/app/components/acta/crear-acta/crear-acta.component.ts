@@ -28,7 +28,7 @@ export class CrearActaComponent implements OnInit {
 
     this.datosInicialesForm = this.createFormGroupDatos();
     this.participantesForm = this.createFormGroupParticipantes();
-    this.rol = GestorRoles.SECRETARIO_COPASST;
+    this.rol = GestorRoles.DIRECTOR;
     this.subtemasInterfaz = [];
     this.editableSubtemas = [];
 
@@ -120,6 +120,7 @@ export class CrearActaComponent implements OnInit {
 
     let nuevoSubtema: SubtemaInterfaz = new SubtemaInterfaz();
     nuevoSubtema.nombre = "Subtema";
+    nuevoSubtema.areaDeInteres = "Área";
     this.subtemasInterfaz.push(nuevoSubtema);
     this.editableSubtemas.push(true);
 
