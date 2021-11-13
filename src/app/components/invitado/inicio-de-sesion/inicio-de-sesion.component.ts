@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { data } from 'jquery';
 import { Usuario } from 'src/app/_model/Usuario';
 import { UsuariosService } from 'src/app/_service/usuarios.service';
+import { environment } from 'src/environments/environment';
 import { ValidacionComponent } from '../../utilitarios/validacion/validacion.component';
 
 @Component({
@@ -101,6 +102,7 @@ export class InicioDeSesionComponent implements OnInit {
 
         data => {console.log(data);
                 sessionStorage.setItem("usuario", JSON.stringify(data));
+                sessionStorage.setItem(environment.NOMBRE,data.nombre);
 
                 this.usuariosService.getRol(data).subscribe( data2 => {
 

@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UsuariosService } from 'src/app/_service/usuarios.service';
 import { Router } from '@angular/router';
-import { ValidacionComponent } from '../../utilitarios/validacion/validacion.component';
 
 
 @Component({
@@ -20,62 +19,44 @@ export class GeneracionDeClaveComponent implements OnInit {
  constructor(private _snackBar: MatSnackBar, 
   private usuariosService: UsuariosService,
   private router: Router) {
-
-  this.generarForm = this.createFormGroup();
-}
-
-createFormGroup() {
-
-  return new FormGroup({
-
-    correo: new FormControl('', [
-      Validators.required,
-      Validators.email
-    ] )
-  });
-
-}
-
-ngOnInit(): void {
-}
-
-getMensajeError(){
-
-  let mensajeError:string[] = [];
-
-  if(this.generarForm.controls.correo.hasError('email') || this.generarForm.controls.correo.hasError('required')){
-
-    mensajeError.push("Digite un correo electrónico válido");
-
+   this.generarForm = this.createFormGroup();
   }
-  return mensajeError;
 
-}
-  
+  createFormGroup() {
+
+     return new FormGroup({
+      correo: new FormControl('', [Validators.required, Validators.email]),
+    }); 
+  }
+
+  ngOnInit(): void {
+ }
 
   generarToken(event: Event){
-    
+    console.log("entroif");
     if(this.generarForm.valid){
 
-      this.correo=this.correo = this.generarForm.controls["correo"].value;
+      const value = this.generarForm.value
+      this.correo=value.correo;
+      let paquete={correo:this.correo}
+      
 
-      this.usuariosService.generarToken(this.correo).subscribe(data => {
+      this.usuariosService.generarToken(paquete).subscribe(data => {
         this._snackBar.open('Recibira un correo con el token para continuar con el proceso', 'Cancel  ', {
           duration: 5000
         });
         this.router.navigate(['/recuperarClave']);
       });
     }else{
+      console.log("formularioinvalido");
 
-      let mensajeError = this.getMensajeError();
-      
-      this._snackBar.openFromComponent(ValidacionComponent, {
-        data: mensajeError,
-        duration: 3000
-      });
-
+      if(this.generarForm.controls.correo.hasError('email') || this.generarForm.controls.correo.hasError('required')){
+        this._snackBar.open('Digite un correo electrónico válido', 'Cancel  ', {
+          duration: 5000
+        });
+       }
     }
   }
-
 }
+
 
