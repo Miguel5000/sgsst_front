@@ -177,6 +177,8 @@ export class RegistroComponent implements OnInit {
         usuario.correo = value.correo;
         usuario.clave = value.contraseña;
         usuario.idEmpresa = data["id"];
+        usuario.idRol = 3;
+        usuario.idArea = 4;
 
         this.usuariosService.crear(usuario).subscribe( data => {
           this._snackBar.open('Usuario registrado exitosamente', 'Cancel  ', {
