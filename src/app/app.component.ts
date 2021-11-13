@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, DoCheck } from '@angular/core';
 import { UsuariosService } from './_service/usuarios.service';
+import { environment } from 'src/environments/environment';
 
 var jquery: NodeRequire = require("../assets/jquery.js");
 
@@ -61,6 +62,7 @@ export class AppComponent implements DoCheck {
     sessionStorage.removeItem("usuario");
     sessionStorage.removeItem("rol");
     sessionStorage.removeItem("empresa");
+    sessionStorage.removeItem(environment.NOMBRE);
     this.router.navigate(["/paginaInicio"]);
 
   }

@@ -13,7 +13,7 @@ import { ValidacionComponent } from '../../utilitarios/validacion/validacion.com
 })
 export class CambioDeClaveComponent implements OnInit {
 
-  nombre:string;
+  nombre:any;
   token:string;
   contraseña:string;
   contraseña2:string;
@@ -31,7 +31,7 @@ export class CambioDeClaveComponent implements OnInit {
     createFormGroup() {
   
        return new FormGroup({
-        token: new FormControl('', [Validators.required]),
+        /*token: new FormControl('', [Validators.required]),*/
         contraseña: new FormControl('',[Validators.required]),
         contraseña2: new FormControl('',Validators.required),
       }); 
@@ -45,15 +45,14 @@ export class CambioDeClaveComponent implements OnInit {
       }else{
         this.titulo="Cambiar Contraseña";
       }
-      this.nombre== sessionStorage.getItem(environment.NOMBRE);
-        console.log(this.nombre);
+      
     }
     getMensajeError() {
       let error: string[] = [];
   
-      if(this.cambioForm.controls.token.hasError('required')) {
+      /*if(this.cambioForm.controls.token.hasError('required')) {
         error.push("Digite el token que le enviaron");
-      }
+      }*/
   
       if(this.cambioForm.controls.contraseña.hasError('required')) {
         error.push("Digite la contraseña");
@@ -69,7 +68,8 @@ export class CambioDeClaveComponent implements OnInit {
       return error;
     }
 
-    recuperarContrasena(event: Event){
+    recuperarContrasena(){
+      
       if(this.cambioForm.valid){
         
         const value = this.cambioForm.value
@@ -101,14 +101,14 @@ export class CambioDeClaveComponent implements OnInit {
         const value = this.cambioForm.value
         this.contraseña=value.contraseña;
         this.contraseña2=value.contraseña2;
-        /*this.nombre== sessionStorage.getItem(environment.NOMBRE);
-        console.log(this.nombre);*/
+        this.nombre=sessionStorage.getItem(environment.NOMBRE);
+        console.log(this.nombre);
         let paquete={clave:this.contraseña,nombre:this.nombre}
-       /* this.usuariosService.cambiarcontrasena(paquete).subscribe(data => {
+        this.usuariosService.cambiarcontrasena(paquete).subscribe(data => {
           this._snackBar.open('cambio de contraseña excelente', 'Cancel  ', {
             duration: 5000
           });
-        });*/
+        });
         
       }else{
         let error = this.getMensajeError();
@@ -119,6 +119,19 @@ export class CambioDeClaveComponent implements OnInit {
           duration: 10000
         });
       }
+    }
+
+    cambiarClaves(event:Event){
+  
+      
+      if(this.ruta=="/recuperarClave"){
+        this.recuperarContrasena();
+      }else{
+        console.log("entro al else")
+        this.cambiarClave();
+      }
+
+
     }
 
 }
