@@ -6,6 +6,7 @@ import { PaqueteGetActas } from '../_model/PaqueteGetActas';
 import { TipoActa } from '../_model/TipoActa';
 import { Subtema } from '../_model/Subtema';
 import { Asistencia } from '../_model/Asistencia';
+import { Usuario } from '../_model/Usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -82,7 +83,13 @@ export class ActasService {
 
   getAsistencias(acta: Acta){
 
-    return this.http.post<Asistencia[]>(this.URL + "/getasistencias", acta);
+    return this.http.post<Usuario[]>(this.URL + "/getasistencias", acta);
+
+  }
+
+  getVerdaderasAsistencias(acta: Acta){
+
+    return this.http.post<Asistencia[]>(this.URL + "/getverdaderasasistencias", acta);
 
   }
 

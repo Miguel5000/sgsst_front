@@ -9,15 +9,15 @@
         <form [formGroup]="datosInicialesForm" action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
           <div class="u-form-date u-form-group u-form-partition-factor-2">
             <label for="name-5a59" class="u-label">Fecha</label>
-            <input type="date" id="name-5a59" name="name" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white" required="required">
+            <input formControlName="fecha" type="date" id="name-5a59" name="name" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white" required="required">
           </div>
           <div class="u-form-group u-form-partition-factor-2">
             <label for="email-5a59" class="u-label">Hora Inicio</label>
-            <input type="time" id="email-5a59" name="email" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white" required="required" placeholder="Ingresar hora de incio">
+            <input formControlName="horaInicio" type="time" id="email-5a59" name="email" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white" required="required" placeholder="Ingresar hora de incio">
           </div>
           <div class="u-form-group u-form-partition-factor-2 u-form-group-3">
             <label for="text-b1a2" class="u-label">Lugar</label>
-            <input formControlName="lugar" type="text" placeholder="Ingresar lugar" id="text-b1a2" name="text" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white" [matAutocomplete]="auto">
+            <input (input)="validarInputLugar($event)" formControlName="lugar" type="text" placeholder="Ingresar lugar" id="text-b1a2" name="text" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white" [matAutocomplete]="auto">
             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
               <mat-option *ngFor="let lugar of lugaresFiltrados | async" [value]="lugar">
                 {{lugar}}
@@ -26,11 +26,11 @@
           </div>
           <div class="u-form-group u-form-partition-factor-2 u-form-group-4">
             <label for="text-e94d" class="u-label">Hora Fin</label>
-            <input type="time" placeholder="Ingresar hora de fin" id="text-e94d" name="text-1" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white">
+            <input formControlName="horaFin" type="time" placeholder="Ingresar hora de fin" id="text-e94d" name="text-1" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white">
           </div>
           <div *ngIf="tipoActa == 'Capacitación'" class="u-form-group u-form-group-5">
             <label for="text-18c4" class="u-label">Capacitación de</label>
-            <input type="text" placeholder="Ingresar el tipo de capacitación" id="text-18c4" name="text-2" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white">
+            <input formControlName="capacitacion" type="text" placeholder="Ingresar el tipo de capacitación" id="text-18c4" name="text-2" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white">
           </div>
           <div class="u-align-left u-form-group u-form-submit">
             <a href="#" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-btn-submit u-button-style u-none u-text-palette-1-base u-btn-1">
@@ -60,10 +60,10 @@
       <div class="u-container-style u-group u-group-1">
         <div class="u-container-layout">
           <div class="u-align-center u-form u-form-1">
-            <form action="#" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="custom" name="form">
+            <form [formGroup]="temaForm" action="#" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="custom" name="form">
               <div class="u-form-group u-form-group-1">
                 <label for="textarea-1814" class="u-form-control-hidden u-label"></label>
-                <textarea placeholder="Tema de la reunión" rows="8" cols="50" id="textarea-1814" name="textarea" class="u-border-1 u-border-grey-30 u-input u-input-rectangle"></textarea>
+                <textarea formControlName="tema" placeholder="Tema de la reunión" rows="8" cols="50" id="textarea-1814" name="textarea" class="u-border-1 u-border-grey-30 u-input u-input-rectangle"></textarea>
               </div>
               <div class="u-align-left u-form-group u-form-submit">
                 <a href="#" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-btn-submit u-button-style u-none u-text-palette-1-base u-btn-1">
@@ -82,10 +82,10 @@
         </div>
       </div>
       <div class="u-align-center u-form u-form-2">
-        <form action="#" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="custom" name="form">
+        <form [formGroup]="desarrolloForm" action="#" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="custom" name="form">
           <div class="u-form-group u-form-group-3">
             <label for="textarea-1814" class="u-form-control-hidden u-label"></label>
-            <textarea placeholder="Desarrollo de la reunión" rows="8" cols="50" id="textarea-1814" name="textarea" class="u-border-1 u-border-grey-30 u-input u-input-rectangle"></textarea>
+            <textarea formControlName="desarrollo" placeholder="Desarrollo de la reunión" rows="8" cols="50" id="textarea-1814" name="textarea" class="u-border-1 u-border-grey-30 u-input u-input-rectangle"></textarea>
           </div>
           <div class="u-align-left u-form-group u-form-submit u-form-group-4">
             <a href="#" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-btn-submit u-button-style u-none u-text-palette-1-base u-btn-2">
@@ -127,7 +127,9 @@
                 <input [(ngModel)]="subtemaInterfaz.nombre" value="{{subtemaInterfaz.nombre}}" type="text">
               </td>
               <td *ngIf="editableSubtemas[subtemasInterfaz.indexOf(subtemaInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                <input [(ngModel)]="subtemaInterfaz.areaDeInteres" value="{{subtemaInterfaz.areaDeInteres}}" type="text">
+                <select [(ngModel)]="subtemaInterfaz.areaDeInteres">
+                  <option *ngFor="let area of areas" value="{{area}}">{{area}}</option>
+                </select>
                 <button (click)="hacerSubtemasNoEditables()">✓</button><button (click)="eliminarSubtema(subtemasInterfaz.indexOf(subtemaInterfaz))">x</button>
               </td>
             </tr>
@@ -151,7 +153,7 @@
             <tr *ngFor="let subtemaInterfaz of subtemasInterfaz" style="height: 75px;">
               <td *ngIf="!editableSubtemas[subtemasInterfaz.indexOf(subtemaInterfaz)]" (click)="hacerSubtemaEditable(subtemasInterfaz.indexOf(subtemaInterfaz))" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{subtemaInterfaz.nombre}}</td>
               <td *ngIf="editableSubtemas[subtemasInterfaz.indexOf(subtemaInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                <input value="{{subtemaInterfaz.nombre}}" type="text"><button (click)="hacerSubtemasNoEditables()">✓</button><button (click)="eliminarSubtema(subtemasInterfaz.indexOf(subtemaInterfaz))">x</button>
+                <input [(ngModel)]="subtemaInterfaz.nombre" value="{{subtemaInterfaz.nombre}}" type="text"><button (click)="hacerSubtemasNoEditables()">✓</button><button (click)="eliminarSubtema(subtemasInterfaz.indexOf(subtemaInterfaz))">x</button>
               </td>
             </tr>
           </tbody>
@@ -171,10 +173,10 @@
             <span style="font-weight: 700;"></span>
           </h5>
           <div class="u-align-center u-expanded-width u-form u-form-1">
-            <form action="#" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="custom" name="form">
+            <form [formGroup]="conclusionForm" action="#" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="custom" name="form">
               <div class="u-form-group u-form-group-1">
                 <label for="textarea-1814" class="u-form-control-hidden u-label"></label>
-                <textarea placeholder="Conclusiones y/o observaciones de la reunión" rows="8" cols="50" id="textarea-1814" name="textarea" class="u-border-1 u-border-grey-30 u-input u-input-rectangle"></textarea>
+                <textarea formControlName="conclusion" placeholder="Conclusiones y/o observaciones de la reunión" rows="8" cols="50" id="textarea-1814" name="textarea" class="u-border-1 u-border-grey-30 u-input u-input-rectangle"></textarea>
               </div>
               <div class="u-align-left u-form-group u-form-submit u-form-group-2">
                 <a href="#" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-btn-submit u-button-style u-none u-text-palette-1-base u-btn-1">
@@ -199,7 +201,7 @@
         <form [formGroup]="participantesForm" action="#" method="POST" class="u-clearfix u-form-horizontal u-form-spacing-15 u-inner-form" style="padding: 15px;" source="custom">
           <div class="u-form-group u-form-name">
             <label for="name-ef64" class="u-form-control-hidden u-label">Name</label>
-            <input formControlName = "participante" type="text" placeholder="Nombre" id="name-ef64" name="name" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" required="" maxlength="50" [matAutocomplete]="auto2">
+            <input (input)="validarInputParticipante($event)" formControlName = "participante" type="text" placeholder="Nombre" id="name-ef64" name="name" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" required="" maxlength="50" [matAutocomplete]="auto2">
             <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete">
               <mat-option *ngFor="let participante of participantesFiltrados | async" [value]="participante">
                 {{participante}}
@@ -207,12 +209,11 @@
             </mat-autocomplete>
           </div>
           <div class="u-form-group u-form-submit">
-            <a href="#" class="u-btn u-btn-submit u-button-style u-palette-5-dark-2 u-btn-1">Agregar<br>
+            <a (click)="agregarParticipante()" class="u-btn u-btn-submit u-button-style u-palette-5-dark-2 u-btn-1">Agregar<br>
             </a>
             <input type="submit" value="submit" class="u-form-control-hidden">
           </div>
           <div class="u-form-send-message u-form-send-success">#FormSendSuccess</div>
-          <div class="u-form-send-error u-form-send-message">#FormSendError</div>
           <input type="hidden" value="" name="recaptchaResponse">
         </form>
       </div>
@@ -227,15 +228,22 @@
           </colgroup>
           <thead class="u-grey-50 u-table-header u-table-header-1">
             <tr style="height: 60px;">
-              <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Column 1 </th>
+              <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Participantes</th>
             </tr>
           </thead>
           <tbody class="u-table-body">
-            <tr style="height: 75px;">
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 1</td>
-            </tr>
-            <tr style="height: 76px;">
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 2</td>
+            <tr *ngFor="let participanteInterfaz of participantesInterfaz" style="height: 75px;">
+              <td *ngIf="!editableParticipantes[participantesInterfaz.indexOf(participanteInterfaz)]" (click)="hacerParticipanteEditable(participantesInterfaz.indexOf(participanteInterfaz))" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                {{participanteInterfaz.nombre}}
+              </td>
+              <td *ngIf="editableParticipantes[participantesInterfaz.indexOf(participanteInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                <input (input)="buscarParticipante($event);validarInputParticipante($event)" [(ngModel)]="participanteInterfaz.nombre" value="{{participanteInterfaz.nombre}}" type="text" [matAutocomplete]="auto2"><button (click)="hacerParticipantesNoEditables()">✓</button><button (click)="eliminarParticipante(participantesInterfaz.indexOf(participanteInterfaz))">x</button>
+                <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete">
+                  <mat-option *ngFor="let participante of participantesFiltradosNoSync" [value]="participante">
+                    {{participante}}
+                  </mat-option>
+                </mat-autocomplete>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -249,12 +257,12 @@
           <div class="u-layout-row">
             <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-1">
               <div class="u-container-layout u-container-layout-1">
-                <a href="https://localhost/c/table-website-templates" class="u-align-right u-btn u-btn-round u-button-style u-hover-palette-5-dark-1 u-palette-5-dark-2 u-radius-6 u-btn-1">Guardar</a>
+                <a (click)="guardarActa($event)" class="u-align-right u-btn u-btn-round u-button-style u-hover-palette-5-dark-1 u-palette-5-dark-2 u-radius-6 u-btn-1">Guardar</a>
               </div>
             </div>
             <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-2">
               <div class="u-container-layout u-container-layout-2">
-                <a href="https://localhost/html-templates" class="u-align-left u-btn u-btn-round u-button-style u-hover-palette-5-dark-1 u-palette-5-dark-2 u-radius-6 u-btn-2">Publicar</a>
+                <a (click)="publicarActa($event)" class="u-align-left u-btn u-btn-round u-button-style u-hover-palette-5-dark-1 u-palette-5-dark-2 u-radius-6 u-btn-2">Publicar</a>
               </div>
             </div>
           </div>

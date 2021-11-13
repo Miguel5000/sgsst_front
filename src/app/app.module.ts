@@ -72,7 +72,8 @@ import { MatAutocompleteModule} from '@angular/material/autocomplete';
     MatToolbarModule,
     MatIconModule,
     MatSelectModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

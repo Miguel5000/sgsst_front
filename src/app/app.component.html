@@ -35,7 +35,7 @@
     </div>
 
 <header *ngIf="sesionIniciada == false" class="u-clearfix u-gradient u-header u-header" id="sec-ae46"><div class="u-clearfix u-sheet u-sheet-1">
-    <a href="/paginaInicio" data-page-id="257757241" class="u-image u-logo u-image-1" data-image-width="512" data-image-height="512" title="Página de inicio">
+    <a (click)="irAInicio()" data-page-id="257757241" class="u-image u-logo u-image-1" data-image-width="512" data-image-height="512" title="Página de inicio">
       <img src="assets/images/2450449.png" class="u-logo-image u-logo-image-1">
     </a>
     <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
@@ -57,7 +57,7 @@
   </div></header>
 
   <header *ngIf="sesionIniciada == true" class="u-clearfix u-gradient u-header u-header" id="sec-ae46"><div class="u-clearfix u-sheet u-sheet-1">
-    <a href="/paginaInicio" data-page-id="257757241" class="u-image u-logo u-image-1" data-image-width="512" data-image-height="512" title="Página de inicio">
+    <a (click)="irAInicio()" data-page-id="257757241" class="u-image u-logo u-image-1" data-image-width="512" data-image-height="512" title="Página de inicio">
       <img src="assets/images/2450449.png" class="u-logo-image u-logo-image-1">
     </a>
     <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">

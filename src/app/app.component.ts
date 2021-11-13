@@ -92,7 +92,24 @@ export class AppComponent implements DoCheck {
 
     sessionStorage.removeItem("usuario");
     sessionStorage.removeItem("rol");
+    sessionStorage.removeItem("tipoActa");
+    sessionStorage.removeItem("enlaceListaActas");
+    sessionStorage.removeItem("actaEditar");
     this.router.navigate(["/paginaInicio"]);
+
+  }
+
+  irAInicio(){
+
+    if(sessionStorage.getItem("usuario") != null){
+
+      this.router.navigate(["/espacioDeTrabajoYServicio"]);
+
+    }else{
+
+      this.router.navigate(["/paginaInicio"]);
+
+    }
 
   }
 

@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Empresa } from '../_model/Empresa';
 import { Lugar } from '../_model/Lugar';
+import { Acta } from '../_model/Acta';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,12 @@ export class LugaresService {
   getLugares(empresa: Empresa){
 
     return this.http.post<Lugar[]>(this.URL + "/getlugares", empresa);
+
+  }
+
+  getLugar(acta: Acta){
+
+    return this.http.post<Lugar>(this.URL + "/getlugar", acta);
 
   }
 

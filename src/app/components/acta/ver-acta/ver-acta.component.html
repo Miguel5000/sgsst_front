@@ -1,7 +1,7 @@
 <section class="u-clearfix u-section-1" id="sec-e81f">
     <div class="u-clearfix u-sheet u-sheet-1">
-      <h3 class="u-align-center u-text u-text-1">Acta de Capacitación</h3>
-      <p class="u-align-center u-text u-text-2">N° de Acta: 01</p>
+      <h3 class="u-align-center u-text u-text-1">Acta de {{tipoActa}}</h3>
+      <p class="u-align-center u-text u-text-2">N° de Acta: {{acta.numero}}</p>
     </div>
   </section>
   <section class="u-clearfix u-section-2" id="sec-cc2e">
@@ -10,23 +10,23 @@
         <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
           <div class="u-form-group u-form-partition-factor-2">
             <label for="name-5a59" class="u-label">Fecha</label>
-            <input type="text" id="name-5a59" name="name" class="u-input u-input-rectangle u-white" required="required">
+            <input style="border: 1px solid gray !important; text-align: justify;" value="{{fechaConvertida}}" type="text" id="name-5a59" name="name" class="u-input u-input-rectangle u-white" required="required" readonly disabled>
           </div>
           <div class="u-form-group u-form-partition-factor-2">
             <label for="email-5a59" class="u-label">Hora Inicio</label>
-            <input type="text" id="email-5a59" name="email" class="u-input u-input-rectangle u-white" required="required">
+            <input style="border: 1px solid gray !important; text-align: justify;" value="{{horaInicioConvertida}}" type="text" id="email-5a59" name="email" class="u-input u-input-rectangle u-white" required="required" readonly disabled>
           </div>
           <div class="u-form-group u-form-partition-factor-2 u-form-group-3">
             <label for="text-b1a2" class="u-label">Lugar</label>
-            <input type="text" id="text-b1a2" name="text" class="u-input u-input-rectangle u-white">
+            <input style="border: 1px solid gray !important; text-align: justify;" value="{{lugar.nombre}}"  type="text" id="text-b1a2" name="text" class="u-input u-input-rectangle u-white" readonly disabled>
           </div>
           <div class="u-form-group u-form-partition-factor-2 u-form-group-4">
             <label for="text-e94d" class="u-label">Hora Fin</label>
-            <input type="text" id="text-e94d" name="text-1" class="u-input u-input-rectangle u-white">
+            <input style="border: 1px solid gray !important; text-align: justify;" value="{{horaFinConvertida}}" type="text" id="text-e94d" name="text-1" class="u-input u-input-rectangle u-white" readonly disabled>
           </div>
-          <div class="u-form-group u-form-group-5">
+          <div *ngIf="acta.capacitacion != null" class="u-form-group u-form-group-5">
             <label for="text-18c4" class="u-label">Capacitación de</label>
-            <input type="text" id="text-18c4" name="text-2" class="u-input u-input-rectangle u-white">
+            <input style="border: 1px solid gray !important; text-align: justify;" value="{{acta.capacitacion}}" type="text" id="text-18c4" name="text-2" class="u-input u-input-rectangle u-white" readonly disabled>
           </div>
           <div class="u-align-left u-form-group u-form-submit">
             <a href="#" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-btn-submit u-button-style u-none u-text-palette-1-base u-btn-1">
@@ -59,7 +59,7 @@
             <form action="#" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="custom" name="form">
               <div class="u-form-group u-form-group-1">
                 <label for="textarea-1814" class="u-form-control-hidden u-label"></label>
-                <textarea rows="8" cols="50" id="textarea-1814" name="textarea" class="u-input u-input-rectangle"></textarea>
+                <textarea style="border: 1px solid gray !important; text-align: justify; resize: none;" rows="8" cols="50" id="textarea-1814" name="textarea" class="u-input u-input-rectangle" readonly disabled>{{acta.tema}}</textarea>
               </div>
               <div class="u-align-left u-form-group u-form-submit">
                 <a href="#" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-btn-submit u-button-style u-none u-text-palette-1-base u-btn-1">
@@ -81,7 +81,7 @@
         <form action="#" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="custom" name="form">
           <div class="u-form-group u-form-group-3">
             <label for="textarea-1814" class="u-form-control-hidden u-label"></label>
-            <textarea rows="8" cols="50" id="textarea-1814" name="textarea" class="u-input u-input-rectangle"></textarea>
+            <textarea style="border: 1px solid gray !important; resize: none;" rows="8" cols="50" id="textarea-1814" name="textarea" class="u-input u-input-rectangle" readonly disabled>{{acta.desarrollo}}</textarea>
           </div>
           <div class="u-align-left u-form-group u-form-submit u-form-group-4">
             <a href="#" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-btn-submit u-button-style u-none u-text-palette-1-base u-btn-2">
@@ -103,7 +103,7 @@
           <h5 class="u-align-center u-text u-text-1">Subtemas</h5>
         </div>
       </div>
-      <div class="u-align-center u-table u-table-responsive u-table-1">
+      <div *ngIf="rol == 'Director del SGSST'" class="u-align-center u-table u-table-responsive u-table-1">
         <table class="u-table-entity u-table-entity-1">
           <colgroup>
             <col width="50%">
@@ -116,17 +116,33 @@
             </tr>
           </thead>
           <tbody class="u-table-body">
-            <tr style="height: 75px;">
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 1</td>
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-            </tr>
-            <tr style="height: 76px;">
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 2</td>
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
+            <tr *ngFor="let subtema of subtemas" style="height: 75px;">
+              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{subtema.subtemaActa}}</td>
+              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{gruposNombres[subtemas.indexOf(subtema)]}}</td>
             </tr>
           </tbody>
         </table>
       </div>
+
+
+      <div *ngIf="rol != 'Director del SGSST'"  class="u-align-center u-table u-table-responsive u-table-1">
+        <table class="u-table-entity u-table-entity-1">
+          <colgroup>
+            <col width="100%">
+          </colgroup>
+          <thead class="u-grey-50 u-table-header u-table-header-1">
+            <tr style="height: 21px;">
+              <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Nombre del subtema</th>
+            </tr>
+          </thead>
+          <tbody class="u-table-body">
+            <tr *ngFor="let subtema of subtemas" style="height: 75px;">
+              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{subtema.subtemaActa}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
     </div>
   </section>
   <section class="u-align-center u-clearfix u-section-6" id="carousel_e8d9">
@@ -141,7 +157,7 @@
             <form action="#" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="custom" name="form">
               <div class="u-form-group u-form-group-1">
                 <label for="textarea-1814" class="u-form-control-hidden u-label"></label>
-                <textarea rows="8" cols="50" id="textarea-1814" name="textarea" class="u-input u-input-rectangle"></textarea>
+                <textarea style="border: 1px solid gray !important; resize: none;" rows="8" cols="50" id="textarea-1814" name="textarea" class="u-input u-input-rectangle" readonly disabled>{{acta.conclusion}}</textarea>
               </div>
               <div class="u-align-left u-form-group u-form-submit u-form-group-2">
                 <a href="#" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-btn-submit u-button-style u-none u-text-palette-1-base u-btn-1">
@@ -173,15 +189,12 @@
           </colgroup>
           <thead class="u-grey-50 u-table-header u-table-header-1">
             <tr style="height: 60px;">
-              <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Column 1 </th>
+              <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Nombre</th>
             </tr>
           </thead>
           <tbody class="u-table-body">
-            <tr style="height: 75px;">
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 1</td>
-            </tr>
-            <tr style="height: 76px;">
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 2</td>
+            <tr *ngFor="let participante of participantes" style="height: 75px;">
+              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{participante.nombre}}</td>
             </tr>
           </tbody>
         </table>
