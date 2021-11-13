@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, DoCheck } from '@angular/core';
 import { UsuariosService } from './_service/usuarios.service';
+import { environment } from 'src/environments/environment';
 
 var jquery: NodeRequire = require("../assets/jquery.js");
 
@@ -11,15 +12,12 @@ var jquery: NodeRequire = require("../assets/jquery.js");
 })
 export class AppComponent implements DoCheck {
 
-  inputArchivo: any;
   sesionIniciada: boolean;
   title = 'sgsst-front';
   activacionDesglose: boolean;
-  reader: FileReader;
   apoyo: any;
-  imagenCargada: string;
 
-  constructor(private router: Router, private usuariosService: UsuariosService) {
+  constructor(private router: Router) {
 
     (<any>window).jQuery = jquery;
     (<any>window).$ = jquery;
@@ -50,35 +48,6 @@ export class AppComponent implements DoCheck {
 
   }
 
-  onFileSelected(event: any) {
-
-    let archivoInput:File = event.target.files[0];
-    /*archivoInput.arrayBuffer().then(buffer => {
-      let archivo = new Uint8Array(buffer);
-      this.usuariosService.guardarArchivo(archivo).subscribe();
-    });*/
-    let reader = new FileReader();
-
-    reader.onload = function (e) {
-
-      let elemento = document.getElementById("imagenCargada") as HTMLImageElement; 
-      let resultado= e.target?.result;
-      if(typeof(resultado) == 'string'){
-
-        elemento.src = resultado;
-
-      }
-
-    }
-
-    reader.readAsDataURL(archivoInput);
-
-  }
-
-  
-
-
-
   onResize(event: any) {
     let ancho = event.target.innerWidth;
     if (ancho > 992) {
@@ -95,6 +64,8 @@ export class AppComponent implements DoCheck {
     sessionStorage.removeItem("tipoActa");
     sessionStorage.removeItem("enlaceListaActas");
     sessionStorage.removeItem("actaEditar");
+    sessionStorage.removeItem("empresa");
+    sessionStorage.removeItem(environment.NOMBRE);
     this.router.navigate(["/paginaInicio"]);
 
   }

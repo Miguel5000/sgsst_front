@@ -51,6 +51,10 @@ export class UsuariosService {
 
   }
 
+  cambiarcontrasena(datos: any){
+    return this.http.put(this.URL+"/CambiarContrasena",datos);
+  }
+
   eliminar(usuario: Usuario){
 
     return this.http.delete(this.URL + "/eliminar", {body: usuario});
@@ -65,7 +69,7 @@ export class UsuariosService {
 
   generarToken(correo:any){
 
-    return this.http.put(this.URL + "/generartoken", correo);
+    return this.http.put(this.URL + "/GenerarToken", correo);
 
   }
 }

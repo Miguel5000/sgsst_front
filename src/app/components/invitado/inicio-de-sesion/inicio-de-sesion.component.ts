@@ -4,7 +4,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { data } from 'jquery';
 import { Usuario } from 'src/app/_model/Usuario';
+import { EmpresasService } from 'src/app/_service/empresas.service';
 import { UsuariosService } from 'src/app/_service/usuarios.service';
+import { environment } from 'src/environments/environment';
 import { ValidacionComponent } from '../../utilitarios/validacion/validacion.component';
 
 @Component({
@@ -20,6 +22,7 @@ export class InicioDeSesionComponent implements OnInit {
 
   constructor(private _snackBar: MatSnackBar, 
     private usuariosService: UsuariosService,
+    private empresasService: EmpresasService,
     private router: Router) {
 
     this.loginForm = this.createFormGroup();
@@ -82,14 +85,20 @@ export class InicioDeSesionComponent implements OnInit {
 
         data => {console.log(data);
                 sessionStorage.setItem("usuario", JSON.stringify(data));
+                sessionStorage.setItem(environment.NOMBRE,data.nombre);
 
                 this.usuariosService.getRol(data).subscribe( data2 => {
 
                   sessionStorage.setItem("rol", data2.nombre);
-                  this.router.navigate(['espacioDeTrabajoYServicio']);}
-          
-                );
+                  
+                  this.empresasService.get(data.idEmpresa).subscribe( data3 => {
+                    
+                    sessionStorage.setItem("empresa", JSON.stringify(data3));
+                    
+                  });
 
+                  this.router.navigate(['espacioDeTrabajoYServicio']);
+                });
               }, 
         err => {console.log(err);
               this._snackBar.open("Usuario inexistente", "Cerrar", {duration: 3000});
