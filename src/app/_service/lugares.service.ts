@@ -14,6 +14,12 @@ export class LugaresService {
 
   constructor(private http: HttpClient) { }
 
+  get(id: number){
+
+    return this.http.get<Lugar>(this.URL + "/get?id=" + id)
+
+  }
+
   getLugares(empresa: Empresa){
 
     return this.http.post<Lugar[]>(this.URL + "/getlugares", empresa);
@@ -41,6 +47,18 @@ export class LugaresService {
   eliminar(lugar: Lugar){
 
     return this.http.delete<Lugar>(this.URL + "/eliminar", {body: lugar});
+
+  }
+
+  isAgregable(lugar: Lugar){
+
+    return this.http.post<boolean>(this.URL + "/isagregable", lugar);
+
+  }
+
+  isEliminable(lugar: Lugar){
+
+    return this.http.post<boolean>(this.URL + "/iseliminable", lugar);
 
   }
 

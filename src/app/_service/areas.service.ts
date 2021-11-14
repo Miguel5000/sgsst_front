@@ -13,9 +13,15 @@ export class AreasService {
 
   constructor(private http: HttpClient) { }
 
+  get(id: number){
+
+    return this.http.get<Area>(this.URL + "/get?id=" + id)
+
+  }
+
   getAreas(empresa: Empresa){
 
-    return this.http.post<Area[]>(this.URL + "/getactas", empresa);
+    return this.http.post<Area[]>(this.URL + "/getareas", empresa);
 
   }
 
@@ -33,7 +39,19 @@ export class AreasService {
 
   eliminar(area: Area){
 
-    return this.http.delete(this.URL + "/editar", {body: area});
+    return this.http.delete(this.URL + "/eliminar", {body: area});
+
+  }
+
+  isAgregable(area: Area){
+
+    return this.http.post<boolean>(this.URL + "/isagregable", area);
+
+  }
+
+  isEliminable(area: Area){
+
+    return this.http.post<boolean>(this.URL + "/iseliminable", area);
 
   }
 

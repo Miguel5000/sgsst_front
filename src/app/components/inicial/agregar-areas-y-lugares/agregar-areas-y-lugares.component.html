@@ -1,18 +1,17 @@
 <section class="u-align-left u-clearfix u-section-1" id="sec-c5fa">
     <div class="u-clearfix u-sheet u-sheet-1">
       <div class="u-form u-form-1">
-        <form action="#" method="POST" class="u-clearfix u-form-horizontal u-form-spacing-15 u-inner-form" style="padding: 15px;" source="custom">
+        <form [formGroup]="agregarForm" action="#" method="POST" class="u-clearfix u-form-horizontal u-form-spacing-15 u-inner-form" style="padding: 15px;" source="custom">
           <div class="u-form-group u-form-name">
             <label for="name-ef64" class="u-form-control-hidden u-label">Name</label>
-            <input type="text" placeholder="Nombre del área de trabajo" id="name-ef64" name="name" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" required="" maxlength="100">
+            <input formControlName="lugarOArea" form type="text" placeholder="Nombre del {{diferenciacion}} de trabajo" id="name-ef64" name="name" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" required="" maxlength="100">
           </div>
           <div class="u-form-group u-form-submit">
-            <a href="#" class="u-btn u-btn-submit u-button-style u-palette-5-dark-2 u-btn-1">Agregar<br>
+            <a (click)="agregar()" class="u-btn u-btn-submit u-button-style u-palette-5-dark-2 u-btn-1">Agregar<br>
             </a>
             <input type="submit" value="submit" class="u-form-control-hidden">
           </div>
           <div class="u-form-send-message u-form-send-success">#FormSendSuccess</div>
-          <div class="u-form-send-error u-form-send-message">#FormSendError</div>
           <input type="hidden" value="" name="recaptchaResponse">
         </form>
       </div>
@@ -24,7 +23,7 @@
         <form action="#" method="POST" class="u-clearfix u-form-horizontal u-form-spacing-15 u-inner-form" style="padding: 15px;" source="custom">
           <div class="u-form-group u-form-name">
             <label for="name-ef64" class="u-form-control-hidden u-label">Name</label>
-            <input type="text" placeholder="Buscar" id="name-ef64" name="name" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" required="">
+            <input (input)="filtrar($event)" type="text" placeholder="Buscar" id="name-ef64" name="name" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" required="">
           </div>
           <div class="u-form-group u-form-submit">
             <a href="#" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-btn-submit u-button-style u-none u-text-palette-1-base u-btn-1">
@@ -42,7 +41,7 @@
   <section class="u-align-center u-clearfix u-section-3" id="sec-e2f5">
     <div class="u-clearfix u-sheet u-sheet-1">
       <div class="u-table u-table-responsive u-table-1">
-        <table class="u-table-entity u-table-entity-1">
+        <table *ngIf="diferenciacion == 'área'" class="u-table-entity u-table-entity-1">
           <colgroup>
             <col width="50%">
             <col width="50%">
@@ -50,26 +49,53 @@
           <thead class="u-grey-50 u-table-header u-table-header-1">
             <tr style="height: 21px;">
               <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Área de trabajo</th>
-              <th class="u-border-1 u-border-grey-50 u-table-cell"></th>
+              <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Opciones</th>
             </tr>
           </thead>
           <tbody class="u-table-body">
-            <tr style="height: 75px;">
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 1</td>
-              <td class="u-align-center u-border-3 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell u-table-cell-4"><span class="u-icon u-icon-1"><svg class="u-svg-content" viewBox="0 0 60 60" x="0px" y="0px" style="width: 1em; height: 1em;"><path d="M30,0C13.458,0,0,13.458,0,30s13.458,30,30,30s30-13.458,30-30S46.542,0,30,0z M45.563,30.826l-22,15
-  C23.394,45.941,23.197,46,23,46c-0.16,0-0.321-0.038-0.467-0.116C22.205,45.711,22,45.371,22,45V15c0-0.371,0.205-0.711,0.533-0.884
-  c0.328-0.174,0.724-0.15,1.031,0.058l22,15C45.836,29.36,46,29.669,46,30S45.836,30.64,45.563,30.826z"></path></svg><img></span><span class="u-icon u-icon-2"><svg class="u-svg-content" viewBox="0 0 54.757 54.757" x="0px" y="0px" style="width: 1em; height: 1em;"><path d="M40.94,5.617C37.318,1.995,32.502,0,27.38,0c-5.123,0-9.938,1.995-13.56,5.617c-6.703,6.702-7.536,19.312-1.804,26.952
-  L27.38,54.757L42.721,32.6C48.476,24.929,47.643,12.319,40.94,5.617z M27.557,26c-3.859,0-7-3.141-7-7s3.141-7,7-7s7,3.141,7,7
-  S31.416,26,27.557,26z"></path></svg><img></span>
+            <tr *ngFor="let areaInterfaz of areasInterfazFiltradas" style="height: 75px;">
+              <td *ngIf="!areaInterfaz.editable" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{areaInterfaz.nombre}}</td>
+              <td *ngIf="areaInterfaz.editable" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell"><input [(ngModel)]="areaInterfaz.nombre" type="text" value="{{areaInterfaz.nombre}}"></td>
+              <td class="u-align-center u-border-3 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell u-table-cell-4">
+                <span *ngIf="!areaInterfaz.editable" class="u-icon u-icon-1">
+                  <img (click)="hacerAreaEditable(areaInterfaz)" style="position: relative; top: 7px; left: -3px;" width="37px" src="assets/iconos/Editar.png">
+                </span>
+                <span *ngIf="areaInterfaz.editable" class="u-icon u-icon-1">
+                  <img (click)="editarArea(areaInterfaz)" style="position: relative; top: 7px; left: -3px;" width="37px" src="assets/iconos/Ok.png">
+                </span>
+                <span class="u-icon u-icon-2">
+                  <img (click)="eliminarArea(areaInterfaz)" style="position: relative; top: 7px; left: 3px;" width="37px" src="assets/iconos/Eliminar.png">
+                </span>
               </td>
             </tr>
-            <tr style="height: 76px;">
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 2</td>
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell"><span class="u-icon u-icon-3"><svg class="u-svg-content" viewBox="0 0 60 60" x="0px" y="0px" style="width: 1em; height: 1em;"><path d="M30,0C13.458,0,0,13.458,0,30s13.458,30,30,30s30-13.458,30-30S46.542,0,30,0z M45.563,30.826l-22,15
-  C23.394,45.941,23.197,46,23,46c-0.16,0-0.321-0.038-0.467-0.116C22.205,45.711,22,45.371,22,45V15c0-0.371,0.205-0.711,0.533-0.884
-  c0.328-0.174,0.724-0.15,1.031,0.058l22,15C45.836,29.36,46,29.669,46,30S45.836,30.64,45.563,30.826z"></path></svg><img></span><span class="u-icon u-icon-4"><svg class="u-svg-content" viewBox="0 0 54.757 54.757" x="0px" y="0px" style="width: 1em; height: 1em;"><path d="M40.94,5.617C37.318,1.995,32.502,0,27.38,0c-5.123,0-9.938,1.995-13.56,5.617c-6.703,6.702-7.536,19.312-1.804,26.952
-  L27.38,54.757L42.721,32.6C48.476,24.929,47.643,12.319,40.94,5.617z M27.557,26c-3.859,0-7-3.141-7-7s3.141-7,7-7s7,3.141,7,7
-  S31.416,26,27.557,26z"></path></svg><img></span>
+          </tbody>
+        </table>
+
+        <table *ngIf="diferenciacion == 'lugar'" class="u-table-entity u-table-entity-1">
+          <colgroup>
+            <col width="50%">
+            <col width="50%">
+          </colgroup>
+          <thead class="u-grey-50 u-table-header u-table-header-1">
+            <tr style="height: 21px;">
+              <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Lugar de trabajo</th>
+              <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Opciones</th>
+            </tr>
+          </thead>
+          <tbody class="u-table-body">
+            <tr *ngFor="let lugarInterfaz of lugaresInterfazFiltrados" style="height: 75px;">
+              <td *ngIf="!lugarInterfaz.editable" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{lugarInterfaz.nombre}}</td>
+              <td *ngIf="lugarInterfaz.editable" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell"><input [(ngModel)]="lugarInterfaz.nombre" type="text" value="{{lugarInterfaz.nombre}}"></td>
+              <td class="u-align-center u-border-3 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell u-table-cell-4">
+                <span *ngIf="!lugarInterfaz.editable" class="u-icon u-icon-1">
+                  <img (click)="hacerLugarEditable(lugarInterfaz)" style="position: relative; top: 7px; left: -3px;" width="37px" src="assets/iconos/Editar.png">
+                </span>
+                <span *ngIf="lugarInterfaz.editable" class="u-icon u-icon-1">
+                  <img (click)="editarLugar(lugarInterfaz)" style="position: relative; top: 7px; left: -3px;" width="37px" src="assets/iconos/Ok.png">
+                </span>
+                <span class="u-icon u-icon-2">
+                  <img (click)="eliminarLugar(lugarInterfaz)" style="position: relative; top: 7px; left: 3px;" width="37px" src="assets/iconos/Eliminar.png">
+                </span>
               </td>
             </tr>
           </tbody>

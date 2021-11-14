@@ -47,8 +47,6 @@ export class VerActaComponent implements OnInit {
 
       this.acta = JSON.parse(actaMostrarJson);
 
-      sessionStorage.removeItem("actaMostrar");
-
       let fechaAjustada = this.acta.fecha.split(" ")[0];
       fechaAjustada = fechaAjustada.replace("/", "-");
       fechaAjustada = fechaAjustada.replace("/", "-");
