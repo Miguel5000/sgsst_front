@@ -37,7 +37,7 @@ export class CasosAcosoLaboralService {
 
   crear(casoAcosoLaboral: CasoAcosoLaboral){
 
-    return this.http.post(this.URL + "/crear", casoAcosoLaboral);
+    return this.http.post<CasoAcosoLaboral>(this.URL + "/crear", casoAcosoLaboral);
 
   }
 
@@ -45,6 +45,12 @@ export class CasosAcosoLaboralService {
 
     return this.http.get<EstadoCaso>(this.URL + "/getestado?id=" + id);
 
+  }
+
+  getCausa(id: number){
+
+    return this.http.get<CausaCaso>(this.URL + "/getcausa?id=" + id);
+    
   }
 
   getCausas(){
@@ -59,5 +65,10 @@ export class CasosAcosoLaboralService {
 
   }
 
+  getInvolucraciones(id: number){
+
+    return this.http.get<InvolucradosEnCaso[]>(this.URL + "/getinvolucraciones?id=" + id);
+
+  }
 
 }

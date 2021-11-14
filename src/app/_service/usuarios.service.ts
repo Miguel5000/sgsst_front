@@ -33,6 +33,12 @@ export class UsuariosService {
 
   }
 
+  getPorId(id: number){
+
+    return this.http.get<Usuario>(this.URL + "/getporid?id=" + id);
+
+  }
+
   generarUsuarios(archivo: Byte[]){
 
     return this.http.post(this.URL + "/generarusuarios", archivo);

@@ -5,7 +5,7 @@
         <form action="#" method="POST" class="u-clearfix u-form-horizontal u-form-spacing-15 u-inner-form" style="padding: 15px" source="custom">
           <div class="u-form-group">
             <label for="name-558c" class="u-label">Fecha</label>
-            <input type="text" id="name-558c" name="name" class="u-input u-input-rectangle" required="required">
+            <input value="{{casoInterfaz.fecha}}" style="border: 1px solid gray !important; text-align: justify;" type="text" id="name-558c" name="name" class="u-input u-input-rectangle" required="required" readonly disabled>
           </div>
           <div class="u-form-group u-form-submit">
             <a href="#" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-btn-submit u-button-style u-none u-text-palette-1-base u-btn-1">
@@ -22,7 +22,7 @@
         <form action="#" method="POST" class="u-clearfix u-form-horizontal u-form-spacing-15 u-inner-form" style="padding: 15px" source="custom">
           <div class="u-form-group">
             <label for="name-558c" class="u-label">Causa</label>
-            <input type="text" id="name-558c" name="name" class="u-input u-input-rectangle" required="required">
+            <input value="{{casoInterfaz.causa}}" style="border: 1px solid gray !important; text-align: justify;" type="text" id="name-558c" name="name" class="u-input u-input-rectangle" required="required" readonly disabled>
           </div>
           <div class="u-form-group u-form-submit">
             <a href="#" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-btn-submit u-button-style u-none u-text-palette-1-base u-btn-2">
@@ -44,15 +44,15 @@
         <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
           <div class="u-form-group u-form-partition-factor-2">
             <label for="name-5a59" class="u-label">Nombre</label>
-            <input type="text" id="name-5a59" name="name" class="u-input u-input-rectangle u-white" required="required" maxlength="50">
+            <input value="{{casoInterfaz.nombreAutor}}" style="border: 1px solid gray !important; text-align: justify;" type="text" id="name-5a59" name="name" class="u-input u-input-rectangle u-white" required="required" maxlength="50" readonly disabled>
           </div>
           <div class="u-form-group u-form-partition-factor-2">
             <label for="email-5a59" class="u-label">Área</label>
-            <input type="text" id="email-5a59" name="email" class="u-input u-input-rectangle u-white" required="required" maxlength="100">
+            <input value="{{casoInterfaz.areaAutor}}" style="border: 1px solid gray !important; text-align: justify;" type="text" id="email-5a59" name="email" class="u-input u-input-rectangle u-white" required="required" maxlength="100" readonly disabled>
           </div>
           <div class="u-form-group u-form-group-3">
             <label for="text-18c4" class="u-label">Correo Electrónico</label>
-            <input type="text" id="text-18c4" name="text-2" class="u-input u-input-rectangle u-white" maxlength="50">
+            <input value="{{casoInterfaz.correoAutor}}" style="border: 1px solid gray !important; text-align: justify;" type="text" id="text-18c4" name="text-2" class="u-input u-input-rectangle u-white" maxlength="50" readonly disabled>
           </div>
           <div class="u-align-left u-form-group u-form-submit">
             <a href="#" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-btn-submit u-button-style u-none u-text-palette-1-base u-btn-1">
@@ -83,15 +83,10 @@
             </tr>
           </thead>
           <tbody class="u-table-body">
-            <tr style="height: 20px;">
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 1</td>
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
+            <tr *ngFor="let involucradoInterfaz of involucradosInterfaz" style="height: 20px;">
+              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{involucradoInterfaz.nombre}}</td>
+              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{involucradoInterfaz.area}}</td>
             </tr>
-            <tr style="height: 46px;">
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 2</td>
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-            </tr>
-          </tbody>
         </table>
       </div>
     </div>
@@ -108,7 +103,7 @@
                   <form action="#" method="POST" class="u-clearfix u-form-spacing-0 u-form-vertical u-inner-form" style="padding: 15px;" source="custom">
                     <div class="u-form-group u-form-group-1">
                       <label for="textarea-3b61" class="u-custom-font u-form-control-hidden u-heading-font u-label u-label-1"></label>
-                      <textarea placeholder="" rows="8" cols="50" id="textarea-3b61" name="textarea" class="u-custom-font u-heading-font u-input u-input-rectangle"></textarea>
+                      <textarea style="border: 1px solid gray !important; text-align: justify; resize: none;" placeholder="" rows="8" cols="50" id="textarea-3b61" name="textarea" class="u-custom-font u-heading-font u-input u-input-rectangle" readonly disabled>{{casoInterfaz.hechos}}</textarea>
                     </div>
                     <div class="u-form-group u-form-submit">
                       <a href="#" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-btn-submit u-button-style u-none u-text-palette-1-base u-btn-1">
@@ -130,7 +125,7 @@
                   <form action="#" method="POST" class="u-clearfix u-form-spacing-0 u-form-vertical u-inner-form" style="padding: 15px;" source="custom">
                     <div class="u-form-group u-form-group-3">
                       <label for="textarea-3b61" class="u-custom-font u-form-control-hidden u-heading-font u-label u-label-2"></label>
-                      <textarea placeholder="" rows="8" cols="50" id="textarea-3b61" name="textarea" class="u-custom-font u-heading-font u-input u-input-rectangle"></textarea>
+                      <textarea style="border: 1px solid gray !important; text-align: justify; resize: none;" placeholder="" rows="8" cols="50" id="textarea-3b61" name="textarea" class="u-custom-font u-heading-font u-input u-input-rectangle" readonly disabled>{{casoInterfaz.sugerencias}}</textarea>
                     </div>
                     <div class="u-form-group u-form-submit">
                       <a href="#" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-btn-submit u-button-style u-none u-text-palette-1-base u-btn-2">

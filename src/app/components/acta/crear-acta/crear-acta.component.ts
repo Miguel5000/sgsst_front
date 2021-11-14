@@ -393,10 +393,19 @@ export class CrearActaComponent implements OnInit {
 
   agregarParticipante() {
 
-    let nuevoParticipante: ParticipanteInterfaz = new ParticipanteInterfaz();
-    nuevoParticipante.nombre = this.participantesForm.controls.participante.value;
-    this.participantesInterfaz.push(nuevoParticipante);
-    this.editableParticipantes.push(true);
+
+    if(this.participantesForm.valid){
+
+      let nuevoParticipante: ParticipanteInterfaz = new ParticipanteInterfaz();
+      nuevoParticipante.nombre = this.participantesForm.controls.participante.value;
+      this.participantesInterfaz.push(nuevoParticipante);
+      this.editableParticipantes.push(true);
+
+    }else{
+
+      this._snackBar.open("Introduzca el nombre del participante", "close", {duration:3000});
+
+    }
 
   }
 
@@ -571,7 +580,7 @@ export class CrearActaComponent implements OnInit {
     }
 
     for (let i = 0; i < this.participantesInterfaz.length; i++) {
-      if (!this.participantes.includes(this.participantesInterfaz[i].nombre)) {
+      if (!this.participantes.includes(this.participantesInterfaz[i].nombre) || this.participantesInterfaz[i].nombre == "") {
         mensajeError.push("Hay entradas inválidas en la lista de participantes");
         break;
       }

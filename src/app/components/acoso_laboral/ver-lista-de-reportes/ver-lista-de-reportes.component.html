@@ -5,7 +5,7 @@
         <form action="#" method="POST" class="u-clearfix u-form-horizontal u-form-spacing-15 u-inner-form" style="padding: 15px" source="custom">
           <div class="u-form-group">
             <label for="name-558c" class="u-form-control-hidden u-label">Name</label>
-            <input type="text" id="name-558c" name="none" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" placeholder="Buscar">
+            <input (input)="filtrar($event)" type="text" id="name-558c" name="none" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" placeholder="Buscar">
           </div>
           <div class="u-form-group u-form-submit">
             <a href="#" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-btn-submit u-button-style u-none u-text-palette-1-base u-btn-1">
@@ -21,7 +21,7 @@
     </div>
   </section>
   <section class="u-align-center u-clearfix u-section-2" id="sec-14ce">
-    <div class="u-clearfix u-sheet u-sheet-1">
+    <div *ngIf="rol != 'Secretario del CCL' && rol != 'Miembro del CCL'" class="u-clearfix u-sheet u-sheet-1">
       <div class="u-expanded-width u-table u-table-responsive u-table-1">
         <table class="u-table-entity u-table-entity-1">
           <colgroup>
@@ -33,26 +33,46 @@
             <tr style="height: 21px;">
               <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Fecha</th>
               <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Causa</th>
-              <th class="u-border-1 u-border-grey-50 u-table-cell"></th>
+              <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Opciones</th>
             </tr>
           </thead>
           <tbody class="u-table-body">
-            <tr style="height: 75px;">
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 1</td>
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell"><span class="u-icon u-icon-1"><svg class="u-svg-content" viewBox="0 0 56.966 56.966" x="0px" y="0px" style="width: 1em; height: 1em;"><path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23
-  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92
-  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17
-  s-17-7.626-17-17S14.61,6,23.984,6z"></path></svg><img></span>
+            <tr *ngFor="let caso of casosFiltrados" style="height: 75px;">
+              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{caso.fecha}}</td>
+              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{caso.causa}}</td>
+              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                <span (click)="ver(caso)" class="u-icon u-icon-4"><img width="37px" src="assets/iconos/Ver.png"></span>
               </td>
             </tr>
-            <tr style="height: 76px;">
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 2</td>
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell"><span class="u-icon u-icon-2"><svg class="u-svg-content" viewBox="0 0 56.966 56.966" x="0px" y="0px" style="width: 1em; height: 1em;"><path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23
-  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92
-  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17
-  s-17-7.626-17-17S14.61,6,23.984,6z"></path></svg><img></span>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div *ngIf="rol == 'Secretario del CCL' || rol == 'Miembro del CCL'" class="u-clearfix u-sheet u-sheet-1">
+      <div class="u-expanded-width u-table u-table-responsive u-table-1">
+        <table class="u-table-entity u-table-entity-1">
+          <colgroup>
+            <col width="16.6%">
+            <col width="33.3%">
+            <col width="33.3%">
+            <col width="16.6%">
+          </colgroup>
+          <thead class="u-grey-50 u-table-header u-table-header-1">
+            <tr style="height: 21px;">
+              <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Fecha</th>
+              <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Usuario</th>
+              <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Causa</th>
+              <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Opciones</th>
+            </tr>
+          </thead>
+          <tbody class="u-table-body">
+            <tr *ngFor="let caso of casosFiltrados" style="height: 75px;">
+              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{caso.fecha}}</td>
+              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{caso.nombre}}</td>
+              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{caso.causa}}</td>
+              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                <span (click)="ver(caso)" class="u-icon u-icon-4"><img width="37px" src="assets/iconos/Ver.png"></span>
               </td>
             </tr>
           </tbody>
