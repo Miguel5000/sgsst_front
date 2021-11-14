@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Empresa } from '../_model/Empresa';
 import { Area } from '../_model/Area';
+import { Usuario } from '../_model/Usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,12 @@ export class AreasService {
   get(id: number){
 
     return this.http.get<Area>(this.URL + "/get?id=" + id)
+
+  }
+
+  getParaUsuario(usuario: Usuario){
+
+    return this.http.post<Area>(this.URL + "/getparausuario",usuario);
 
   }
 

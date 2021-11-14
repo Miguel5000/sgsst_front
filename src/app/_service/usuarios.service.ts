@@ -67,9 +67,28 @@ export class UsuariosService {
 
   }
 
+  getRoles(){
+
+    return this.http.get<Rol[]>(this.URL + "/getroles");
+
+  }
+
   generarToken(correo:any){
 
     return this.http.put(this.URL + "/GenerarToken", correo);
 
   }
+
+  isAgregable(usuario: Usuario){
+
+    return this.http.post<boolean>(this.URL + "/isagregable", usuario);
+
+  }
+
+  enviarCorreoCreacion(correo: string, clave: string){
+
+    return this.http.get(this.URL + "/enviarcorreocreacion?correo=" + correo + "&clave=" + clave);
+
+  }
+
 }
