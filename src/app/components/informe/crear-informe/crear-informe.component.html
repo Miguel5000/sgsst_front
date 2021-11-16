@@ -1,24 +1,18 @@
 <section class="u-clearfix u-section-1" id="sec-abaf">
     <div class="u-clearfix u-sheet u-sheet-1">
-      <h1 class="u-align-center u-text u-text-1">
-        <span style="font-weight: 400;">Informe de mejoras</span>
-        <br>
-      </h1><span class="u-black u-icon u-icon-circle u-spacing-8 u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 42 42" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-b08a"></use></svg><svg class="u-svg-content" viewBox="0 0 42 42" x="0px" y="0px" id="svg-b08a" style="enable-background:new 0 0 42 42;"><path style="fill:currentColor;" d="M37.059,16H26V4.941C26,2.224,23.718,0,21,0s-5,2.224-5,4.941V16H4.941C2.224,16,0,18.282,0,21
-  s2.224,5,4.941,5H16v11.059C16,39.776,18.282,42,21,42s5-2.224,5-4.941V26h11.059C39.776,26,42,23.718,42,21S39.776,16,37.059,16z"></path></svg></span>
+      <h1 class="u-align-center u-text u-text-1" style="font-weight: 400;">Informe de mejoras</h1>
+      <span class="u-black u-icon u-icon-circle u-spacing-8 u-icon-1"></span>
       <div class="u-form u-form-1">
-        <form action="#" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="custom" name="form">
+        <form action="#" [formGroup]="temasForm" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="custom" name="form">
           <div class="u-form-group u-form-group-1">
             <label for="textarea-9355" class="u-label">Tema</label>
-            <textarea placeholder="" rows="4" cols="50" id="textarea-9355" name="tema" class="u-border-1 u-border-grey-30 u-input u-input-rectangle"></textarea>
+            <textarea placeholder="" formControlName="tema" rows="4" cols="50" id="textarea-9355" name="tema" class="u-border-1 u-border-grey-30 u-input u-input-rectangle"></textarea>
           </div>
-          <div class="u-align-left u-form-group u-form-submit">
-            <a href="#" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-btn-submit u-button-style u-none u-text-palette-1-base u-btn-1">
-              <br>
+          <div class="u-container-style u-layout-cell u-size-14-lg u-size-17-xl u-size-9-md u-size-9-sm u-size-9-xs u-layout-cell-2">
+            <a (click)="agregarTema()" class="u-btn u-btn-submit u-button-style u-palette-5-dark-2 u-btn-1" style="font-weight: 700; font-size: 0.9375rem; padding: 8px 33px; display: block;  position: relative; margin-left: 175%;">Agregar<br>
             </a>
             <input type="submit" value="submit" class="u-form-control-hidden">
           </div>
-          <div class="u-form-send-message u-form-send-success">Thank you! Your message has been sent.</div>
-          <div class="u-form-send-error u-form-send-message">Unable to send your message. Please fix errors then try again.</div>
           <input type="hidden" value="" name="recaptchaResponse">
         </form>
       </div>
@@ -27,25 +21,28 @@
   <section class="u-align-center u-clearfix u-section-2" id="sec-782a">
     <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
       <div class="u-form u-form-1">
-        <form action="#" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="custom" name="form">
-          <div class="u-form-group u-form-group-1">
-            <label for="textarea-5ba8" class="u-label">Tema 1</label>
-            <textarea placeholder="" rows="4" cols="50" id="textarea-5ba8" name="tema1" class="u-border-1 u-border-grey-30 u-input u-input-rectangle"></textarea>
-          </div>
-          <div class="u-form-group u-form-group-2">
-            <label for="textarea-0faf" class="u-label">Tema 2</label>
-            <textarea placeholder="" rows="4" cols="50" id="textarea-0faf" name="tema2" class="u-border-1 u-border-grey-30 u-input u-input-rectangle"></textarea>
-          </div>
-          <div class="u-align-left u-form-group u-form-submit u-form-group-3">
-            <a href="#" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-btn-submit u-button-style u-none u-text-palette-1-base u-btn-1">
-              <br>
-            </a>
-            <input type="submit" value="submit" class="u-form-control-hidden">
-          </div>
-          <div class="u-form-send-message u-form-send-success">Thank you! Your message has been sent.</div>
-          <div class="u-form-send-error u-form-send-message">Unable to send your message. Please fix errors then try again.</div>
-          <input type="hidden" value="" name="recaptchaResponse">
-        </form>
+        <div class="u-align-center u-table u-table-responsive u-table-1">
+          <table class="u-table-entity u-table-entity-1">
+            <colgroup>
+              <col width="100%">
+            </colgroup>
+            <thead class="u-grey-50 u-table-header u-table-header-1">
+              <tr style="height: 60px;">
+                <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Temas</th>
+              </tr>
+            </thead>
+            <tbody class="u-table-body">
+              <tr *ngFor="let temaInterfaz of temasInterfaz" style="height: 75px;">
+                <td *ngIf="!editableTemas[temasInterfaz.indexOf(temaInterfaz)]" (click)="hacerTemaEditable(temasInterfaz.indexOf(temaInterfaz))" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                  {{temaInterfaz.descripcion}}
+                </td>
+                <td *ngIf="editableTemas[temasInterfaz.indexOf(temaInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                  <input [(ngModel)]="temaInterfaz.descripcion" value="{{temaInterfaz.descripcion}}" type="text" ><button (click)="hacerTemaNoEditables()">✓</button><button (click)="eliminarTema(temasInterfaz.indexOf(temaInterfaz))">x</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </section>
@@ -61,27 +58,18 @@
             <div class="u-container-style u-layout-cell u-size-43-xl u-size-46-lg u-size-51-md u-size-51-sm u-size-51-xs u-layout-cell-1">
               <div class="u-container-layout u-valign-top-md u-container-layout-1">
                 <div class="u-form u-form-1">
-                  <form action="#" method="POST" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
+                  <form action="#" [formGroup]="medidasEForm" method="POST" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
                     <div class="u-form-group u-form-group-1">
                       <label for="text-2736" class="u-form-control-hidden u-label"></label>
-                      <input type="text" placeholder="Medida" id="text-2736" name="text" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-input-1">
+                      <input type="text" formControlName="medidaE" placeholder="Medida" id="text-2736" name="text" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" style="position: relative; margin-left: 7%;">
                     </div>
-                    <div class="u-align-center u-form-group u-form-submit">
-                      <a href="#" class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-palette-1-base u-btn u-btn-submit u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1">
-                        <br>
+                    <div class="u-container-style u-layout-cell u-size-14-lg u-size-17-xl u-size-9-md u-size-9-sm u-size-9-xs u-layout-cell-2">
+                      <a (click)="agregarMedidasEmpleador()" class="u-btn u-btn-submit u-button-style u-palette-5-dark-2 u-btn-1" style="font-weight: 700; font-size: 0.9375rem; padding: 8px 33px; display: block; position: relative; margin-left: 215%;">Agregar<br>
                       </a>
                       <input type="submit" value="submit" class="u-form-control-hidden">
                     </div>
-                    <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
-                    <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
-                    <input type="hidden" value="" name="recaptchaResponse">
                   </form>
                 </div>
-              </div>
-            </div>
-            <div class="u-container-style u-layout-cell u-size-14-lg u-size-17-xl u-size-9-md u-size-9-sm u-size-9-xs u-layout-cell-2">
-              <div class="u-container-layout u-container-layout-2"><span class="u-black u-icon u-icon-circle u-spacing-8 u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 42 42" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-a398"></use></svg><svg class="u-svg-content" viewBox="0 0 42 42" x="0px" y="0px" id="svg-a398" style="enable-background:new 0 0 42 42;"><path style="fill:currentColor;" d="M37.059,16H26V4.941C26,2.224,23.718,0,21,0s-5,2.224-5,4.941V16H4.941C2.224,16,0,18.282,0,21
-  s2.224,5,4.941,5H16v11.059C16,39.776,18.282,42,21,42s5-2.224,5-4.941V26h11.059C39.776,26,42,23.718,42,21S39.776,16,37.059,16z"></path></svg></span>
               </div>
             </div>
           </div>
@@ -89,30 +77,35 @@
       </div>
     </div>
   </section>
-  <section class="u-align-center u-clearfix u-section-4" id="sec-f171">
+  <section class="u-align-center u-clearfix u-section-6" id="sec-f171">
     <div class="u-clearfix u-sheet u-sheet-1">
       <div class="u-table u-table-responsive u-table-1">
-        <table class="u-table-entity">
+        <table class="u-table-entity u-table-entity-1">
           <colgroup>
             <col width="100%">
           </colgroup>
+          <thead class="u-grey-50 u-table-header u-table-header-1">
+            <tr style="height: 60px;">
+              <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Medidas Empleador</th>
+            </tr>
+          </thead>
           <tbody class="u-table-body">
-            <tr style="height: 64px;">
-              <td class="u-border-1 u-border-grey-30 u-table-cell">Medida 1</td>
-            </tr>
-            <tr style="height: 65px;">
-              <td class="u-border-1 u-border-grey-30 u-table-cell">Medida 2</td>
-            </tr>
-            <tr style="height: 65px;">
-              <td class="u-border-1 u-border-grey-30 u-table-cell">Medida 3</td>
+            <tr *ngFor="let medidaEInterfaz of medidasEInterfaz" style="height: 75px;">
+              <td *ngIf="!editableMedidasE[medidasEInterfaz.indexOf(medidaEInterfaz)]" (click)="hacerMedidaEEditable(medidasEInterfaz.indexOf(medidaEInterfaz))" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                {{medidaEInterfaz.descripcion}}
+              </td>
+              <td *ngIf="editableMedidasE[medidasEInterfaz.indexOf(medidaEInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                <input [(ngModel)]="medidaEInterfaz.descripcion" value="{{medidaEInterfaz.descripcion}}" type="text" ><button (click)="hacerMedidaENoEditables()">✓</button><button (click)="eliminarMedidaE(medidasEInterfaz.indexOf(medidaEInterfaz))">x</button>
+              </td>
             </tr>
           </tbody>
         </table>
-      </div><span class="u-icon u-icon-rectangle u-spacing-10 u-text-palette-1-base u-white u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 58 58" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-9722"></use></svg><svg class="u-svg-content" viewBox="0 0 58 58" x="0px" y="0px" id="svg-9722" style="enable-background:new 0 0 58 58;"><path style="fill:#23A24D;" d="M49,7l-1.956,47c0,0-0.085,4-3.908,4H28.54h-0.059H14.864c-3.823,0-3.908-4-3.908-4L9,7"></path><path style="fill:none;stroke:#33636C;stroke-width:2;stroke-miterlimit:10;" d="M36.999,7c0,0,0.156-6-4-6h-5.061h0.122H23  c-4.156,0-4,6-4,6"></path><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="29" y1="17" x2="29" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="19" y1="17" x2="19" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="39" y1="17" x2="39" y2="50"></line><line style="fill:none;stroke:#33636C;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="6" y1="7" x2="52" y2="7"></line></svg></span><span class="u-icon u-icon-rectangle u-spacing-10 u-text-palette-1-base u-white u-icon-2"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 58 58" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-3f3f"></use></svg><svg class="u-svg-content" viewBox="0 0 58 58" x="0px" y="0px" id="svg-3f3f" style="enable-background:new 0 0 58 58;"><path style="fill:#23A24D;" d="M49,7l-1.956,47c0,0-0.085,4-3.908,4H28.54h-0.059H14.864c-3.823,0-3.908-4-3.908-4L9,7"></path><path style="fill:none;stroke:#33636C;stroke-width:2;stroke-miterlimit:10;" d="M36.999,7c0,0,0.156-6-4-6h-5.061h0.122H23  c-4.156,0-4,6-4,6"></path><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="29" y1="17" x2="29" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="19" y1="17" x2="19" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="39" y1="17" x2="39" y2="50"></line><line style="fill:none;stroke:#33636C;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="6" y1="7" x2="52" y2="7"></line></svg></span><span class="u-icon u-icon-rectangle u-spacing-10 u-text-palette-1-base u-white u-icon-3"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 58 58" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-c74f"></use></svg><svg class="u-svg-content" viewBox="0 0 58 58" x="0px" y="0px" id="svg-c74f" style="enable-background:new 0 0 58 58;"><path style="fill:#23A24D;" d="M49,7l-1.956,47c0,0-0.085,4-3.908,4H28.54h-0.059H14.864c-3.823,0-3.908-4-3.908-4L9,7"></path><path style="fill:none;stroke:#33636C;stroke-width:2;stroke-miterlimit:10;" d="M36.999,7c0,0,0.156-6-4-6h-5.061h0.122H23  c-4.156,0-4,6-4,6"></path><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="29" y1="17" x2="29" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="19" y1="17" x2="19" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="39" y1="17" x2="39" y2="50"></line><line style="fill:none;stroke:#33636C;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="6" y1="7" x2="52" y2="7"></line></svg></span>
+      </div>
     </div>
   </section>
   <section class="u-clearfix u-section-5" id="carousel_dced">
     <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+      <br>
       <h1 class="u-align-center u-text u-text-1">
         <span style="font-weight: 400;">Medidas del director SGSST</span>
         <br>
@@ -123,27 +116,18 @@
             <div class="u-container-style u-layout-cell u-size-43-xl u-size-46-lg u-size-51-md u-size-51-sm u-size-51-xs u-layout-cell-1">
               <div class="u-container-layout u-valign-top-md u-container-layout-1">
                 <div class="u-form u-form-1">
-                  <form action="#" method="POST" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
+                  <form action="#" [formGroup]="medidasDForm" method="POST" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
                     <div class="u-form-group u-form-group-1">
                       <label for="text-2736" class="u-form-control-hidden u-label"></label>
-                      <input type="text" placeholder="Medida" id="text-2736" name="text" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-input-1">
+                      <input type="text" formControlName="medidaD" placeholder="Medida" id="text-2736" name="text" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" style="position: relative; margin-left: 7%;">
                     </div>
-                    <div class="u-align-center u-form-group u-form-submit">
-                      <a href="#" class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-palette-1-base u-btn u-btn-submit u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1">
-                        <br>
+                    <div class="u-container-style u-layout-cell u-size-14-lg u-size-17-xl u-size-9-md u-size-9-sm u-size-9-xs u-layout-cell-2">
+                      <a (click)="agregarMedidasDirector()" class="u-btn u-btn-submit u-button-style u-palette-5-dark-2 u-btn-1" style="font-weight: 700; font-size: 0.9375rem; padding: 8px 33px; display: block; position: relative; margin-left: 215%;">Agregar<br>
                       </a>
                       <input type="submit" value="submit" class="u-form-control-hidden">
                     </div>
-                    <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
-                    <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
-                    <input type="hidden" value="" name="recaptchaResponse">
                   </form>
                 </div>
-              </div>
-            </div>
-            <div class="u-container-style u-layout-cell u-size-14-lg u-size-17-xl u-size-9-md u-size-9-sm u-size-9-xs u-layout-cell-2">
-              <div class="u-container-layout u-container-layout-2"><span class="u-black u-icon u-icon-circle u-spacing-8 u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 42 42" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-a398"></use></svg><svg class="u-svg-content" viewBox="0 0 42 42" x="0px" y="0px" id="svg-a398" style="enable-background:new 0 0 42 42;"><path style="fill:currentColor;" d="M37.059,16H26V4.941C26,2.224,23.718,0,21,0s-5,2.224-5,4.941V16H4.941C2.224,16,0,18.282,0,21
-  s2.224,5,4.941,5H16v11.059C16,39.776,18.282,42,21,42s5-2.224,5-4.941V26h11.059C39.776,26,42,23.718,42,21S39.776,16,37.059,16z"></path></svg></span>
               </div>
             </div>
           </div>
@@ -154,23 +138,27 @@
   <section class="u-align-center u-clearfix u-section-6" id="carousel_b97c">
     <div class="u-clearfix u-sheet u-sheet-1">
       <div class="u-table u-table-responsive u-table-1">
-        <table class="u-table-entity">
+        <table class="u-table-entity u-table-entity-1">
           <colgroup>
             <col width="100%">
           </colgroup>
+          <thead class="u-grey-50 u-table-header u-table-header-1">
+            <tr style="height: 60px;">
+              <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Medidas Director SG-SST</th>
+            </tr>
+          </thead>
           <tbody class="u-table-body">
-            <tr style="height: 64px;">
-              <td class="u-border-1 u-border-grey-30 u-table-cell">Medida 1</td>
-            </tr>
-            <tr style="height: 65px;">
-              <td class="u-border-1 u-border-grey-30 u-table-cell">Medida 2</td>
-            </tr>
-            <tr style="height: 65px;">
-              <td class="u-border-1 u-border-grey-30 u-table-cell">Medida 3</td>
+            <tr *ngFor="let medidaDInterfaz of medidasDInterfaz" style="height: 75px;">
+              <td *ngIf="!editableMedidasD[medidasDInterfaz.indexOf(medidaDInterfaz)]" (click)="hacerMedidaDEditable(medidasDInterfaz.indexOf(medidaDInterfaz))" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                {{medidaDInterfaz.descripcion}}
+              </td>
+              <td *ngIf="editableMedidasD[medidasDInterfaz.indexOf(medidaDInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                <input [(ngModel)]="medidaDInterfaz.descripcion" value="{{medidaDInterfaz.descripcion}}" type="text" ><button (click)="hacerMedidaDNoEditables()">✓</button><button (click)="eliminarMedidaD(medidasDInterfaz.indexOf(medidaDInterfaz))">x</button>
+              </td>
             </tr>
           </tbody>
         </table>
-      </div><span class="u-icon u-icon-rectangle u-spacing-10 u-text-palette-1-base u-white u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 58 58" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-9722"></use></svg><svg class="u-svg-content" viewBox="0 0 58 58" x="0px" y="0px" id="svg-9722" style="enable-background:new 0 0 58 58;"><path style="fill:#23A24D;" d="M49,7l-1.956,47c0,0-0.085,4-3.908,4H28.54h-0.059H14.864c-3.823,0-3.908-4-3.908-4L9,7"></path><path style="fill:none;stroke:#33636C;stroke-width:2;stroke-miterlimit:10;" d="M36.999,7c0,0,0.156-6-4-6h-5.061h0.122H23  c-4.156,0-4,6-4,6"></path><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="29" y1="17" x2="29" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="19" y1="17" x2="19" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="39" y1="17" x2="39" y2="50"></line><line style="fill:none;stroke:#33636C;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="6" y1="7" x2="52" y2="7"></line></svg></span><span class="u-icon u-icon-rectangle u-spacing-10 u-text-palette-1-base u-white u-icon-2"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 58 58" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-3f3f"></use></svg><svg class="u-svg-content" viewBox="0 0 58 58" x="0px" y="0px" id="svg-3f3f" style="enable-background:new 0 0 58 58;"><path style="fill:#23A24D;" d="M49,7l-1.956,47c0,0-0.085,4-3.908,4H28.54h-0.059H14.864c-3.823,0-3.908-4-3.908-4L9,7"></path><path style="fill:none;stroke:#33636C;stroke-width:2;stroke-miterlimit:10;" d="M36.999,7c0,0,0.156-6-4-6h-5.061h0.122H23  c-4.156,0-4,6-4,6"></path><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="29" y1="17" x2="29" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="19" y1="17" x2="19" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="39" y1="17" x2="39" y2="50"></line><line style="fill:none;stroke:#33636C;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="6" y1="7" x2="52" y2="7"></line></svg></span><span class="u-icon u-icon-rectangle u-spacing-10 u-text-palette-1-base u-white u-icon-3"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 58 58" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-c74f"></use></svg><svg class="u-svg-content" viewBox="0 0 58 58" x="0px" y="0px" id="svg-c74f" style="enable-background:new 0 0 58 58;"><path style="fill:#23A24D;" d="M49,7l-1.956,47c0,0-0.085,4-3.908,4H28.54h-0.059H14.864c-3.823,0-3.908-4-3.908-4L9,7"></path><path style="fill:none;stroke:#33636C;stroke-width:2;stroke-miterlimit:10;" d="M36.999,7c0,0,0.156-6-4-6h-5.061h0.122H23  c-4.156,0-4,6-4,6"></path><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="29" y1="17" x2="29" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="19" y1="17" x2="19" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="39" y1="17" x2="39" y2="50"></line><line style="fill:none;stroke:#33636C;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="6" y1="7" x2="52" y2="7"></line></svg></span>
+      </div>
     </div>
   </section>
   <section class="u-clearfix u-section-7" id="carousel_d67a">
@@ -185,27 +173,18 @@
             <div class="u-container-style u-layout-cell u-size-43-xl u-size-46-lg u-size-51-md u-size-51-sm u-size-51-xs u-layout-cell-1">
               <div class="u-container-layout u-valign-top-md u-container-layout-1">
                 <div class="u-form u-form-1">
-                  <form action="#" method="POST" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
+                  <form action="#" [formGroup]="medidasCoForm" method="POST" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
                     <div class="u-form-group u-form-group-1">
                       <label for="text-2736" class="u-form-control-hidden u-label"></label>
-                      <input type="text" placeholder="Medida" id="text-2736" name="text" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-input-1">
+                      <input type="text" formControlName="medidaCo" placeholder="Medida" id="text-2736" name="text" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" style="position: relative; margin-left: 7%;">
                     </div>
-                    <div class="u-align-center u-form-group u-form-submit">
-                      <a href="#" class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-palette-1-base u-btn u-btn-submit u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1">
-                        <br>
+                    <div class="u-container-style u-layout-cell u-size-14-lg u-size-17-xl u-size-9-md u-size-9-sm u-size-9-xs u-layout-cell-2">
+                      <a (click)="agregarMedidasCopasst()" class="u-btn u-btn-submit u-button-style u-palette-5-dark-2 u-btn-1" style="font-weight: 700; font-size: 0.9375rem; padding: 8px 33px; display: block; position: relative; margin-left: 215%;">Agregar<br>
                       </a>
                       <input type="submit" value="submit" class="u-form-control-hidden">
                     </div>
-                    <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
-                    <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
-                    <input type="hidden" value="" name="recaptchaResponse">
                   </form>
                 </div>
-              </div>
-            </div>
-            <div class="u-container-style u-layout-cell u-size-14-lg u-size-17-xl u-size-9-md u-size-9-sm u-size-9-xs u-layout-cell-2">
-              <div class="u-container-layout u-container-layout-2"><span class="u-black u-icon u-icon-circle u-spacing-8 u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 42 42" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-a398"></use></svg><svg class="u-svg-content" viewBox="0 0 42 42" x="0px" y="0px" id="svg-a398" style="enable-background:new 0 0 42 42;"><path style="fill:currentColor;" d="M37.059,16H26V4.941C26,2.224,23.718,0,21,0s-5,2.224-5,4.941V16H4.941C2.224,16,0,18.282,0,21
-  s2.224,5,4.941,5H16v11.059C16,39.776,18.282,42,21,42s5-2.224,5-4.941V26h11.059C39.776,26,42,23.718,42,21S39.776,16,37.059,16z"></path></svg></span>
               </div>
             </div>
           </div>
@@ -216,23 +195,27 @@
   <section class="u-align-center u-clearfix u-section-8" id="carousel_3251">
     <div class="u-clearfix u-sheet u-sheet-1">
       <div class="u-table u-table-responsive u-table-1">
-        <table class="u-table-entity">
+        <table class="u-table-entity u-table-entity-1">
           <colgroup>
             <col width="100%">
           </colgroup>
+          <thead class="u-grey-50 u-table-header u-table-header-1">
+            <tr style="height: 60px;">
+              <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Medidas COPASST</th>
+            </tr>
+          </thead>
           <tbody class="u-table-body">
-            <tr style="height: 64px;">
-              <td class="u-border-1 u-border-grey-30 u-table-cell">Medida 1</td>
-            </tr>
-            <tr style="height: 65px;">
-              <td class="u-border-1 u-border-grey-30 u-table-cell">Medida 2</td>
-            </tr>
-            <tr style="height: 65px;">
-              <td class="u-border-1 u-border-grey-30 u-table-cell">Medida 3</td>
+            <tr *ngFor="let medidaCoInterfaz of medidasCoInterfaz" style="height: 75px;">
+              <td *ngIf="!editableMedidasCo[medidasCoInterfaz.indexOf(medidaCoInterfaz)]" (click)="hacerMedidaCoEditable(medidasCoInterfaz.indexOf(medidaCoInterfaz))" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                {{medidaCoInterfaz.descripcion}}
+              </td>
+              <td *ngIf="editableMedidasCo[medidasCoInterfaz.indexOf(medidaCoInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                <input [(ngModel)]="medidaCoInterfaz.descripcion" value="{{medidaCoInterfaz.descripcion}}" type="text" ><button (click)="hacerMedidaCoNoEditables()">✓</button><button (click)="eliminarMedidaCo(medidasCoInterfaz.indexOf(medidaCoInterfaz))">x</button>
+              </td>
             </tr>
           </tbody>
         </table>
-      </div><span class="u-icon u-icon-rectangle u-spacing-10 u-text-palette-1-base u-white u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 58 58" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-9722"></use></svg><svg class="u-svg-content" viewBox="0 0 58 58" x="0px" y="0px" id="svg-9722" style="enable-background:new 0 0 58 58;"><path style="fill:#23A24D;" d="M49,7l-1.956,47c0,0-0.085,4-3.908,4H28.54h-0.059H14.864c-3.823,0-3.908-4-3.908-4L9,7"></path><path style="fill:none;stroke:#33636C;stroke-width:2;stroke-miterlimit:10;" d="M36.999,7c0,0,0.156-6-4-6h-5.061h0.122H23  c-4.156,0-4,6-4,6"></path><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="29" y1="17" x2="29" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="19" y1="17" x2="19" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="39" y1="17" x2="39" y2="50"></line><line style="fill:none;stroke:#33636C;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="6" y1="7" x2="52" y2="7"></line></svg></span><span class="u-icon u-icon-rectangle u-spacing-10 u-text-palette-1-base u-white u-icon-2"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 58 58" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-3f3f"></use></svg><svg class="u-svg-content" viewBox="0 0 58 58" x="0px" y="0px" id="svg-3f3f" style="enable-background:new 0 0 58 58;"><path style="fill:#23A24D;" d="M49,7l-1.956,47c0,0-0.085,4-3.908,4H28.54h-0.059H14.864c-3.823,0-3.908-4-3.908-4L9,7"></path><path style="fill:none;stroke:#33636C;stroke-width:2;stroke-miterlimit:10;" d="M36.999,7c0,0,0.156-6-4-6h-5.061h0.122H23  c-4.156,0-4,6-4,6"></path><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="29" y1="17" x2="29" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="19" y1="17" x2="19" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="39" y1="17" x2="39" y2="50"></line><line style="fill:none;stroke:#33636C;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="6" y1="7" x2="52" y2="7"></line></svg></span><span class="u-icon u-icon-rectangle u-spacing-10 u-text-palette-1-base u-white u-icon-3"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 58 58" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-c74f"></use></svg><svg class="u-svg-content" viewBox="0 0 58 58" x="0px" y="0px" id="svg-c74f" style="enable-background:new 0 0 58 58;"><path style="fill:#23A24D;" d="M49,7l-1.956,47c0,0-0.085,4-3.908,4H28.54h-0.059H14.864c-3.823,0-3.908-4-3.908-4L9,7"></path><path style="fill:none;stroke:#33636C;stroke-width:2;stroke-miterlimit:10;" d="M36.999,7c0,0,0.156-6-4-6h-5.061h0.122H23  c-4.156,0-4,6-4,6"></path><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="29" y1="17" x2="29" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="19" y1="17" x2="19" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="39" y1="17" x2="39" y2="50"></line><line style="fill:none;stroke:#33636C;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="6" y1="7" x2="52" y2="7"></line></svg></span>
+      </div>
     </div>
   </section>
   <section class="u-clearfix u-section-9" id="carousel_bfaa">
@@ -247,27 +230,18 @@
             <div class="u-container-style u-layout-cell u-size-43-xl u-size-46-lg u-size-51-md u-size-51-sm u-size-51-xs u-layout-cell-1">
               <div class="u-container-layout u-valign-top-md u-container-layout-1">
                 <div class="u-form u-form-1">
-                  <form action="#" method="POST" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
+                  <form action="#" [formGroup]="medidasCclForm" method="POST" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
                     <div class="u-form-group u-form-group-1">
                       <label for="text-2736" class="u-form-control-hidden u-label"></label>
-                      <input type="text" placeholder="Medida" id="text-2736" name="text" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-input-1">
+                      <input type="text" formControlName="medidaCcl" placeholder="Medida" id="text-2736" name="text" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" style="position: relative; margin-left: 7%;">
                     </div>
-                    <div class="u-align-center u-form-group u-form-submit">
-                      <a href="#" class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-palette-1-base u-btn u-btn-submit u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1">
-                        <br>
+                    <div class="u-container-style u-layout-cell u-size-14-lg u-size-17-xl u-size-9-md u-size-9-sm u-size-9-xs u-layout-cell-2">
+                      <a (click)="agregarMedidasCcl()" class="u-btn u-btn-submit u-button-style u-palette-5-dark-2 u-btn-1" style="font-weight: 700; font-size: 0.9375rem; padding: 8px 33px; display: block; position: relative; margin-left: 215%;">Agregar<br>
                       </a>
                       <input type="submit" value="submit" class="u-form-control-hidden">
                     </div>
-                    <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
-                    <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
-                    <input type="hidden" value="" name="recaptchaResponse">
                   </form>
                 </div>
-              </div>
-            </div>
-            <div class="u-container-style u-layout-cell u-size-14-lg u-size-17-xl u-size-9-md u-size-9-sm u-size-9-xs u-layout-cell-2">
-              <div class="u-container-layout u-container-layout-2"><span class="u-black u-icon u-icon-circle u-spacing-8 u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 42 42" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-a398"></use></svg><svg class="u-svg-content" viewBox="0 0 42 42" x="0px" y="0px" id="svg-a398" style="enable-background:new 0 0 42 42;"><path style="fill:currentColor;" d="M37.059,16H26V4.941C26,2.224,23.718,0,21,0s-5,2.224-5,4.941V16H4.941C2.224,16,0,18.282,0,21
-  s2.224,5,4.941,5H16v11.059C16,39.776,18.282,42,21,42s5-2.224,5-4.941V26h11.059C39.776,26,42,23.718,42,21S39.776,16,37.059,16z"></path></svg></span>
               </div>
             </div>
           </div>
@@ -278,23 +252,27 @@
   <section class="u-align-center u-clearfix u-section-10" id="carousel_22b1">
     <div class="u-clearfix u-sheet u-sheet-1">
       <div class="u-table u-table-responsive u-table-1">
-        <table class="u-table-entity">
+        <table class="u-table-entity u-table-entity-1">
           <colgroup>
             <col width="100%">
           </colgroup>
+          <thead class="u-grey-50 u-table-header u-table-header-1">
+            <tr style="height: 60px;">
+              <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Medidas CCL</th>
+            </tr>
+          </thead>
           <tbody class="u-table-body">
-            <tr style="height: 64px;">
-              <td class="u-border-1 u-border-grey-30 u-table-cell">Medida 1</td>
-            </tr>
-            <tr style="height: 65px;">
-              <td class="u-border-1 u-border-grey-30 u-table-cell">Medida 2</td>
-            </tr>
-            <tr style="height: 65px;">
-              <td class="u-border-1 u-border-grey-30 u-table-cell">Medida 3</td>
+            <tr *ngFor="let medidaCclInterfaz of medidasCclInterfaz" style="height: 75px;">
+              <td *ngIf="!editableMedidasCcl[medidasCclInterfaz.indexOf(medidaCclInterfaz)]" (click)="hacerMedidaCclEditable(medidasCclInterfaz.indexOf(medidaCclInterfaz))" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                {{medidaCclInterfaz.descripcion}}
+              </td>
+              <td *ngIf="editableMedidasCcl[medidasCclInterfaz.indexOf(medidaCclInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                <input [(ngModel)]="medidaCclInterfaz.descripcion" value="{{medidaCclInterfaz.descripcion}}" type="text" ><button (click)="hacerMedidaCclNoEditables()">✓</button><button (click)="eliminarMedidaCcl(medidasCclInterfaz.indexOf(medidaCclInterfaz))">x</button>
+              </td>
             </tr>
           </tbody>
         </table>
-      </div><span class="u-icon u-icon-rectangle u-spacing-10 u-text-palette-1-base u-white u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 58 58" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-9722"></use></svg><svg class="u-svg-content" viewBox="0 0 58 58" x="0px" y="0px" id="svg-9722" style="enable-background:new 0 0 58 58;"><path style="fill:#23A24D;" d="M49,7l-1.956,47c0,0-0.085,4-3.908,4H28.54h-0.059H14.864c-3.823,0-3.908-4-3.908-4L9,7"></path><path style="fill:none;stroke:#33636C;stroke-width:2;stroke-miterlimit:10;" d="M36.999,7c0,0,0.156-6-4-6h-5.061h0.122H23  c-4.156,0-4,6-4,6"></path><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="29" y1="17" x2="29" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="19" y1="17" x2="19" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="39" y1="17" x2="39" y2="50"></line><line style="fill:none;stroke:#33636C;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="6" y1="7" x2="52" y2="7"></line></svg></span><span class="u-icon u-icon-rectangle u-spacing-10 u-text-palette-1-base u-white u-icon-2"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 58 58" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-3f3f"></use></svg><svg class="u-svg-content" viewBox="0 0 58 58" x="0px" y="0px" id="svg-3f3f" style="enable-background:new 0 0 58 58;"><path style="fill:#23A24D;" d="M49,7l-1.956,47c0,0-0.085,4-3.908,4H28.54h-0.059H14.864c-3.823,0-3.908-4-3.908-4L9,7"></path><path style="fill:none;stroke:#33636C;stroke-width:2;stroke-miterlimit:10;" d="M36.999,7c0,0,0.156-6-4-6h-5.061h0.122H23  c-4.156,0-4,6-4,6"></path><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="29" y1="17" x2="29" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="19" y1="17" x2="19" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="39" y1="17" x2="39" y2="50"></line><line style="fill:none;stroke:#33636C;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="6" y1="7" x2="52" y2="7"></line></svg></span><span class="u-icon u-icon-rectangle u-spacing-10 u-text-palette-1-base u-white u-icon-3"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 58 58" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-c74f"></use></svg><svg class="u-svg-content" viewBox="0 0 58 58" x="0px" y="0px" id="svg-c74f" style="enable-background:new 0 0 58 58;"><path style="fill:#23A24D;" d="M49,7l-1.956,47c0,0-0.085,4-3.908,4H28.54h-0.059H14.864c-3.823,0-3.908-4-3.908-4L9,7"></path><path style="fill:none;stroke:#33636C;stroke-width:2;stroke-miterlimit:10;" d="M36.999,7c0,0,0.156-6-4-6h-5.061h0.122H23  c-4.156,0-4,6-4,6"></path><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="29" y1="17" x2="29" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="19" y1="17" x2="19" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="39" y1="17" x2="39" y2="50"></line><line style="fill:none;stroke:#33636C;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="6" y1="7" x2="52" y2="7"></line></svg></span>
+      </div>
     </div>
   </section>
   <section class="u-clearfix u-section-11" id="sec-c38a">
