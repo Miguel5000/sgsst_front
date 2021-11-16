@@ -5,5 +5,6 @@ export class InformeMejora{
     año: number;
     temas: string;
     medidas: string;
+    publicacion: boolean;
 
 }

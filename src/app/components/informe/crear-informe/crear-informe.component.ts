@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { InformeMejora } from 'src/app/_model/InformeMejora';
+import { InformesMejoraService } from 'src/app/_service/informes-mejora.service';
 
 @Component({
   selector: 'app-crear-informe',
@@ -30,7 +32,8 @@ export class CrearInformeComponent implements OnInit {
   medidasCclInterfaz: MedidaCclInterfaz[];
   editableMedidasCcl: boolean[];
 
-  constructor(private _snackBar: MatSnackBar) { 
+  constructor(private _snackBar: MatSnackBar,
+    private informesMejoraService: InformesMejoraService) { 
     this.temasForm = this.createFormGroupTemas();
     this.editableTemas = [];
     this.temasInterfaz = [];
@@ -79,6 +82,32 @@ export class CrearInformeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    let temas = ["Tema 1", "Tema 2", "Tema 3"];
+    let temasJson = JSON.stringify(temas);
+
+    let paquete = {Director: ["Medida 1","Medida 2","Medida 3"],
+                  Empleador: ["Medida 1","Medida 2","Medida 3"],
+                  COPASST: ["Medida 1","Medida 2","Medida 3"],
+                  CCL: ["Medida 1","Medida 2","Medida 3"]};
+
+    let paqueteJson = JSON.stringify(paquete);
+
+    let vectorString: string[] = JSON.parse(temasJson);
+    let paqueteConvertido: Paquete = JSON.parse(paqueteJson);
+    console.log(paqueteConvertido);
+
+
+
+    /*let informe: InformeMejora = new InformeMejora();
+    informe.año = new Date().getFullYear();
+    informe.idEmpresa = 1;
+    informe.medidas = paqueteJson;
+    informe.publicacion = false;
+    informe.temas = temasJson;
+
+    this.informesMejoraService.crear(informe).subscribe();*/
+
   }
 
   agregarTema() {
@@ -349,4 +378,13 @@ class MedidaCoInterfaz {
 
 class MedidaCclInterfaz {
   descripcion: String;
+}
+
+class Paquete{
+
+  Director: string[];
+  Empleador: string[];
+  Copasst: string[];
+  Ccl: string[];
+
 }
