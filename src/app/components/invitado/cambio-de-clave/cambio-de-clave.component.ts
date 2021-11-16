@@ -26,12 +26,13 @@ export class CambioDeClaveComponent implements OnInit {
     private usuariosService: UsuariosService,
     private router: Router) {
      this.cambioForm = this.createFormGroup();
+     
     }
   
     createFormGroup() {
   
        return new FormGroup({
-        /*token: new FormControl('', [Validators.required]),*/
+        token: new FormControl('', [Validators.required]),
         contraseña: new FormControl('',[Validators.required]),
         contraseña2: new FormControl('',Validators.required),
       }); 
@@ -42,17 +43,19 @@ export class CambioDeClaveComponent implements OnInit {
       console.log(this.ruta);
       if(this.ruta=="/recuperarClave"){
         this.titulo="Recuperar Contraseña";
+        
       }else{
         this.titulo="Cambiar Contraseña";
+        this.cambioForm.controls.token.removeValidators(Validators.required);
       }
       
     }
     getMensajeError() {
       let error: string[] = [];
   
-      /*if(this.cambioForm.controls.token.hasError('required')) {
+      if(this.cambioForm.controls.token.hasError('required')) {
         error.push("Digite el token que le enviaron");
-      }*/
+      }
   
       if(this.cambioForm.controls.contraseña.hasError('required')) {
         error.push("Digite la contraseña");
@@ -108,6 +111,7 @@ export class CambioDeClaveComponent implements OnInit {
           this._snackBar.open('cambio de contraseña excelente', 'Cancel  ', {
             duration: 5000
           });
+          this.router.navigate(["/espacioDeTrabajoYServicio"]);
         });
         
       }else{
