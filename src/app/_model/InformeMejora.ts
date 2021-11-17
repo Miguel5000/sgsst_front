@@ -2,7 +2,7 @@ export class InformeMejora{
 
     id: number;
     idEmpresa: number;
-    año: number;
+    anio: number;
     temas: string;
     medidas: string;
     publicacion: boolean;

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { InformeMejora } from 'src/app/_model/InformeMejora';
 import { InformesMejoraService } from 'src/app/_service/informes-mejora.service';
+import { ValidacionComponent } from '../../utilitarios/validacion/validacion.component';
 
 @Component({
   selector: 'app-crear-informe',
@@ -32,23 +34,51 @@ export class CrearInformeComponent implements OnInit {
   medidasCclInterfaz: MedidaCclInterfaz[];
   editableMedidasCcl: boolean[];
 
+  publicacion: boolean;
+
   constructor(private _snackBar: MatSnackBar,
-    private informesMejoraService: InformesMejoraService) { 
+    private informesMejoraService: InformesMejoraService,
+    private router: Router) { 
+
     this.temasForm = this.createFormGroupTemas();
     this.editableTemas = [];
     this.temasInterfaz = [];
+    let temaInicial: TemaInterfaz = new TemaInterfaz();
+    temaInicial.descripcion = "Tema";
+    this.temasInterfaz.push(temaInicial);
+    this.editableTemas.push(false);
+
     this.medidasEForm = this.createFormGroupMedidasEmpleador();
     this.editableMedidasE = [];
     this.medidasEInterfaz = [];
+    let medidaEInicial: MedidaEInterfaz = new MedidaEInterfaz();
+    medidaEInicial.descripcion = "MedidaEmpleador";
+    this.medidasEInterfaz.push(medidaEInicial);
+    this.editableMedidasE.push(false);
+
     this.medidasDForm = this.createFormGroupMedidasDirector();
     this.editableMedidasD = [];
     this.medidasDInterfaz = [];
+    let medidaDInicial: MedidaDInterfaz = new MedidaDInterfaz();
+    medidaDInicial.descripcion = "MedidaDirector";
+    this.medidasDInterfaz.push(medidaDInicial);
+    this.editableMedidasD.push(false);
+
     this.medidasCoForm = this.createFormGroupMedidasCopasst();
     this.editableMedidasCo = [];
     this.medidasCoInterfaz = [];
+    let medidaCoInicial: MedidaCoInterfaz = new MedidaCoInterfaz();
+    medidaCoInicial.descripcion = "MedidaCopasst";
+    this.medidasCoInterfaz.push(medidaCoInicial);
+    this.editableMedidasCo.push(false);
+
     this.medidasCclForm = this.createFormGroupMedidasCcl();
     this.editableMedidasCcl = [];
     this.medidasCclInterfaz = [];
+    let medidaCclInicial: MedidaCclInterfaz = new MedidaCclInterfaz();
+    medidaCclInicial.descripcion = "MedidaCopasst";
+    this.medidasCclInterfaz.push(medidaCclInicial);
+    this.editableMedidasCcl.push(false);
   }
 
   createFormGroupTemas() {
@@ -82,32 +112,34 @@ export class CrearInformeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    /*this.informesMejoraService.getMostrarUltimo().subscribe(data => {
+      let informe: InformeMejora = new InformeMejora();
 
-    let temas = ["Tema 1", "Tema 2", "Tema 3"];
-    let temasJson = JSON.stringify(temas);
+      informe.publicacion = data.publicacion;
+      informe.temas = data.temas;
+      informe.medidas = data.medidas;
 
-    let paquete = {Director: ["Medida 1","Medida 2","Medida 3"],
-                  Empleador: ["Medida 1","Medida 2","Medida 3"],
-                  COPASST: ["Medida 1","Medida 2","Medida 3"],
-                  CCL: ["Medida 1","Medida 2","Medida 3"]};
+      if(informe.publicacion == false) {
+        let arrayTemas = informe.temas.split(",");
+        let JsonMedidas = JSON.parse(informe.medidas);
+        JsonMedidas.empleador;
+        JsonMedidas.director;
+        JsonMedidas.copasst;
+        JsonMedidas.ccl;
 
-    let paqueteJson = JSON.stringify(paquete);
+        for(let i = 0; i < JsonMedidas.empleador.length; i++) {
+          this.medidasEInterfaz = JsonMedidas.empleador[i];
+        }
 
-    let vectorString: string[] = JSON.parse(temasJson);
-    let paqueteConvertido: Paquete = JSON.parse(paqueteJson);
-    console.log(paqueteConvertido);
+        this.medidasEInterfaz.forEach( element => {
+          element.descripcion = JsonMedidas.empleador;
+        });
 
-
-
-    /*let informe: InformeMejora = new InformeMejora();
-    informe.año = new Date().getFullYear();
-    informe.idEmpresa = 1;
-    informe.medidas = paqueteJson;
-    informe.publicacion = false;
-    informe.temas = temasJson;
-
-    this.informesMejoraService.crear(informe).subscribe();*/
-
+        
+      } else {
+        
+      }
+    });*/
   }
 
   agregarTema() {
@@ -116,7 +148,6 @@ export class CrearInformeComponent implements OnInit {
       nuevoTema.descripcion = this.temasForm.controls.tema.value;
       this.temasInterfaz.push(nuevoTema);
       this.editableTemas.push(true);
-      console.log(nuevoTema.descripcion);
     } else {
       this._snackBar.open("Introduzca un tema", "close", {
         duration:3000
@@ -131,7 +162,6 @@ export class CrearInformeComponent implements OnInit {
       nuevaMedidaE.descripcion = this.medidasEForm.controls.medidaE.value;
       this.medidasEInterfaz.push(nuevaMedidaE);
       this.editableMedidasE.push(true);
-      console.log(nuevaMedidaE.descripcion);
     } else {
       this._snackBar.open("Introduzca una medida", "close", {
         duration:3000
@@ -146,7 +176,6 @@ export class CrearInformeComponent implements OnInit {
       nuevaMedidaD.descripcion = this.medidasDForm.controls.medidaD.value;
       this.medidasDInterfaz.push(nuevaMedidaD);
       this.editableMedidasD.push(true);
-      console.log(nuevaMedidaD.descripcion);
     } else {
       this._snackBar.open("Introduzca una medida", "close", {
         duration:3000
@@ -161,7 +190,6 @@ export class CrearInformeComponent implements OnInit {
       nuevaMedidaCo.descripcion = this.medidasCoForm.controls.medidaCo.value;
       this.medidasCoInterfaz.push(nuevaMedidaCo);
       this.editableMedidasCo.push(true);
-      console.log(nuevaMedidaCo.descripcion);
     } else {
       this._snackBar.open("Introduzca una medida", "close", {
         duration:3000
@@ -176,7 +204,6 @@ export class CrearInformeComponent implements OnInit {
       nuevaMedidaCcl.descripcion = this.medidasCclForm.controls.medidaCcl.value;
       this.medidasCclInterfaz.push(nuevaMedidaCcl);
       this.editableMedidasCcl.push(true);
-      console.log(nuevaMedidaCcl.descripcion);
     } else {
       this._snackBar.open("Introduzca una medida", "close", {
         duration:3000
@@ -185,7 +212,7 @@ export class CrearInformeComponent implements OnInit {
     this.medidasCclForm.reset();
   }
 
-  getMensajeError() {
+  /*getMensajeError() {
     let mensajeError: string[] = [];
 
     for (let i = 0; i < this.temasInterfaz.length; i++) {
@@ -252,7 +279,9 @@ export class CrearInformeComponent implements OnInit {
     this.medidasCclInterfaz.forEach(element => {
       descripcionMedidasCcl.push(element.descripcion);
     });
-  }
+
+    return mensajeError;
+  }*/
 
   hacerTemaEditable(indice: number) {
     for (let i = 0; i < this.editableTemas.length; i++) {
@@ -358,6 +387,78 @@ export class CrearInformeComponent implements OnInit {
     this.medidasCclInterfaz.splice(indice, 1);
     this.editableMedidasCcl.splice(indice, 1);
   }
+
+  guardarInforme(event: Event) {
+    /*let mensajeError = this.getMensajeError();
+
+    if (mensajeError.length > 0) {
+      this._snackBar.openFromComponent(ValidacionComponent, {
+        data: mensajeError,
+        duration: 3000
+      });
+    }*/
+
+    //if (mensajeError.length == 0) {
+
+      let temas = [];
+
+      for (let i = 0; i < this.temasInterfaz.length; i++) {
+        temas.push(this.temasInterfaz[i]);
+      }
+
+      let temasInforme = temas;
+      let temasJson = JSON.stringify(temasInforme);
+
+      let empleador = [];
+
+      for (let i = 0; i < this.medidasEInterfaz.length; i++) {
+        empleador.push(this.medidasEInterfaz[i]);
+      }
+
+      let director = [];
+
+      for (let i = 0; i < this.medidasDInterfaz.length; i++) {
+        director.push(this.medidasDInterfaz[i]);
+      }
+
+      let copasst = [];
+
+      for (let i = 0; i < this.medidasCoInterfaz.length; i++) {
+        copasst.push(this.medidasCoInterfaz[i]);
+      }
+
+      let ccl = [];
+
+      for (let i = 0; i < this.medidasCclInterfaz.length; i++) {
+        ccl.push(this.medidasCclInterfaz[i]);
+      }
+
+      let paquete = {empleador, director, copasst, ccl};
+      let paqueteJSON = JSON.stringify(paquete);
+
+      let informe: InformeMejora = new InformeMejora();
+      informe.anio = new Date().getFullYear();
+
+      let empresa:any = sessionStorage.getItem("empresa");
+      let JsonEmpresa = JSON.parse(empresa);
+      informe.idEmpresa = JsonEmpresa.id;
+
+      informe.medidas = paqueteJSON;
+      informe.publicacion = false;
+      informe.temas = temasJson;
+
+      this.informesMejoraService.crear(informe).subscribe( data => {
+        this._snackBar.open('Informe Creado', 'Cerrar', {
+          duration: 3000
+        });
+        this.router.navigate(["/espacioDeTrabajoYServicio"]);
+      }, err => {
+        this._snackBar.open('Error', 'Cerrar', {
+          duration: 3000
+        });
+      });
+    //}
+  }
 }
 
 class TemaInterfaz {
@@ -378,13 +479,4 @@ class MedidaCoInterfaz {
 
 class MedidaCclInterfaz {
   descripcion: String;
-}
-
-class Paquete{
-
-  Director: string[];
-  Empleador: string[];
-  Copasst: string[];
-  Ccl: string[];
-
 }

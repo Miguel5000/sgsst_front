@@ -83,7 +83,7 @@ export class InicioDeSesionComponent implements OnInit {
 
       this.usuariosService.iniciarSesion(usuario).subscribe(
 
-        data => {console.log(data);
+        data => {//console.log(data);
                 sessionStorage.setItem("usuario", JSON.stringify(data));
                 sessionStorage.setItem(environment.NOMBRE,data.nombre);
 
@@ -92,7 +92,6 @@ export class InicioDeSesionComponent implements OnInit {
                   sessionStorage.setItem("rol", data2.nombre);
                   
                   this.empresasService.get(data.idEmpresa).subscribe( data3 => {
-                    
                     sessionStorage.setItem("empresa", JSON.stringify(data3));
                     
                   });
