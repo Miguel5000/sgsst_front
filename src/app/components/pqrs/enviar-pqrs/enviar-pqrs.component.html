@@ -2,35 +2,35 @@
     <div class="u-clearfix u-sheet u-sheet-1">
       <h1 class="u-align-center u-text u-text-1">Enviar PQRS</h1>
       <div class="u-align-center u-form u-form-1">
-        <form action="#" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="custom" name="form">
+        <form [formGroup]="pqrsForm" action="#" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="custom" name="form">
+          <div class="u-form-group u-form-group-1">
+            <select formControlName="grupo" id="select-c5c0" name="grupo" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="required">
+              <option [ngValue]="null" disabled selected>Grupo</option>  
+              <option *ngFor="let grupo of grupos" value="{{grupo.id}}">{{grupo.nombre}}</option>
+            </select>
+          </div>
+          <div class="u-form-group u-form-group-1">
+            <select formControlName="tipo" id="select-c5c0" name="grupo" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="required">
+              <option [ngValue]="null" disabled selected>Tipo</option>  
+              <option *ngFor="let tipoPqrs of tiposPqrs" value="{{tipoPqrs.id}}">{{tipoPqrs.nombre}}</option>
+            </select>
+          </div>
           <div class="u-form-group u-form-group-1">
             <label for="text-93e8" class="u-label">Titulo</label>
-            <input type="text" placeholder="" id="text-93e8" name="text" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="required" maxlength="50">
+            <input formControlName="titulo" type="text" placeholder="" id="text-93e8" name="text" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="required" maxlength="50">
           </div>
           <div class="u-form-group u-form-group-2">
             <label for="textarea-5d02" class="u-label">Contenido</label>
-            <textarea placeholder="" rows="4" cols="50" id="textarea-5d02" name="contenido" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="required"></textarea>
+            <textarea formControlName="contenido" placeholder="" rows="4" cols="50" id="textarea-5d02" name="contenido" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="required"></textarea>
           </div>
           <div class="u-form-group u-form-select u-form-group-3">
             <label for="select-c5c0" class="u-form-control-hidden u-label">Seleccionar</label>
-            <div class="u-form-select-wrapper">
-              <select id="select-c5c0" name="reclamo" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="required">
-                <option value="Tipo de reclamo">Tipo de reclamo</option>
-                <option value="Peticion">Peticion</option>
-                <option value="Queja">Queja</option>
-                <option value="Reclamo">Reclamo</option>
-                <option value="Sugerencia">Sugerencia</option>
-              </select>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>
-            </div>
           </div>
           <div class="u-align-center u-form-group u-form-submit">
-            <a href="#" class="u-btn u-btn-submit u-button-style u-palette-5-dark-2 u-btn-1">Enviar<br>
+            <a (click)="enviar()" class="u-btn u-btn-submit u-button-style u-palette-5-dark-2 u-btn-1">Enviar<br>
             </a>
             <input type="submit" value="submit" class="u-form-control-hidden">
           </div>
-          <div class="u-form-send-message u-form-send-success">Thank you! Your message has been sent.</div>
-          <div class="u-form-send-error u-form-send-message">Unable to send your message. Please fix errors then try again.</div>
           <input type="hidden" value="" name="recaptchaResponse">
         </form>
       </div>

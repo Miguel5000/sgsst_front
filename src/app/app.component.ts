@@ -68,6 +68,7 @@ export class AppComponent implements DoCheck {
     sessionStorage.removeItem("empresa");
     sessionStorage.removeItem(environment.NOMBRE);
     sessionStorage.removeItem("casoVer");
+    sessionStorage.removeItem("pqrsVer");
     this.router.navigate(["/paginaInicio"]);
 
   }

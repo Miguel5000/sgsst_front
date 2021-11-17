@@ -11,13 +11,13 @@ import { TipoPqrs } from '../_model/TipoPqrs';
 })
 export class PqrsService {
 
-  private URL: string = environment.API +  '/lugares';
+  private URL: string = environment.API +  '/pqrs';
 
   constructor(private http: HttpClient) { }
 
-  getListaPqrsPorEmpresa(empresa: Empresa){
+  getListaPqrsPorGrupo(idEmpresa: number, idGrupo: number){
 
-    return this.http.post<Pqrs[]>(this.URL + "/getlistapqrsporempresa", empresa);
+    return this.http.get<Pqrs[]>(this.URL + "/getlistapqrsporgrupo?idEmpresa=" + idEmpresa + "&idGrupo=" + idGrupo);
 
   }
 
@@ -36,6 +36,12 @@ export class PqrsService {
   crear(pqrs: Pqrs){
 
     return this.http.post(this.URL + "/crear", pqrs);
+
+  }
+
+  getTipo(id: number){
+
+    return this.http.get<TipoPqrs>(this.URL + "/gettipo?id=" + id);
 
   }
 

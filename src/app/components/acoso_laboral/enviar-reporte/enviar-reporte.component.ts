@@ -260,7 +260,7 @@ export class EnviarReporteComponent implements OnInit {
 
       let casoAcosoLaboral: CasoAcosoLaboral = new CasoAcosoLaboral();
       let fechaActual = new Date();
-      casoAcosoLaboral.fecha = fechaActual.getFullYear() + "-" + (fechaActual.getMonth()+1) + "-" + fechaActual.getDate()
+      casoAcosoLaboral.fecha = fechaActual.getFullYear() + "-" + (fechaActual.getMonth()+1) + "-" + fechaActual.getDate();
       casoAcosoLaboral.hechos = this.hechosForm.controls.hecho.value;
       casoAcosoLaboral.sugerencia = this.sugerenciasForm.controls.sugerencia.value;
 
