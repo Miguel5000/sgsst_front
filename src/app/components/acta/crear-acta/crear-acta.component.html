@@ -110,19 +110,21 @@
       <div *ngIf="rol == 'Director del SGSST'" class="u-align-center u-table u-table-responsive u-table-1">
         <table class="u-table-entity u-table-entity-1">
           <colgroup>
-            <col width="50%">
-            <col width="50%">
+            <col width="40%">
+            <col width="40%">
+            <col width="20%">
           </colgroup>
           <thead class="u-grey-50 u-table-header u-table-header-1">
             <tr style="height: 21px;">
               <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Nombre del subtema</th>
               <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Área de interés</th>
+              <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Opciones</th>
             </tr>
           </thead>
           <tbody class="u-table-body">
             <tr *ngFor="let subtemaInterfaz of subtemasInterfaz" style="height: 75px;">
-              <td *ngIf="!editableSubtemas[subtemasInterfaz.indexOf(subtemaInterfaz)]" (click)="hacerSubtemaEditable(subtemasInterfaz.indexOf(subtemaInterfaz))" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{subtemaInterfaz.nombre}}</td>
-              <td *ngIf="!editableSubtemas[subtemasInterfaz.indexOf(subtemaInterfaz)]" (click)="hacerSubtemaEditable(subtemasInterfaz.indexOf(subtemaInterfaz))"  class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{subtemaInterfaz.areaDeInteres}}</td>
+              <td *ngIf="!editableSubtemas[subtemasInterfaz.indexOf(subtemaInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{subtemaInterfaz.nombre}}</td>
+              <td *ngIf="!editableSubtemas[subtemasInterfaz.indexOf(subtemaInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{subtemaInterfaz.areaDeInteres}}</td>
               <td *ngIf="editableSubtemas[subtemasInterfaz.indexOf(subtemaInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
                 <input [(ngModel)]="subtemaInterfaz.nombre" value="{{subtemaInterfaz.nombre}}" type="text">
               </td>
@@ -130,7 +132,13 @@
                 <select [(ngModel)]="subtemaInterfaz.areaDeInteres">
                   <option *ngFor="let area of areas" value="{{area}}">{{area}}</option>
                 </select>
-                <button (click)="hacerSubtemasNoEditables()">✓</button><button (click)="eliminarSubtema(subtemasInterfaz.indexOf(subtemaInterfaz))">x</button>
+              </td>
+              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                <span *ngIf="!editableSubtemas[subtemasInterfaz.indexOf(subtemaInterfaz)]" class="u-icon u-icon-3">
+                  <img (click)="hacerSubtemaEditable(subtemasInterfaz.indexOf(subtemaInterfaz))" width="37px" src="assets/iconos/Editar.png"></span>
+                <span *ngIf="editableSubtemas[subtemasInterfaz.indexOf(subtemaInterfaz)]" class="u-icon u-icon-3">
+                  <img (click)="hacerSubtemasNoEditables()" width="37px" src="assets/iconos/Ok.png"></span>
+                <span (click)="eliminarSubtema(subtemasInterfaz.indexOf(subtemaInterfaz))" class="u-icon u-icon-4"><img width="37px" src="assets/iconos/Eliminar.png"></span>
               </td>
             </tr>
           </tbody>
@@ -142,18 +150,27 @@
       <div *ngIf="rol != 'Director del SGSST'"  class="u-align-center u-table u-table-responsive u-table-1">
         <table class="u-table-entity u-table-entity-1">
           <colgroup>
-            <col width="100%">
+            <col width="80%">
+            <col width="20%">
           </colgroup>
           <thead class="u-grey-50 u-table-header u-table-header-1">
             <tr style="height: 21px;">
               <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Nombre del subtema</th>
+              <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Opciones</th>
             </tr>
           </thead>
           <tbody class="u-table-body">
             <tr *ngFor="let subtemaInterfaz of subtemasInterfaz" style="height: 75px;">
-              <td *ngIf="!editableSubtemas[subtemasInterfaz.indexOf(subtemaInterfaz)]" (click)="hacerSubtemaEditable(subtemasInterfaz.indexOf(subtemaInterfaz))" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{subtemaInterfaz.nombre}}</td>
+              <td *ngIf="!editableSubtemas[subtemasInterfaz.indexOf(subtemaInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{subtemaInterfaz.nombre}}</td>
               <td *ngIf="editableSubtemas[subtemasInterfaz.indexOf(subtemaInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                <input [(ngModel)]="subtemaInterfaz.nombre" value="{{subtemaInterfaz.nombre}}" type="text"><button (click)="hacerSubtemasNoEditables()">✓</button><button (click)="eliminarSubtema(subtemasInterfaz.indexOf(subtemaInterfaz))">x</button>
+                <input [(ngModel)]="subtemaInterfaz.nombre" value="{{subtemaInterfaz.nombre}}" type="text">
+              </td>
+              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                <span *ngIf="!editableSubtemas[subtemasInterfaz.indexOf(subtemaInterfaz)]" class="u-icon u-icon-3">
+                  <img (click)="hacerSubtemaEditable(subtemasInterfaz.indexOf(subtemaInterfaz))" width="37px" src="assets/iconos/Editar.png"></span>
+                <span *ngIf="editableSubtemas[subtemasInterfaz.indexOf(subtemaInterfaz)]" class="u-icon u-icon-3">
+                  <img (click)="hacerSubtemasNoEditables()" width="37px" src="assets/iconos/Ok.png"></span>
+                <span (click)="eliminarSubtema(subtemasInterfaz.indexOf(subtemaInterfaz))" class="u-icon u-icon-4"><img width="37px" src="assets/iconos/Eliminar.png"></span>
               </td>
             </tr>
           </tbody>
@@ -224,25 +241,34 @@
       <div class="u-align-center u-table u-table-responsive u-table-1">
         <table class="u-table-entity u-table-entity-1">
           <colgroup>
-            <col width="100%">
+            <col width="80%">
+            <col width="20%">
           </colgroup>
           <thead class="u-grey-50 u-table-header u-table-header-1">
             <tr style="height: 60px;">
               <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Participantes</th>
+              <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Opciones</th>
             </tr>
           </thead>
           <tbody class="u-table-body">
             <tr *ngFor="let participanteInterfaz of participantesInterfaz" style="height: 75px;">
-              <td *ngIf="!editableParticipantes[participantesInterfaz.indexOf(participanteInterfaz)]" (click)="hacerParticipanteEditable(participantesInterfaz.indexOf(participanteInterfaz))" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+              <td *ngIf="!editableParticipantes[participantesInterfaz.indexOf(participanteInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
                 {{participanteInterfaz.nombre}}
               </td>
               <td *ngIf="editableParticipantes[participantesInterfaz.indexOf(participanteInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                <input (input)="buscarParticipante($event);validarInputParticipante($event)" [(ngModel)]="participanteInterfaz.nombre" value="{{participanteInterfaz.nombre}}" type="text" [matAutocomplete]="auto2"><button (click)="hacerParticipantesNoEditables()">✓</button><button (click)="eliminarParticipante(participantesInterfaz.indexOf(participanteInterfaz))">x</button>
+                <input (input)="buscarParticipante($event);validarInputParticipante($event)" [(ngModel)]="participanteInterfaz.nombre" value="{{participanteInterfaz.nombre}}" type="text" [matAutocomplete]="auto2">
                 <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete">
                   <mat-option *ngFor="let participante of participantesFiltradosNoSync" [value]="participante">
                     {{participante}}
                   </mat-option>
                 </mat-autocomplete>
+              </td>
+              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                <span *ngIf="!editableParticipantes[participantesInterfaz.indexOf(participanteInterfaz)]" class="u-icon u-icon-3">
+                  <img (click)="hacerParticipanteEditable(participantesInterfaz.indexOf(participanteInterfaz))" width="37px" src="assets/iconos/Editar.png"></span>
+                <span *ngIf="editableParticipantes[participantesInterfaz.indexOf(participanteInterfaz)]" class="u-icon u-icon-3">
+                  <img (click)="hacerParticipantesNoEditables()" width="37px" src="assets/iconos/Ok.png"></span>
+                <span (click)="eliminarParticipante(participantesInterfaz.indexOf(participanteInterfaz))" class="u-icon u-icon-4"><img width="37px" src="assets/iconos/Eliminar.png"></span>
               </td>
             </tr>
           </tbody>
