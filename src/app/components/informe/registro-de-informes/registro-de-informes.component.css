@@ -1,6 +1,30 @@
 .u-section-1 .u-sheet-1 {
     min-height: 614px;
   }
+
+  .listarInformes {
+    text-align: center;
+    margin: auto;
+    margin-top: 4%;
+    width: 100%;
+  }
+
+  .mat-header-cell {
+    padding: 0px 30px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    border-collapse: collapse;
+    background-image: none;
+  }
+  
+  .mat-cell {
+    padding: 0 !important;
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    border-collapse: collapse;
+  }
   
   .u-section-1 .u-text-1 {
     margin: 20px 0 0;

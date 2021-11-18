@@ -35,6 +35,7 @@ export class CrearInformeComponent implements OnInit {
   editableMedidasCcl: boolean[];
 
   publicacion: boolean;
+  idEmpresa: number;
 
   constructor(private _snackBar: MatSnackBar,
     private informesMejoraService: InformesMejoraService,
@@ -43,42 +44,22 @@ export class CrearInformeComponent implements OnInit {
     this.temasForm = this.createFormGroupTemas();
     this.editableTemas = [];
     this.temasInterfaz = [];
-    let temaInicial: TemaInterfaz = new TemaInterfaz();
-    temaInicial.descripcion = "Tema";
-    this.temasInterfaz.push(temaInicial);
-    this.editableTemas.push(false);
 
     this.medidasEForm = this.createFormGroupMedidasEmpleador();
     this.editableMedidasE = [];
     this.medidasEInterfaz = [];
-    let medidaEInicial: MedidaEInterfaz = new MedidaEInterfaz();
-    medidaEInicial.descripcion = "MedidaEmpleador";
-    this.medidasEInterfaz.push(medidaEInicial);
-    this.editableMedidasE.push(false);
 
     this.medidasDForm = this.createFormGroupMedidasDirector();
     this.editableMedidasD = [];
     this.medidasDInterfaz = [];
-    let medidaDInicial: MedidaDInterfaz = new MedidaDInterfaz();
-    medidaDInicial.descripcion = "MedidaDirector";
-    this.medidasDInterfaz.push(medidaDInicial);
-    this.editableMedidasD.push(false);
 
     this.medidasCoForm = this.createFormGroupMedidasCopasst();
     this.editableMedidasCo = [];
     this.medidasCoInterfaz = [];
-    let medidaCoInicial: MedidaCoInterfaz = new MedidaCoInterfaz();
-    medidaCoInicial.descripcion = "MedidaCopasst";
-    this.medidasCoInterfaz.push(medidaCoInicial);
-    this.editableMedidasCo.push(false);
 
     this.medidasCclForm = this.createFormGroupMedidasCcl();
     this.editableMedidasCcl = [];
     this.medidasCclInterfaz = [];
-    let medidaCclInicial: MedidaCclInterfaz = new MedidaCclInterfaz();
-    medidaCclInicial.descripcion = "MedidaCopasst";
-    this.medidasCclInterfaz.push(medidaCclInicial);
-    this.editableMedidasCcl.push(false);
   }
 
   createFormGroupTemas() {
@@ -111,35 +92,72 @@ export class CrearInformeComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    /*this.informesMejoraService.getMostrarUltimo().subscribe(data => {
+  ngOnInit(): void {    
+    let empresa:any = sessionStorage.getItem("empresa");
+    let JsonEmpresa = JSON.parse(empresa);
+    this.idEmpresa = JsonEmpresa.id;
+
+    this.informesMejoraService.getMostrarUltimo(this.idEmpresa).subscribe(data => {
       let informe: InformeMejora = new InformeMejora();
 
       informe.publicacion = data.publicacion;
       informe.temas = data.temas;
       informe.medidas = data.medidas;
 
-      if(informe.publicacion == false) {
-        let arrayTemas = informe.temas.split(",");
-        let JsonMedidas = JSON.parse(informe.medidas);
-        JsonMedidas.empleador;
-        JsonMedidas.director;
-        JsonMedidas.copasst;
-        JsonMedidas.ccl;
+      let JSONTemas = JSON.parse(informe.temas);
+      let JsonMedidas = JSON.parse(informe.medidas);
 
-        for(let i = 0; i < JsonMedidas.empleador.length; i++) {
-          this.medidasEInterfaz = JsonMedidas.empleador[i];
-        }
-
-        this.medidasEInterfaz.forEach( element => {
-          element.descripcion = JsonMedidas.empleador;
-        });
-
-        
-      } else {
-        
+      for(let i = 0; i < JSONTemas.length; i++) {
+        this.temasInterfaz.push(JSONTemas[i]);
+        this.editableTemas.push(true);
       }
-    });*/
+
+      for(let i = 0; i < JsonMedidas.empleador.length; i++) {
+        this.medidasEInterfaz.push(JsonMedidas.empleador[i]);
+        this.editableMedidasE.push(true);
+      }
+
+      for(let i = 0; i < JsonMedidas.director.length; i++) {
+        this.medidasDInterfaz.push(JsonMedidas.director[i]);
+        this.editableMedidasD.push(true);
+      }
+
+      for(let i = 0; i < JsonMedidas.copasst.length; i++) {
+        this.medidasCoInterfaz.push(JsonMedidas.copasst[i]);
+        this.editableMedidasCo.push(true);
+      }
+
+      for(let i = 0; i < JsonMedidas.ccl.length; i++) {
+        this.medidasCclInterfaz.push(JsonMedidas.ccl[i]);
+        this.editableMedidasCcl.push(true);
+      }
+
+    }, err => {
+      let temaInicial: TemaInterfaz = new TemaInterfaz();
+      temaInicial.descripcion = "Tema";
+      this.temasInterfaz.push(temaInicial);
+      this.editableTemas.push(false);
+      
+      let medidaEInicial: MedidaEInterfaz = new MedidaEInterfaz();
+      medidaEInicial.descripcion = "MedidaEmpleador";
+      this.medidasEInterfaz.push(medidaEInicial);
+      this.editableMedidasE.push(false);
+
+      let medidaDInicial: MedidaDInterfaz = new MedidaDInterfaz();
+      medidaDInicial.descripcion = "MedidaDirector";
+      this.medidasDInterfaz.push(medidaDInicial);
+      this.editableMedidasD.push(false);
+
+      let medidaCoInicial: MedidaCoInterfaz = new MedidaCoInterfaz();
+      medidaCoInicial.descripcion = "MedidaCopasst";
+      this.medidasCoInterfaz.push(medidaCoInicial);
+      this.editableMedidasCo.push(false);
+      
+      let medidaCclInicial: MedidaCclInterfaz = new MedidaCclInterfaz();
+      medidaCclInicial.descripcion = "MedidaCcl";
+      this.medidasCclInterfaz.push(medidaCclInicial);
+      this.editableMedidasCcl.push(false);
+    });
   }
 
   agregarTema() {
@@ -212,76 +230,38 @@ export class CrearInformeComponent implements OnInit {
     this.medidasCclForm.reset();
   }
 
-  /*getMensajeError() {
+  getMensajeError() {
     let mensajeError: string[] = [];
 
-    for (let i = 0; i < this.temasInterfaz.length; i++) {
-      if (!this.temas.includes(this.temasInterfaz[i].descripcion) || this.temasInterfaz[i].descripcion == "") {
-        mensajeError.push("Hay entradas invalidas en la lista de temas");
-        break;
-      }
+    if ((this.temasInterfaz.filter(tema => tema.descripcion == 'Tema').length > 0)) {
+      mensajeError.push("Hay entradas invalidas en la lista de temas");
     }
 
-    for (let i = 0; i < this.medidasEInterfaz.length; i++) {
-      if (!this.medidasE.includes(this.medidasEInterfaz[i].descripcion || this.medidasEInterfaz[i].descripcion == "")) {
-        mensajeError.push("Hay entradas invalidas en la lista de medidas empleador");
+    /*for (let i = 0; i < this.temasInterfaz.length; i++) {
+      if (this.temasInterfaz[i].descripcion == "") {
+        mensajeError.push("Debe ingresar algun tema");
         break;
       }
+    }*/
+
+    if (this.medidasEInterfaz.filter(medidaE => medidaE.descripcion == 'MedidaEmpleador').length > 0) {
+      mensajeError.push("Hay entradas invalidas en la lista de medidas empleador");
     }
 
-    for (let i = 0; i < this.medidasDInterfaz.length; i++) {
-      if (!this.medidasD.includes(this.medidasDInterfaz[i].descripcion || this.medidasDInterfaz[i].descripcion == "")) {
-        mensajeError.push("Hay entradas invalidas en la lista de medidas director");
-        break;
-      }
+    if (this.medidasDInterfaz.filter(medidasD => medidasD.descripcion == 'MedidaDirector').length > 0) {
+      mensajeError.push("Hay entradas invalidas en la lista de medidas director");
     }
 
-    for (let i = 0; i < this.medidasCoInterfaz.length; i++) {
-      if (!this.medidasCo.includes(this.medidasCoInterfaz[i].descripcion || this.medidasCoInterfaz[i].descripcion == "")) {
-        mensajeError.push("Hay entradas invalidas en la lista de medidas coppast");
-        break;
-      }
+    if (this.medidasCoInterfaz.filter(medidasCo => medidasCo.descripcion == 'MedidaCopasst').length > 0) {
+      mensajeError.push("Hay entradas invalidas en la lista de medidas coppast");
     }
 
-    for (let i = 0; i < this.medidasCclInterfaz.length; i++) {
-      if (!this.medidasCcl.includes(this.medidasCclInterfaz[i].descripcion || this.medidasCclInterfaz[i].descripcion == "")) {
-        mensajeError.push("Hay entradas invalidas en la lista de medidas ccl");
-        break;
-      }
+    if (this.medidasCclInterfaz.filter(medidasCcl => medidasCcl.descripcion == 'MedidaCcl').length > 0) {
+      mensajeError.push("Hay entradas invalidas en la lista de medidas ccl");
     }
-
-    let descripcionTemas: String[] = [];
-
-    this.temasInterfaz.forEach(element => {
-      descripcionTemas.push(element.descripcion);
-    });
-
-    let descripcionMedidasE: String[] = [];
-
-    this.medidasEInterfaz.forEach(element => {
-      descripcionMedidasE.push(element.descripcion);
-    });
-
-    let descripcionMedidasD: String[] = [];
-
-    this.medidasDInterfaz.forEach(element => {
-      descripcionMedidasD.push(element.descripcion);
-    });
-
-    let descripcionMedidasCo: String[] = [];
-
-    this.medidasCoInterfaz.forEach(element => {
-      descripcionMedidasCo.push(element.descripcion);
-    });
-
-    let descripcionMedidasCcl: String[] = [];
-
-    this.medidasCclInterfaz.forEach(element => {
-      descripcionMedidasCcl.push(element.descripcion);
-    });
 
     return mensajeError;
-  }*/
+  }
 
   hacerTemaEditable(indice: number) {
     for (let i = 0; i < this.editableTemas.length; i++) {
@@ -389,16 +369,16 @@ export class CrearInformeComponent implements OnInit {
   }
 
   guardarInforme(event: Event) {
-    /*let mensajeError = this.getMensajeError();
+    let mensajeError = this.getMensajeError();
 
     if (mensajeError.length > 0) {
       this._snackBar.openFromComponent(ValidacionComponent, {
         data: mensajeError,
         duration: 3000
       });
-    }*/
+    }
 
-    //if (mensajeError.length == 0) {
+    if (mensajeError.length == 0) {
 
       let temas = [];
 
@@ -448,7 +428,7 @@ export class CrearInformeComponent implements OnInit {
       informe.temas = temasJson;
 
       this.informesMejoraService.crear(informe).subscribe( data => {
-        this._snackBar.open('Informe Creado', 'Cerrar', {
+        this._snackBar.open('Informe Guardado', 'Cerrar', {
           duration: 3000
         });
         this.router.navigate(["/espacioDeTrabajoYServicio"]);
@@ -457,7 +437,85 @@ export class CrearInformeComponent implements OnInit {
           duration: 3000
         });
       });
-    //}
+    }
+  }
+
+  publicarInforme(event: Event) {
+    let mensajeError = this.getMensajeError();
+
+    if (mensajeError.length > 0) {
+      this._snackBar.openFromComponent(ValidacionComponent, {
+        data: mensajeError,
+        duration: 3000
+      });
+    }
+
+    if (mensajeError.length == 0) {
+
+      let empresa:any = sessionStorage.getItem("empresa");
+      let JsonEmpresa = JSON.parse(empresa);
+      this.idEmpresa = JsonEmpresa.id;
+
+      this.informesMejoraService.getMostrarUltimo(this.idEmpresa).subscribe(data => {
+
+        let idInforme = data.id;
+
+        let temas = []
+
+        for (let i = 0; i < this.temasInterfaz.length; i++) {
+          temas.push(this.temasInterfaz[i]);
+        }
+
+        let temasInforme = temas;
+        let temasJson = JSON.stringify(temasInforme);
+
+        let empleador = [];
+
+        for (let i = 0; i < this.medidasEInterfaz.length; i++) {
+          empleador.push(this.medidasEInterfaz[i]);
+        }
+
+        let director = [];
+
+        for (let i = 0; i < this.medidasDInterfaz.length; i++) {
+          director.push(this.medidasDInterfaz[i]);
+        }
+
+        let copasst = [];
+
+        for (let i = 0; i < this.medidasCoInterfaz.length; i++) {
+          copasst.push(this.medidasCoInterfaz[i]);
+        }
+
+        let ccl = [];
+
+        for (let i = 0; i < this.medidasCclInterfaz.length; i++) {
+          ccl.push(this.medidasCclInterfaz[i]);
+        }
+
+        let paquete = {empleador, director, copasst, ccl};
+        let paqueteJSON = JSON.stringify(paquete);
+
+        let informe: InformeMejora = new InformeMejora();
+        informe.id = idInforme;
+        informe.anio = new Date().getFullYear();
+        informe.idEmpresa = this.idEmpresa;
+        informe.medidas = paqueteJSON;
+        informe.publicacion = true;
+        informe.temas = temasJson;
+
+        this.informesMejoraService.editar(informe).subscribe( data => {
+          this._snackBar.open('Informe Publicado', 'Cerrar', {
+            duration: 3000
+          });
+          this.router.navigate(["/espacioDeTrabajoYServicio"]);
+        }, err => {
+          this._snackBar.open('Error', 'Cerrar', {
+            duration: 3000
+          });
+        });
+      });
+    }
   }
 }
 

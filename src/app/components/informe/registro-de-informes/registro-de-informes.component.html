@@ -5,17 +5,13 @@
         <form action="#" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="custom" name="form">
           <div class="u-form-group u-form-name">
             <label for="name-6797" class="u-form-control-hidden u-label">Name</label>
-            <input type="text" placeholder="Buscar" id="name-6797" name="buscar" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="">
+            <input (input)="filtrar($event)" type="text" placeholder="Buscar" id="name-6797" name="buscar" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="">
           </div>
           <div class="u-align-left u-form-group u-form-submit">
             <a href="#" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-btn-submit u-button-style u-none u-text-palette-1-base u-btn-1">
-              <br>
             </a>
             <input type="submit" value="submit" class="u-form-control-hidden">
           </div>
-          <div class="u-form-send-message u-form-send-success">Thank you! Your message has been sent.</div>
-          <div class="u-form-send-error u-form-send-message">Unable to send your message. Please fix errors then try again.</div>
-          <input type="hidden" value="" name="recaptchaResponse">
         </form>
       </div>
       <div class="u-table u-table-responsive u-table-1">
@@ -34,7 +30,7 @@
             <tr *ngFor="let informe of informeMostrar" style="height: 75px;">
               <td class="u-align-center u-border-1 u-border-grey-30 u-first-column u-table-cell">{{informe.anio}}</td>
               <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                <span class="u-icon u-icon-4"><img style="position: relative; top: 7px; left: 0px;" width="37px" src="assets/iconos/Ver.png"></span>
+                <span [routerLink]="['/verInforme', informe.id]" class="u-icon u-icon-4"><img style="position: relative; top: 7px; left: 0px;" width="37px" src="assets/iconos/Ver.png"></span>
               </td>
             </tr>
           </tbody>

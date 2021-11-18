@@ -24,36 +24,29 @@
   <section class="u-align-center u-clearfix u-section-4" id="sec-782a">
     <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
       <div class="u-form u-form-1">
-        <form action="#" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="custom" name="form">
-          <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-clearfix u-sheet u-sheet-1">
             <div class="u-table u-table-responsive u-table-1">
               <table class="u-table-entity">
                 <colgroup>
-                  <col width="100%">
+                  <col width="80%">
+                  <col width="20%">
                 </colgroup>
                 <tbody class="u-table-body">
-                  <!--<tr style="height: 64px;">
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Tema 1</td>
-                  </tr>
-                  <tr style="height: 65px;">
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Tema 2</td>
-                  </tr>
-                  <tr style="height: 65px;">
-                    <td class="u-border-1 u-border-grey-30 u-table-cell">Tema 3</td>
-                  </tr>-->
                   <tr *ngFor="let temaInterfaz of temasInterfaz" style="height: 75px;">
                     <td *ngIf="!editableTemas[temasInterfaz.indexOf(temaInterfaz)]" (click)="hacerTemaEditable(temasInterfaz.indexOf(temaInterfaz))" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
                       {{temaInterfaz.descripcion}}
                     </td>
                     <td *ngIf="editableTemas[temasInterfaz.indexOf(temaInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                      <input [(ngModel)]="temaInterfaz.descripcion" value="{{temaInterfaz.descripcion}}" type="text" ><button (click)="hacerTemaNoEditables()">✓</button><button (click)="eliminarTema(temasInterfaz.indexOf(temaInterfaz))">x</button>
+                      <input [(ngModel)]="temaInterfaz.descripcion" value="{{temaInterfaz.descripcion}}" type="text" ><button (click)="hacerTemaNoEditables()">✓</button>  
+                    </td>
+                    <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                      <span (click)="eliminarTema(temasInterfaz.indexOf(temaInterfaz))" class="u-icon u-icon-4"><img style="position: relative; top: 7px; left: 0px;" width="37px" src="assets/iconos/Eliminar.png"></span>
                     </td>
                   </tr>
                 </tbody>
               </table>
-            </div><!--<span class="u-icon u-icon-rectangle u-spacing-10 u-text-palette-1-base u-white u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 58 58" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-9722"></use></svg><svg class="u-svg-content" viewBox="0 0 58 58" x="0px" y="0px" id="svg-9722" style="enable-background:new 0 0 58 58;"><path style="fill:#23A24D;" d="M49,7l-1.956,47c0,0-0.085,4-3.908,4H28.54h-0.059H14.864c-3.823,0-3.908-4-3.908-4L9,7"></path><path style="fill:none;stroke:#33636C;stroke-width:2;stroke-miterlimit:10;" d="M36.999,7c0,0,0.156-6-4-6h-5.061h0.122H23  c-4.156,0-4,6-4,6"></path><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="29" y1="17" x2="29" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="19" y1="17" x2="19" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="39" y1="17" x2="39" y2="50"></line><line style="fill:none;stroke:#33636C;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="6" y1="7" x2="52" y2="7"></line></svg></span><span class="u-icon u-icon-rectangle u-spacing-10 u-text-palette-1-base u-white u-icon-2"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 58 58" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-3f3f"></use></svg><svg class="u-svg-content" viewBox="0 0 58 58" x="0px" y="0px" id="svg-3f3f" style="enable-background:new 0 0 58 58;"><path style="fill:#23A24D;" d="M49,7l-1.956,47c0,0-0.085,4-3.908,4H28.54h-0.059H14.864c-3.823,0-3.908-4-3.908-4L9,7"></path><path style="fill:none;stroke:#33636C;stroke-width:2;stroke-miterlimit:10;" d="M36.999,7c0,0,0.156-6-4-6h-5.061h0.122H23  c-4.156,0-4,6-4,6"></path><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="29" y1="17" x2="29" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="19" y1="17" x2="19" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="39" y1="17" x2="39" y2="50"></line><line style="fill:none;stroke:#33636C;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="6" y1="7" x2="52" y2="7"></line></svg></span><span class="u-icon u-icon-rectangle u-spacing-10 u-text-palette-1-base u-white u-icon-3"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 58 58" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-c74f"></use></svg><svg class="u-svg-content" viewBox="0 0 58 58" x="0px" y="0px" id="svg-c74f" style="enable-background:new 0 0 58 58;"><path style="fill:#23A24D;" d="M49,7l-1.956,47c0,0-0.085,4-3.908,4H28.54h-0.059H14.864c-3.823,0-3.908-4-3.908-4L9,7"></path><path style="fill:none;stroke:#33636C;stroke-width:2;stroke-miterlimit:10;" d="M36.999,7c0,0,0.156-6-4-6h-5.061h0.122H23  c-4.156,0-4,6-4,6"></path><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="29" y1="17" x2="29" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="19" y1="17" x2="19" y2="50"></line><line style="fill:none;stroke:#61B872;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="39" y1="17" x2="39" y2="50"></line><line style="fill:none;stroke:#33636C;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="6" y1="7" x2="52" y2="7"></line></svg></span>
-            --></div>
-        </form>
+            </div>
+        </div>
       </div>
     </div>
   </section>
@@ -99,29 +92,19 @@
       <div class="u-table u-table-responsive u-table-1">
         <table class="u-table-entity">
           <colgroup>
-            <col width="100%">
+            <col width="80%">
+            <col width="20%">
           </colgroup>
           <tbody class="u-table-body">
-            <!--<tr style="height: 64px;">
-              <td class="u-border-1 u-border-grey-30 u-table-cell">Medida 1</td>
-            </tr>
-            <tr style="height: 65px;">
-              <td class="u-border-1 u-border-grey-30 u-table-cell">Medida 2</td>
-            </tr>
-            <tr style="height: 65px;">
-              <td class="u-border-1 u-border-grey-30 u-table-cell">Medida 3</td>
-            </tr>-->
             <tr *ngFor="let medidaEInterfaz of medidasEInterfaz" style="height: 75px;">
               <td *ngIf="!editableMedidasE[medidasEInterfaz.indexOf(medidaEInterfaz)]" (click)="hacerMedidaEEditable(medidasEInterfaz.indexOf(medidaEInterfaz))" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
                 {{medidaEInterfaz.descripcion}}
-                <!--<span class="u-icon u-icon-rectangle u-spacing-10 u-text-palette-1-base u-white u-icon-1">
-                  <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 58 58" style="">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-9722"></use>
-                  </svg>
-                </span>-->
               </td>
               <td *ngIf="editableMedidasE[medidasEInterfaz.indexOf(medidaEInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                <input [(ngModel)]="medidaEInterfaz.descripcion" value="{{medidaEInterfaz.descripcion}}" type="text" ><button (click)="hacerMedidaENoEditables()">✓</button><button (click)="eliminarMedidaE(medidasEInterfaz.indexOf(medidaEInterfaz))">x</button>
+                <input [(ngModel)]="medidaEInterfaz.descripcion" value="{{medidaEInterfaz.descripcion}}" type="text" ><button (click)="hacerMedidaENoEditables()">✓</button>
+              </td>
+              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                <span (click)="eliminarMedidaE(medidasEInterfaz.indexOf(medidaEInterfaz))" class="u-icon u-icon-4"><img style="position: relative; top: 7px; left: 0px;" width="37px" src="assets/iconos/Eliminar.png"></span>
               </td>
             </tr>
           </tbody>
@@ -171,20 +154,19 @@
       <div class="u-table u-table-responsive u-table-1">
         <table class="u-table-entity">
           <colgroup>
-            <col width="100%">
+            <col width="80%">
+            <col width="20%">
           </colgroup>
           <tbody class="u-table-body">
             <tr *ngFor="let medidaDInterfaz of medidasDInterfaz" style="height: 75px;">
               <td *ngIf="!editableMedidasD[medidasDInterfaz.indexOf(medidaDInterfaz)]" (click)="hacerMedidaDEditable(medidasDInterfaz.indexOf(medidaDInterfaz))" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
                 {{medidaDInterfaz.descripcion}}
-                <!--<span class="u-icon u-icon-rectangle u-spacing-10 u-text-palette-1-base u-white u-icon-1">
-                  <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 58 58" style="">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-9722"></use>
-                  </svg>
-                </span>-->
               </td>
               <td *ngIf="editableMedidasD[medidasDInterfaz.indexOf(medidaDInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                <input [(ngModel)]="medidaDInterfaz.descripcion" value="{{medidaDInterfaz.descripcion}}" type="text" ><button (click)="hacerMedidaDNoEditables()">✓</button><button (click)="eliminarMedidaD(medidasDInterfaz.indexOf(medidaDInterfaz))">x</button>
+                <input [(ngModel)]="medidaDInterfaz.descripcion" value="{{medidaDInterfaz.descripcion}}" type="text" ><button (click)="hacerMedidaDNoEditables()">✓</button>
+              </td>
+              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                <span (click)="eliminarMedidaD(medidasDInterfaz.indexOf(medidaDInterfaz))" class="u-icon u-icon-4"><img style="position: relative; top: 7px; left: 0px;" width="37px" src="assets/iconos/Eliminar.png"></span>
               </td>
             </tr>
           </tbody>
@@ -234,20 +216,19 @@
       <div class="u-table u-table-responsive u-table-1">
         <table class="u-table-entity">
           <colgroup>
-            <col width="100%">
+            <col width="80%">
+            <col width="20%">
           </colgroup>
           <tbody class="u-table-body">
             <tr *ngFor="let medidaCoInterfaz of medidasCoInterfaz" style="height: 75px;">
               <td *ngIf="!editableMedidasCo[medidasCoInterfaz.indexOf(medidaCoInterfaz)]" (click)="hacerMedidaCoEditable(medidasCoInterfaz.indexOf(medidaCoInterfaz))" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
                 {{medidaCoInterfaz.descripcion}}
-                <!--<span class="u-icon u-icon-rectangle u-spacing-10 u-text-palette-1-base u-white u-icon-1">
-                  <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 58 58" style="">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-9722"></use>
-                  </svg>
-                </span>-->
               </td>
               <td *ngIf="editableMedidasCo[medidasCoInterfaz.indexOf(medidaCoInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                <input [(ngModel)]="medidaCoInterfaz.descripcion" value="{{medidaCoInterfaz.descripcion}}" type="text" ><button (click)="hacerMedidaCoNoEditables()">✓</button><button (click)="eliminarMedidaCo(medidasCoInterfaz.indexOf(medidaCoInterfaz))">x</button>
+                <input [(ngModel)]="medidaCoInterfaz.descripcion" value="{{medidaCoInterfaz.descripcion}}" type="text" ><button (click)="hacerMedidaCoNoEditables()">✓</button>
+              </td>
+              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                <span (click)="eliminarMedidaCo(medidasCoInterfaz.indexOf(medidaCoInterfaz))" class="u-icon u-icon-4"><img style="position: relative; top: 7px; left: 0px;" width="37px" src="assets/iconos/Eliminar.png"></span>
               </td>
             </tr>
           </tbody>
@@ -297,20 +278,19 @@
       <div class="u-table u-table-responsive u-table-1">
         <table class="u-table-entity">
           <colgroup>
-            <col width="100%">
+            <col width="80%">
+            <col width="20%">
           </colgroup>
           <tbody class="u-table-body">
             <tr *ngFor="let medidaCclInterfaz of medidasCclInterfaz" style="height: 75px;">
               <td *ngIf="!editableMedidasCcl[medidasCclInterfaz.indexOf(medidaCclInterfaz)]" (click)="hacerMedidaCclEditable(medidasCclInterfaz.indexOf(medidaCclInterfaz))" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
                 {{medidaCclInterfaz.descripcion}}
-                <!--<span class="u-icon u-icon-rectangle u-spacing-10 u-text-palette-1-base u-white u-icon-1">
-                  <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 58 58" style="">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-9722"></use>
-                  </svg>
-                </span>-->
               </td>
               <td *ngIf="editableMedidasCcl[medidasCclInterfaz.indexOf(medidaCclInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                <input [(ngModel)]="medidaCclInterfaz.descripcion" value="{{medidaCclInterfaz.descripcion}}" type="text" ><button (click)="hacerMedidaCclNoEditables()">✓</button><button (click)="eliminarMedidaCcl(medidasCclInterfaz.indexOf(medidaCclInterfaz))">x</button>
+                <input [(ngModel)]="medidaCclInterfaz.descripcion" value="{{medidaCclInterfaz.descripcion}}" type="text" ><button (click)="hacerMedidaCclNoEditables()">✓</button>
+              </td>
+              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                <span (click)="eliminarMedidaCcl(medidasCclInterfaz.indexOf(medidaCclInterfaz))" class="u-icon u-icon-4"><img style="position: relative; top: 7px; left: 0px;" width="37px" src="assets/iconos/Eliminar.png"></span>
               </td>
             </tr>
           </tbody>
@@ -330,7 +310,7 @@
             </div>
             <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-2">
               <div class="u-container-layout u-container-layout-2">
-                <a class="u-align-left u-btn u-button-style u-hover-palette-1-dark-1 u-palette-5-dark-2" style="margin: auto;">Publicar</a>
+                <a (click)="publicarInforme($event)" class="u-align-left u-btn u-button-style u-hover-palette-1-dark-1 u-palette-5-dark-2" style="margin: auto;">Publicar</a>
               </div>
             </div>
           </div>

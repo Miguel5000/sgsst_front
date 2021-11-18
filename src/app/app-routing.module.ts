@@ -59,7 +59,7 @@ const routes: Routes = [
   {path: "verActa", component: VerActaComponent},
   {path: "crearInforme", component: CrearInformeComponent},
   {path: 'listaInformes', component: RegistroDeInformesComponent},
-  {path: "verInforme", component: VerInformeComponent},
+  {path: "verInforme/:id", component: VerInformeComponent},
   {path: 'agregarAreas', component: AgregarAreasYLugaresComponent},
   {path: 'agregarLugares', component: AgregarAreasYLugaresComponent},
   {path: 'generarCuentas', component: GenerarCuentasComponent},

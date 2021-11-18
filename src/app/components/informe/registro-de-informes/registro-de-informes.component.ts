@@ -27,4 +27,8 @@ export class RegistroDeInformesComponent implements OnInit {
     });
   }
 
+  filtrar(event: Event) {
+    let elemento: HTMLInputElement = event.target as HTMLInputElement;
+    this.informeMostrar = this.informeMejora.filter(informe => informe.anio.toPrecision().includes(elemento.value));
+  }
 }
