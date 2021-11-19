@@ -1,320 +1,470 @@
 <section class="u-clearfix u-section-1" id="sec-abaf">
-    <div class="u-clearfix u-sheet u-sheet-1">
-      <h1 class="u-align-center u-text u-text-1">
-        <span style="font-weight: 400;">Informe de mejoras</span>
-        <br>
-      </h1><span (click)="agregarTema()" class="u-black u-icon u-icon-circle u-spacing-8 u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 42 42" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-b08a"></use></svg><svg class="u-svg-content" viewBox="0 0 42 42" x="0px" y="0px" id="svg-b08a" style="enable-background:new 0 0 42 42;"><path style="fill:currentColor;" d="M37.059,16H26V4.941C26,2.224,23.718,0,21,0s-5,2.224-5,4.941V16H4.941C2.224,16,0,18.282,0,21
-  s2.224,5,4.941,5H16v11.059C16,39.776,18.282,42,21,42s5-2.224,5-4.941V26h11.059C39.776,26,42,23.718,42,21S39.776,16,37.059,16z"></path></svg></span>
-      <div class="u-form u-form-1">
-        <form action="#" [formGroup]="temasForm" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="custom" name="form">
-          <div class="u-form-group u-form-group-1">
-            <label for="textarea-9355" class="u-label">Tema</label>
-            <textarea placeholder="" formControlName="tema" rows="4" cols="50" id="textarea-9355" name="tema" class="u-border-1 u-border-grey-30 u-input u-input-rectangle"></textarea>
-          </div>
-          <div class="u-align-left u-form-group u-form-submit">
-            <a href="#" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-btn-submit u-button-style u-none u-text-palette-1-base u-btn-1">
-              <br>
-            </a>
-            <input type="submit" value="submit" class="u-form-control-hidden">
-          </div>
-        </form>
-      </div>
+  <div class="u-clearfix u-sheet u-sheet-1">
+    <h1 class="u-align-center u-text u-text-1">
+      <span style="font-weight: 400;">Informe de mejoras</span>
+      <br>
+    </h1><span (click)="agregarTema()" class="u-black u-icon u-icon-circle u-spacing-8 u-icon-1"><svg class="u-svg-link"
+        preserveAspectRatio="xMidYMin slice" viewBox="0 0 42 42" style="">
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-b08a"></use>
+      </svg><svg class="u-svg-content" viewBox="0 0 42 42" x="0px" y="0px" id="svg-b08a"
+        style="enable-background:new 0 0 42 42;">
+        <path style="fill:currentColor;"
+          d="M37.059,16H26V4.941C26,2.224,23.718,0,21,0s-5,2.224-5,4.941V16H4.941C2.224,16,0,18.282,0,21
+  s2.224,5,4.941,5H16v11.059C16,39.776,18.282,42,21,42s5-2.224,5-4.941V26h11.059C39.776,26,42,23.718,42,21S39.776,16,37.059,16z"></path>
+      </svg></span>
+    <div class="u-form u-form-1">
+      <form action="#" [formGroup]="temasForm" method="POST"
+        class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="custom"
+        name="form">
+        <div class="u-form-group u-form-group-1">
+          <label for="textarea-9355" class="u-label">Tema</label>
+          <textarea placeholder="" formControlName="tema" rows="4" cols="50" id="textarea-9355" name="tema"
+            class="u-border-1 u-border-grey-30 u-input u-input-rectangle"></textarea>
+        </div>
+        <div class="u-align-left u-form-group u-form-submit">
+          <a href="#"
+            class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-btn-submit u-button-style u-none u-text-palette-1-base u-btn-1">
+            <br>
+          </a>
+          <input type="submit" value="submit" class="u-form-control-hidden">
+        </div>
+      </form>
     </div>
-  </section>
-  <section class="u-align-center u-clearfix u-section-4" id="sec-782a">
-    <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-      <div class="u-form u-form-1">
-        <div class="u-clearfix u-sheet u-sheet-1">
-            <div class="u-table u-table-responsive u-table-1">
-              <table class="u-table-entity">
-                <colgroup>
-                  <col width="80%">
-                  <col width="20%">
-                </colgroup>
-                <tbody class="u-table-body">
-                  <tr *ngFor="let temaInterfaz of temasInterfaz" style="height: 75px;">
-                    <td *ngIf="!editableTemas[temasInterfaz.indexOf(temaInterfaz)]" (click)="hacerTemaEditable(temasInterfaz.indexOf(temaInterfaz))" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                      {{temaInterfaz.descripcion}}
-                    </td>
-                    <td *ngIf="editableTemas[temasInterfaz.indexOf(temaInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                      <input [(ngModel)]="temaInterfaz.descripcion" value="{{temaInterfaz.descripcion}}" type="text" ><button (click)="hacerTemaNoEditables()">✓</button>  
-                    </td>
-                    <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                      <span (click)="eliminarTema(temasInterfaz.indexOf(temaInterfaz))" class="u-icon u-icon-4"><img style="position: relative; top: 7px; left: 0px;" width="37px" src="assets/iconos/Eliminar.png"></span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+  </div>
+</section>
+<section class="u-align-center u-clearfix u-section-4" id="sec-782a">
+  <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+    <div class="u-form u-form-1">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-table u-table-responsive u-table-1">
+          <table class="u-table-entity u-table-entity-1">
+            <colgroup>
+              <col width="80%">
+              <col width="20%">
+            </colgroup>
+            <thead class="u-grey-50 u-table-header u-table-header-1">
+              <tr style="height: 60px;">
+                <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Temas</th>
+                <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Opciones</th>
+              </tr>
+            </thead>
+            <tbody class="u-table-body">
+              <tr *ngFor="let temaInterfaz of temasInterfaz" style="height: 75px;">
+                <td *ngIf="!editableTemas[temasInterfaz.indexOf(temaInterfaz)]"
+                  class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                  {{temaInterfaz.descripcion}}
+                </td>
+                <td *ngIf="editableTemas[temasInterfaz.indexOf(temaInterfaz)]"
+                  class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                  <input [(ngModel)]="temaInterfaz.descripcion" value="{{temaInterfaz.descripcion}}" type="text">
+                </td>
+                <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                  <span *ngIf="!editableTemas[temasInterfaz.indexOf(temaInterfaz)]">
+                    <img (click)="hacerTemaEditable(temasInterfaz.indexOf(temaInterfaz))" width="37px"
+                      src="assets/iconos/Editar.png"></span>
+                  <span *ngIf="editableTemas[temasInterfaz.indexOf(temaInterfaz)]">
+                    <img (click)="hacerTemaNoEditables()" width="37px" src="assets/iconos/Ok.png"></span>
+                  <span (click)="eliminarTema(temasInterfaz.indexOf(temaInterfaz))">
+                    <img width="37px" src="assets/iconos/Eliminar.png">
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
-  </section>
-  <section class="u-clearfix u-section-3" id="sec-087f">
-    <div class="u-clearfix u-sheet u-sheet-1">
-      <h1 class="u-align-center u-text u-text-1">
-        <span style="font-weight: 400;">Medidas del empleador</span>
-        <br>
-      </h1>
-      <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
-        <div class="u-layout">
-          <div class="u-layout-row">
-            <div class="u-container-style u-layout-cell u-size-43-xl u-size-46-lg u-size-51-md u-size-51-sm u-size-51-xs u-layout-cell-1">
-              <div class="u-container-layout u-valign-top-md u-container-layout-1">
-                <div class="u-form u-form-1">
-                  <form action="#" [formGroup]="medidasEForm" method="POST" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
-                    <div class="u-form-group u-form-group-1">
-                      <label for="text-2736" class="u-form-control-hidden u-label"></label>
-                      <input type="text" formControlName="medidaE" placeholder="Medida" id="text-2736" name="text" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle">
-                    </div>
-                    <div class="u-align-center u-form-group u-form-submit">
-                      <a href="#" class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-palette-1-base u-btn u-btn-submit u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1">
-                        <br>
-                      </a>
-                      <input type="submit" value="submit" class="u-form-control-hidden">
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-            <div class="u-container-style u-layout-cell u-size-14-lg u-size-17-xl u-size-9-md u-size-9-sm u-size-9-xs u-layout-cell-2">
-              <div class="u-container-layout u-container-layout-2"><span (click)="agregarMedidasEmpleador()" class="u-black u-icon u-icon-circle u-spacing-8 u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 42 42" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-a398"></use></svg><svg class="u-svg-content" viewBox="0 0 42 42" x="0px" y="0px" id="svg-a398" style="enable-background:new 0 0 42 42;"><path style="fill:currentColor;" d="M37.059,16H26V4.941C26,2.224,23.718,0,21,0s-5,2.224-5,4.941V16H4.941C2.224,16,0,18.282,0,21
-  s2.224,5,4.941,5H16v11.059C16,39.776,18.282,42,21,42s5-2.224,5-4.941V26h11.059C39.776,26,42,23.718,42,21S39.776,16,37.059,16z"></path></svg></span>
+  </div>
+</section>
+<section class="u-clearfix u-section-3" id="sec-087f">
+  <div class="u-clearfix u-sheet u-sheet-1">
+    <h1 class="u-align-center u-text u-text-1">
+      <span style="font-weight: 400;">Medidas del empleador</span>
+      <br>
+    </h1>
+    <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+      <div class="u-layout">
+        <div class="u-layout-row">
+          <div
+            class="u-container-style u-layout-cell u-size-43-xl u-size-46-lg u-size-51-md u-size-51-sm u-size-51-xs u-layout-cell-1">
+            <div class="u-container-layout u-valign-top-md u-container-layout-1">
+              <div class="u-form u-form-1">
+                <form action="#" [formGroup]="medidasEForm" method="POST"
+                  class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 10px"
+                  source="custom" name="form">
+                  <div class="u-form-group u-form-group-1">
+                    <label for="text-2736" class="u-form-control-hidden u-label"></label>
+                    <input type="text" formControlName="medidaE" placeholder="Medida" id="text-2736" name="text"
+                      class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle">
+                  </div>
+                  <div class="u-align-center u-form-group u-form-submit">
+                    <a href="#"
+                      class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-palette-1-base u-btn u-btn-submit u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1">
+                      <br>
+                    </a>
+                    <input type="submit" value="submit" class="u-form-control-hidden">
+                  </div>
+                </form>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="u-align-center u-clearfix u-section-4" id="sec-f171">
-    <div class="u-clearfix u-sheet u-sheet-1">
-      <div class="u-table u-table-responsive u-table-1">
-        <table class="u-table-entity">
-          <colgroup>
-            <col width="80%">
-            <col width="20%">
-          </colgroup>
-          <tbody class="u-table-body">
-            <tr *ngFor="let medidaEInterfaz of medidasEInterfaz" style="height: 75px;">
-              <td *ngIf="!editableMedidasE[medidasEInterfaz.indexOf(medidaEInterfaz)]" (click)="hacerMedidaEEditable(medidasEInterfaz.indexOf(medidaEInterfaz))" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                {{medidaEInterfaz.descripcion}}
-              </td>
-              <td *ngIf="editableMedidasE[medidasEInterfaz.indexOf(medidaEInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                <input [(ngModel)]="medidaEInterfaz.descripcion" value="{{medidaEInterfaz.descripcion}}" type="text" ><button (click)="hacerMedidaENoEditables()">✓</button>
-              </td>
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                <span (click)="eliminarMedidaE(medidasEInterfaz.indexOf(medidaEInterfaz))" class="u-icon u-icon-4"><img style="position: relative; top: 7px; left: 0px;" width="37px" src="assets/iconos/Eliminar.png"></span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-  <section class="u-clearfix u-section-5" id="carousel_dced">
-    <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-      <h1 class="u-align-center u-text u-text-1">
-        <span style="font-weight: 400;">Medidas del director SGSST</span>
-        <br>
-      </h1>
-      <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
-        <div class="u-layout">
-          <div class="u-layout-row">
-            <div class="u-container-style u-layout-cell u-size-43-xl u-size-46-lg u-size-51-md u-size-51-sm u-size-51-xs u-layout-cell-1">
-              <div class="u-container-layout u-valign-top-md u-container-layout-1">
-                <div class="u-form u-form-1">
-                  <form action="#" [formGroup]="medidasDForm" method="POST" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
-                    <div class="u-form-group u-form-group-1">
-                      <label for="text-2736" class="u-form-control-hidden u-label"></label>
-                      <input type="text" formControlName="medidaD" placeholder="Medida" id="text-2736" name="text" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle">
-                    </div>
-                    <div class="u-align-center u-form-group u-form-submit">
-                      <a href="#" class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-palette-1-base u-btn u-btn-submit u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1">
-                        <br>
-                      </a>
-                      <input type="submit" value="submit" class="u-form-control-hidden">
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-            <div class="u-container-style u-layout-cell u-size-14-lg u-size-17-xl u-size-9-md u-size-9-sm u-size-9-xs u-layout-cell-2">
-              <div class="u-container-layout u-container-layout-2"><span (click)="agregarMedidasDirector()" class="u-black u-icon u-icon-circle u-spacing-8 u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 42 42" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-a398"></use></svg><svg class="u-svg-content" viewBox="0 0 42 42" x="0px" y="0px" id="svg-a398" style="enable-background:new 0 0 42 42;"><path style="fill:currentColor;" d="M37.059,16H26V4.941C26,2.224,23.718,0,21,0s-5,2.224-5,4.941V16H4.941C2.224,16,0,18.282,0,21
-  s2.224,5,4.941,5H16v11.059C16,39.776,18.282,42,21,42s5-2.224,5-4.941V26h11.059C39.776,26,42,23.718,42,21S39.776,16,37.059,16z"></path></svg></span>
-              </div>
+          <div
+            class="u-container-style u-layout-cell u-size-14-lg u-size-17-xl u-size-9-md u-size-9-sm u-size-9-xs u-layout-cell-2">
+            <div class="u-container-layout u-container-layout-2"><span (click)="agregarMedidasEmpleador()"
+                class="u-black u-icon u-icon-circle u-spacing-8 u-icon-1"><svg class="u-svg-link"
+                  preserveAspectRatio="xMidYMin slice" viewBox="0 0 42 42" style="">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-a398"></use>
+                </svg><svg class="u-svg-content" viewBox="0 0 42 42" x="0px" y="0px" id="svg-a398"
+                  style="enable-background:new 0 0 42 42;">
+                  <path style="fill:currentColor;"
+                    d="M37.059,16H26V4.941C26,2.224,23.718,0,21,0s-5,2.224-5,4.941V16H4.941C2.224,16,0,18.282,0,21
+  s2.224,5,4.941,5H16v11.059C16,39.776,18.282,42,21,42s5-2.224,5-4.941V26h11.059C39.776,26,42,23.718,42,21S39.776,16,37.059,16z"></path>
+                </svg></span>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  <section class="u-align-center u-clearfix u-section-6" id="carousel_b97c">
-    <div class="u-clearfix u-sheet u-sheet-1">
-      <div class="u-table u-table-responsive u-table-1">
-        <table class="u-table-entity">
-          <colgroup>
-            <col width="80%">
-            <col width="20%">
-          </colgroup>
-          <tbody class="u-table-body">
-            <tr *ngFor="let medidaDInterfaz of medidasDInterfaz" style="height: 75px;">
-              <td *ngIf="!editableMedidasD[medidasDInterfaz.indexOf(medidaDInterfaz)]" (click)="hacerMedidaDEditable(medidasDInterfaz.indexOf(medidaDInterfaz))" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                {{medidaDInterfaz.descripcion}}
-              </td>
-              <td *ngIf="editableMedidasD[medidasDInterfaz.indexOf(medidaDInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                <input [(ngModel)]="medidaDInterfaz.descripcion" value="{{medidaDInterfaz.descripcion}}" type="text" ><button (click)="hacerMedidaDNoEditables()">✓</button>
-              </td>
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                <span (click)="eliminarMedidaD(medidasDInterfaz.indexOf(medidaDInterfaz))" class="u-icon u-icon-4"><img style="position: relative; top: 7px; left: 0px;" width="37px" src="assets/iconos/Eliminar.png"></span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  </div>
+</section>
+<section class="u-align-center u-clearfix u-section-4" id="sec-f171">
+  <div class="u-clearfix u-sheet u-sheet-1">
+    <div class="u-table u-table-responsive u-table-1">
+      <table class="u-table-entity">
+        <colgroup>
+          <col width="80%">
+          <col width="20%">
+        </colgroup>
+        <thead class="u-grey-50 u-table-header u-table-header-1">
+          <tr style="height: 60px;">
+            <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Medidas</th>
+            <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Opciones</th>
+          </tr>
+        </thead>
+        <tbody class="u-table-body">
+          <tr *ngFor="let medidaEInterfaz of medidasEInterfaz" style="height: 75px;">
+            <td *ngIf="!editableMedidasE[medidasEInterfaz.indexOf(medidaEInterfaz)]"
+              class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+              {{medidaEInterfaz.descripcion}}
+            </td>
+            <td *ngIf="editableMedidasE[medidasEInterfaz.indexOf(medidaEInterfaz)]"
+              class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+              <input [(ngModel)]="medidaEInterfaz.descripcion" value="{{medidaEInterfaz.descripcion}}"
+                type="text">
+            </td>
+            <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+              <span *ngIf="!editableMedidasE[medidasEInterfaz.indexOf(medidaEInterfaz)]">
+                <img (click)="hacerMedidaEEditable(medidasEInterfaz.indexOf(medidaEInterfaz))" width="37px"
+                  src="assets/iconos/Editar.png"></span>
+              <span *ngIf="editableMedidasE[medidasEInterfaz.indexOf(medidaEInterfaz)]">
+                <img (click)="hacerMedidaENoEditables()" width="37px" src="assets/iconos/Ok.png"></span>
+              <span (click)="eliminarMedidaE(medidasEInterfaz.indexOf(medidaEInterfaz))">
+                <img width="37px" src="assets/iconos/Eliminar.png">
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  </section>
-  <section class="u-clearfix u-section-7" id="carousel_d67a">
-    <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-      <h1 class="u-align-center u-text u-text-1">
-        <span style="font-weight: 400;">Medidas del COPASST</span>
-        <br>
-      </h1>
-      <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
-        <div class="u-layout">
-          <div class="u-layout-row">
-            <div class="u-container-style u-layout-cell u-size-43-xl u-size-46-lg u-size-51-md u-size-51-sm u-size-51-xs u-layout-cell-1">
-              <div class="u-container-layout u-valign-top-md u-container-layout-1">
-                <div class="u-form u-form-1">
-                  <form action="#" [formGroup]="medidasCoForm" method="POST" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
-                    <div class="u-form-group u-form-group-1">
-                      <label for="text-2736" class="u-form-control-hidden u-label"></label>
-                      <input type="text" formControlName="medidaCo" placeholder="Medida" id="text-2736" name="text" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle">
-                    </div>
-                    <div class="u-align-center u-form-group u-form-submit">
-                      <a href="#" class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-palette-1-base u-btn u-btn-submit u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1">
-                        <br>
-                      </a>
-                      <input type="submit" value="submit" class="u-form-control-hidden">
-                    </div>
-                  </form>
-                </div>
+  </div>
+</section>
+<section class="u-clearfix u-section-5" id="carousel_dced">
+  <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+    <h1 class="u-align-center u-text u-text-1">
+      <span style="font-weight: 400;">Medidas del director SGSST</span>
+      <br>
+    </h1>
+    <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+      <div class="u-layout">
+        <div class="u-layout-row">
+          <div
+            class="u-container-style u-layout-cell u-size-43-xl u-size-46-lg u-size-51-md u-size-51-sm u-size-51-xs u-layout-cell-1">
+            <div class="u-container-layout u-valign-top-md u-container-layout-1">
+              <div class="u-form u-form-1">
+                <form action="#" [formGroup]="medidasDForm" method="POST"
+                  class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 10px"
+                  source="custom" name="form">
+                  <div class="u-form-group u-form-group-1">
+                    <label for="text-2736" class="u-form-control-hidden u-label"></label>
+                    <input type="text" formControlName="medidaD" placeholder="Medida" id="text-2736" name="text"
+                      class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle">
+                  </div>
+                  <div class="u-align-center u-form-group u-form-submit">
+                    <a href="#"
+                      class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-palette-1-base u-btn u-btn-submit u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1">
+                      <br>
+                    </a>
+                    <input type="submit" value="submit" class="u-form-control-hidden">
+                  </div>
+                </form>
               </div>
             </div>
-            <div class="u-container-style u-layout-cell u-size-14-lg u-size-17-xl u-size-9-md u-size-9-sm u-size-9-xs u-layout-cell-2">
-              <div class="u-container-layout u-container-layout-2"><span (click)="agregarMedidasCopasst()" class="u-black u-icon u-icon-circle u-spacing-8 u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 42 42" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-a398"></use></svg><svg class="u-svg-content" viewBox="0 0 42 42" x="0px" y="0px" id="svg-a398" style="enable-background:new 0 0 42 42;"><path style="fill:currentColor;" d="M37.059,16H26V4.941C26,2.224,23.718,0,21,0s-5,2.224-5,4.941V16H4.941C2.224,16,0,18.282,0,21
-  s2.224,5,4.941,5H16v11.059C16,39.776,18.282,42,21,42s5-2.224,5-4.941V26h11.059C39.776,26,42,23.718,42,21S39.776,16,37.059,16z"></path></svg></span>
-              </div>
+          </div>
+          <div
+            class="u-container-style u-layout-cell u-size-14-lg u-size-17-xl u-size-9-md u-size-9-sm u-size-9-xs u-layout-cell-2">
+            <div class="u-container-layout u-container-layout-2"><span (click)="agregarMedidasDirector()"
+                class="u-black u-icon u-icon-circle u-spacing-8 u-icon-1"><svg class="u-svg-link"
+                  preserveAspectRatio="xMidYMin slice" viewBox="0 0 42 42" style="">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-a398"></use>
+                </svg><svg class="u-svg-content" viewBox="0 0 42 42" x="0px" y="0px" id="svg-a398"
+                  style="enable-background:new 0 0 42 42;">
+                  <path style="fill:currentColor;"
+                    d="M37.059,16H26V4.941C26,2.224,23.718,0,21,0s-5,2.224-5,4.941V16H4.941C2.224,16,0,18.282,0,21
+  s2.224,5,4.941,5H16v11.059C16,39.776,18.282,42,21,42s5-2.224,5-4.941V26h11.059C39.776,26,42,23.718,42,21S39.776,16,37.059,16z"></path>
+                </svg></span>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  <section class="u-align-center u-clearfix u-section-8" id="carousel_3251">
-    <div class="u-clearfix u-sheet u-sheet-1">
-      <div class="u-table u-table-responsive u-table-1">
-        <table class="u-table-entity">
-          <colgroup>
-            <col width="80%">
-            <col width="20%">
-          </colgroup>
-          <tbody class="u-table-body">
-            <tr *ngFor="let medidaCoInterfaz of medidasCoInterfaz" style="height: 75px;">
-              <td *ngIf="!editableMedidasCo[medidasCoInterfaz.indexOf(medidaCoInterfaz)]" (click)="hacerMedidaCoEditable(medidasCoInterfaz.indexOf(medidaCoInterfaz))" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                {{medidaCoInterfaz.descripcion}}
-              </td>
-              <td *ngIf="editableMedidasCo[medidasCoInterfaz.indexOf(medidaCoInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                <input [(ngModel)]="medidaCoInterfaz.descripcion" value="{{medidaCoInterfaz.descripcion}}" type="text" ><button (click)="hacerMedidaCoNoEditables()">✓</button>
-              </td>
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                <span (click)="eliminarMedidaCo(medidasCoInterfaz.indexOf(medidaCoInterfaz))" class="u-icon u-icon-4"><img style="position: relative; top: 7px; left: 0px;" width="37px" src="assets/iconos/Eliminar.png"></span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  </div>
+</section>
+<section class="u-align-center u-clearfix u-section-6" id="carousel_b97c">
+  <div class="u-clearfix u-sheet u-sheet-1">
+    <div class="u-table u-table-responsive u-table-1">
+      <table class="u-table-entity">
+        <colgroup>
+          <col width="80%">
+          <col width="20%">
+        </colgroup>
+        <thead class="u-grey-50 u-table-header u-table-header-1">
+          <tr style="height: 60px;">
+            <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Medidas</th>
+            <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Opciones</th>
+          </tr>
+        </thead>
+        <tbody class="u-table-body">
+          <tr *ngFor="let medidaDInterfaz of medidasDInterfaz" style="height: 75px;">
+            <td *ngIf="!editableMedidasD[medidasDInterfaz.indexOf(medidaDInterfaz)]"
+              class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+              {{medidaDInterfaz.descripcion}}
+            </td>
+            <td *ngIf="editableMedidasD[medidasDInterfaz.indexOf(medidaDInterfaz)]"
+              class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+              <input [(ngModel)]="medidaDInterfaz.descripcion" value="{{medidaDInterfaz.descripcion}}"
+                type="text">
+            </td>
+            <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+              <span *ngIf="!editableMedidasD[medidasDInterfaz.indexOf(medidaDInterfaz)]">
+                <img (click)="hacerMedidaDEditable(medidasDInterfaz.indexOf(medidaDInterfaz))" width="37px"
+                  src="assets/iconos/Editar.png"></span>
+              <span *ngIf="editableMedidasD[medidasDInterfaz.indexOf(medidaDInterfaz)]">
+                <img (click)="hacerMedidaDNoEditables()" width="37px" src="assets/iconos/Ok.png"></span>
+              <span (click)="eliminarMedidaD(medidasEInterfaz.indexOf(medidaDInterfaz))">
+                <img width="37px" src="assets/iconos/Eliminar.png">
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  </section>
-  <section class="u-clearfix u-section-9" id="carousel_bfaa">
-    <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-      <h1 class="u-align-center u-text u-text-1">
-        <span style="font-weight: 400;">Medidas del CCL</span>
-        <br>
-      </h1>
-      <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
-        <div class="u-layout">
-          <div class="u-layout-row">
-            <div class="u-container-style u-layout-cell u-size-43-xl u-size-46-lg u-size-51-md u-size-51-sm u-size-51-xs u-layout-cell-1">
-              <div class="u-container-layout u-valign-top-md u-container-layout-1">
-                <div class="u-form u-form-1">
-                  <form action="#" [formGroup]="medidasCclForm" method="POST" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 10px" source="custom" name="form">
-                    <div class="u-form-group u-form-group-1">
-                      <label for="text-2736" class="u-form-control-hidden u-label"></label>
-                      <input type="text" formControlName="medidaCcl" placeholder="Medida" id="text-2736" name="text" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle">
-                    </div>
-                    <div class="u-align-center u-form-group u-form-submit">
-                      <a href="#" class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-palette-1-base u-btn u-btn-submit u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1">
-                        <br>
-                      </a>
-                      <input type="submit" value="submit" class="u-form-control-hidden">
-                    </div>
-                  </form>
-                </div>
+  </div>
+</section>
+<section class="u-clearfix u-section-7" id="carousel_d67a">
+  <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+    <h1 class="u-align-center u-text u-text-1">
+      <span style="font-weight: 400;">Medidas del COPASST</span>
+      <br>
+    </h1>
+    <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+      <div class="u-layout">
+        <div class="u-layout-row">
+          <div
+            class="u-container-style u-layout-cell u-size-43-xl u-size-46-lg u-size-51-md u-size-51-sm u-size-51-xs u-layout-cell-1">
+            <div class="u-container-layout u-valign-top-md u-container-layout-1">
+              <div class="u-form u-form-1">
+                <form action="#" [formGroup]="medidasCoForm" method="POST"
+                  class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 10px"
+                  source="custom" name="form">
+                  <div class="u-form-group u-form-group-1">
+                    <label for="text-2736" class="u-form-control-hidden u-label"></label>
+                    <input type="text" formControlName="medidaCo" placeholder="Medida" id="text-2736" name="text"
+                      class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle">
+                  </div>
+                  <div class="u-align-center u-form-group u-form-submit">
+                    <a href="#"
+                      class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-palette-1-base u-btn u-btn-submit u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1">
+                      <br>
+                    </a>
+                    <input type="submit" value="submit" class="u-form-control-hidden">
+                  </div>
+                </form>
               </div>
             </div>
-            <div class="u-container-style u-layout-cell u-size-14-lg u-size-17-xl u-size-9-md u-size-9-sm u-size-9-xs u-layout-cell-2">
-              <div class="u-container-layout u-container-layout-2"><span (click)="agregarMedidasCcl()" class="u-black u-icon u-icon-circle u-spacing-8 u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 42 42" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-a398"></use></svg><svg class="u-svg-content" viewBox="0 0 42 42" x="0px" y="0px" id="svg-a398" style="enable-background:new 0 0 42 42;"><path style="fill:currentColor;" d="M37.059,16H26V4.941C26,2.224,23.718,0,21,0s-5,2.224-5,4.941V16H4.941C2.224,16,0,18.282,0,21
-  s2.224,5,4.941,5H16v11.059C16,39.776,18.282,42,21,42s5-2.224,5-4.941V26h11.059C39.776,26,42,23.718,42,21S39.776,16,37.059,16z"></path></svg></span>
-              </div>
+          </div>
+          <div
+            class="u-container-style u-layout-cell u-size-14-lg u-size-17-xl u-size-9-md u-size-9-sm u-size-9-xs u-layout-cell-2">
+            <div class="u-container-layout u-container-layout-2"><span (click)="agregarMedidasCopasst()"
+                class="u-black u-icon u-icon-circle u-spacing-8 u-icon-1"><svg class="u-svg-link"
+                  preserveAspectRatio="xMidYMin slice" viewBox="0 0 42 42" style="">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-a398"></use>
+                </svg><svg class="u-svg-content" viewBox="0 0 42 42" x="0px" y="0px" id="svg-a398"
+                  style="enable-background:new 0 0 42 42;">
+                  <path style="fill:currentColor;"
+                    d="M37.059,16H26V4.941C26,2.224,23.718,0,21,0s-5,2.224-5,4.941V16H4.941C2.224,16,0,18.282,0,21
+  s2.224,5,4.941,5H16v11.059C16,39.776,18.282,42,21,42s5-2.224,5-4.941V26h11.059C39.776,26,42,23.718,42,21S39.776,16,37.059,16z"></path>
+                </svg></span>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  <section class="u-align-center u-clearfix u-section-10" id="carousel_22b1">
-    <div class="u-clearfix u-sheet u-sheet-1">
-      <div class="u-table u-table-responsive u-table-1">
-        <table class="u-table-entity">
-          <colgroup>
-            <col width="80%">
-            <col width="20%">
-          </colgroup>
-          <tbody class="u-table-body">
-            <tr *ngFor="let medidaCclInterfaz of medidasCclInterfaz" style="height: 75px;">
-              <td *ngIf="!editableMedidasCcl[medidasCclInterfaz.indexOf(medidaCclInterfaz)]" (click)="hacerMedidaCclEditable(medidasCclInterfaz.indexOf(medidaCclInterfaz))" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                {{medidaCclInterfaz.descripcion}}
-              </td>
-              <td *ngIf="editableMedidasCcl[medidasCclInterfaz.indexOf(medidaCclInterfaz)]" class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                <input [(ngModel)]="medidaCclInterfaz.descripcion" value="{{medidaCclInterfaz.descripcion}}" type="text" ><button (click)="hacerMedidaCclNoEditables()">✓</button>
-              </td>
-              <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                <span (click)="eliminarMedidaCcl(medidasCclInterfaz.indexOf(medidaCclInterfaz))" class="u-icon u-icon-4"><img style="position: relative; top: 7px; left: 0px;" width="37px" src="assets/iconos/Eliminar.png"></span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  </div>
+</section>
+<section class="u-align-center u-clearfix u-section-8" id="carousel_3251">
+  <div class="u-clearfix u-sheet u-sheet-1">
+    <div class="u-table u-table-responsive u-table-1">
+      <table class="u-table-entity">
+        <colgroup>
+          <col width="80%">
+          <col width="20%">
+        </colgroup>
+        <thead class="u-grey-50 u-table-header u-table-header-1">
+          <tr style="height: 60px;">
+            <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Medidas</th>
+            <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Opciones</th>
+          </tr>
+        </thead>
+        <tbody class="u-table-body">
+          <tr *ngFor="let medidaCoInterfaz of medidasCoInterfaz" style="height: 75px;">
+            <td *ngIf="!editableMedidasCo[medidasCoInterfaz.indexOf(medidaCoInterfaz)]"
+              class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+              {{medidaCoInterfaz.descripcion}}
+            </td>
+            <td *ngIf="editableMedidasCo[medidasCoInterfaz.indexOf(medidaCoInterfaz)]"
+              class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+              <input [(ngModel)]="medidaCoInterfaz.descripcion" value="{{medidaCoInterfaz.descripcion}}"
+                type="text">
+            </td>
+            <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+              <span *ngIf="!editableMedidasCo[medidasCoInterfaz.indexOf(medidaCoInterfaz)]">
+                <img (click)="hacerMedidaCoEditable(medidasCoInterfaz.indexOf(medidaCoInterfaz))" width="37px"
+                  src="assets/iconos/Editar.png"></span>
+              <span *ngIf="editableMedidasCo[medidasCoInterfaz.indexOf(medidaCoInterfaz)]">
+                <img (click)="hacerMedidaCoNoEditables()" width="37px" src="assets/iconos/Ok.png"></span>
+              <span (click)="eliminarMedidaCo(medidasCoInterfaz.indexOf(medidaCoInterfaz))">
+                <img width="37px" src="assets/iconos/Eliminar.png">
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  </section>
-  <section class="u-clearfix u-section-11" id="sec-c38a">
-    <div class="u-clearfix u-sheet u-sheet-1">
-      <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
-        <div class="u-layout">
-          <div class="u-layout-row">
-            <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-1">
-              <div class="u-container-layout u-valign-top u-container-layout-1">
-                <a (click)="guardarInforme($event)" class="u-align-right u-btn u-button-style u-hover-palette-1-dark-1 u-palette-5-dark-2" style="margin: auto;">Guardar</a>
+  </div>
+</section>
+<section class="u-clearfix u-section-9" id="carousel_bfaa">
+  <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+    <h1 class="u-align-center u-text u-text-1">
+      <span style="font-weight: 400;">Medidas del CCL</span>
+      <br>
+    </h1>
+    <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+      <div class="u-layout">
+        <div class="u-layout-row">
+          <div
+            class="u-container-style u-layout-cell u-size-43-xl u-size-46-lg u-size-51-md u-size-51-sm u-size-51-xs u-layout-cell-1">
+            <div class="u-container-layout u-valign-top-md u-container-layout-1">
+              <div class="u-form u-form-1">
+                <form action="#" [formGroup]="medidasCclForm" method="POST"
+                  class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 10px"
+                  source="custom" name="form">
+                  <div class="u-form-group u-form-group-1">
+                    <label for="text-2736" class="u-form-control-hidden u-label"></label>
+                    <input type="text" formControlName="medidaCcl" placeholder="Medida" id="text-2736" name="text"
+                      class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle">
+                  </div>
+                  <div class="u-align-center u-form-group u-form-submit">
+                    <a href="#"
+                      class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-palette-1-base u-btn u-btn-submit u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1">
+                      <br>
+                    </a>
+                    <input type="submit" value="submit" class="u-form-control-hidden">
+                  </div>
+                </form>
               </div>
             </div>
-            <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-2">
-              <div class="u-container-layout u-container-layout-2">
-                <a (click)="publicarInforme($event)" class="u-align-left u-btn u-button-style u-hover-palette-1-dark-1 u-palette-5-dark-2" style="margin: auto;">Publicar</a>
-              </div>
+          </div>
+          <div
+            class="u-container-style u-layout-cell u-size-14-lg u-size-17-xl u-size-9-md u-size-9-sm u-size-9-xs u-layout-cell-2">
+            <div class="u-container-layout u-container-layout-2"><span (click)="agregarMedidasCcl()"
+                class="u-black u-icon u-icon-circle u-spacing-8 u-icon-1"><svg class="u-svg-link"
+                  preserveAspectRatio="xMidYMin slice" viewBox="0 0 42 42" style="">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-a398"></use>
+                </svg><svg class="u-svg-content" viewBox="0 0 42 42" x="0px" y="0px" id="svg-a398"
+                  style="enable-background:new 0 0 42 42;">
+                  <path style="fill:currentColor;"
+                    d="M37.059,16H26V4.941C26,2.224,23.718,0,21,0s-5,2.224-5,4.941V16H4.941C2.224,16,0,18.282,0,21
+  s2.224,5,4.941,5H16v11.059C16,39.776,18.282,42,21,42s5-2.224,5-4.941V26h11.059C39.776,26,42,23.718,42,21S39.776,16,37.059,16z"></path>
+                </svg></span>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+<section class="u-align-center u-clearfix u-section-10" id="carousel_22b1">
+  <div class="u-clearfix u-sheet u-sheet-1">
+    <div class="u-table u-table-responsive u-table-1">
+      <table class="u-table-entity">
+        <colgroup>
+          <col width="80%">
+          <col width="20%">
+        </colgroup>
+        <thead class="u-grey-50 u-table-header u-table-header-1">
+          <tr style="height: 60px;">
+            <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Medidas</th>
+            <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Opciones</th>
+          </tr>
+        </thead>
+        <tbody class="u-table-body">
+          <tr *ngFor="let medidaCclInterfaz of medidasCclInterfaz" style="height: 75px;">
+            <td *ngIf="!editableMedidasCcl[medidasCclInterfaz.indexOf(medidaCclInterfaz)]"
+              class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+              {{medidaCclInterfaz.descripcion}}
+            </td>
+            <td *ngIf="editableMedidasCcl[medidasCclInterfaz.indexOf(medidaCclInterfaz)]"
+              class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+              <input [(ngModel)]="medidaCclInterfaz.descripcion" value="{{medidaCclInterfaz.descripcion}}"
+                type="text">
+            </td>
+            <td class="u-align-center u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+              <span *ngIf="!editableMedidasCcl[medidasCclInterfaz.indexOf(medidaCclInterfaz)]">
+                <img (click)="hacerMedidaCclEditable(medidasCclInterfaz.indexOf(medidaCclInterfaz))" width="37px"
+                  src="assets/iconos/Editar.png"></span>
+              <span *ngIf="editableMedidasCcl[medidasCclInterfaz.indexOf(medidaCclInterfaz)]">
+                <img (click)="hacerMedidaCclNoEditables()" width="37px" src="assets/iconos/Ok.png"></span>
+              <span (click)="eliminarMedidaCcl(medidasCclInterfaz.indexOf(medidaCclInterfaz))">
+                <img width="37px" src="assets/iconos/Eliminar.png">
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<section class="u-clearfix u-section-11" id="sec-c38a">
+  <div class="u-clearfix u-sheet u-sheet-1">
+    <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+      <div class="u-layout">
+        <div class="u-layout-row">
+          <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-1">
+            <div class="u-container-layout u-valign-top u-container-layout-1">
+              <a (click)="guardarInforme($event)"
+                class="u-align-right u-btn u-button-style u-hover-palette-1-dark-1 u-palette-5-dark-2"
+                style="margin: auto;">Guardar</a>
+            </div>
+          </div>
+          <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-2">
+            <div class="u-container-layout u-container-layout-2">
+              <a (click)="publicarInforme($event)"
+                class="u-align-left u-btn u-button-style u-hover-palette-1-dark-1 u-palette-5-dark-2"
+                style="margin: auto;">Publicar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -45,4 +45,8 @@ export class InformesMejoraService {
     return this.http.get<InformeMejora[]>(this.URL + '/getInformes?idEmpresa=' + idEmpresa);
   }
 
+  getUltimoPublicado(idEmpresa: number){
+    return this.http.get<InformeMejora>(this.URL + '/getultimopublicado?idEmpresa=' + idEmpresa);
+  }
+
 }

@@ -135,23 +135,21 @@ export class VerListaDeActasComponent implements OnInit {
     this.actasService.eliminar(acta).subscribe(data => {
 
       this._snackBar.open("Acta eliminada exitosamente", "Cerrar", { duration: 3000 });
-      this.actas = 
       this.actasFiltradas = [];
+
+      this.actasService.getActas(this.paquete).subscribe(data => {
+
+        this.actas = data;
+        this.actas.forEach(element => {
+          element.fecha = new Date(element.fecha).toLocaleDateString() + " " + element.horaInicio.split(":")[0] + ":" +  element.horaInicio.split(":")[1] +  " - " + element.horaFin.split(":")[0] + ":" +  element.horaFin.split(":")[1];
+        });
+  
+        this.actasFiltradas = this.actas.filter(acta => acta.tema.includes(""));
+  
+      })
 
     });
 
-    this.actasService.getActas(this.paquete).subscribe(data => {
-
-      this.actas = data;
-      this.actasFiltradas = data;
-      this.actas.forEach(element => {
-        element.fecha = new Date(element.fecha).toLocaleDateString() + " " + element.horaInicio.split(":")[0] + ":" +  element.horaInicio.split(":")[1] +  " - " + element.horaFin.split(":")[0] + ":" +  element.horaFin.split(":")[1];
-      });
-
-    })
-
-
-    
   }
 
   filtrar(event: Event){

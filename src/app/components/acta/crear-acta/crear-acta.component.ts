@@ -126,7 +126,6 @@ export class CrearActaComponent implements OnInit {
 
   ngOnInit(): void {
 
-
     this.gruposService.getGrupos().subscribe(data => {
       this.gruposBD = data;
       this.gruposBD.forEach(element => {
@@ -639,7 +638,7 @@ export class CrearActaComponent implements OnInit {
       acta.desarrollo = this.desarrolloForm.controls.desarrollo.value;
       acta.conclusion = this.conclusionForm.controls.conclusion.value;
       let fechaCero = new Date();
-      fechaCero.setHours(0, 0);
+      fechaCero.setHours(0, 0, 0, 0);
 
       if (!this.isEdicion) {
         acta.numero = new Date().getTime() - fechaCero.getTime();
@@ -786,7 +785,7 @@ export class CrearActaComponent implements OnInit {
       acta.conclusion = this.conclusionForm.controls.conclusion.value;
       let fechaCero = new Date();
       fechaCero.setHours(0, 0);
-
+      
       if (!this.isEdicion) {
         acta.numero = new Date().getTime() - fechaCero.getTime();
       } else {

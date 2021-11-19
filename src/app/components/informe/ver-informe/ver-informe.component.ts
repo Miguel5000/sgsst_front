@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Empresa } from 'src/app/_model/Empresa';
 import { InformeMejora } from 'src/app/_model/InformeMejora';
 import { InformesMejoraService } from 'src/app/_service/informes-mejora.service';
 
@@ -23,7 +24,7 @@ export class VerInformeComponent implements OnInit {
   medidasCclInterfaz: MedidaCclInterfaz[];
 
   constructor(private informeMejora: InformesMejoraService,
-    private route: ActivatedRoute) { 
+    private route: ActivatedRoute) {
 
     this.temasInterfaz = [];
     this.medidasEInterfaz = [];
@@ -33,38 +34,70 @@ export class VerInformeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe( params => {
+    this.route.params.subscribe(params => {
+
       this.idInforme = params.id;
-      this.informeMejora.get(this.idInforme).subscribe( data => {
-        let informe: InformeMejora = new InformeMejora();
-        informe.temas = data.temas;
-        informe.medidas = data.medidas;
 
-        let JSONTemas = JSON.parse(informe.temas);
-        let JsonMedidas = JSON.parse(informe.medidas);
+      if (this.idInforme == undefined) {
 
-        for(let i = 0; i < JSONTemas.length; i++) {
-          this.temasInterfaz.push(JSONTemas[i]);
+        let empresaJson = sessionStorage.getItem("empresa");
+
+        if (empresaJson != null) {
+
+          let empresa: Empresa = JSON.parse(empresaJson);
+
+          this.informeMejora.getUltimoPublicado(empresa.id).subscribe(data => {
+
+            this.idInforme = data.id;
+            this.proceso();
+
+          });
+
         }
 
-        for(let i = 0; i < JsonMedidas.empleador.length; i++) {
-          this.medidasEInterfaz.push(JsonMedidas.empleador[i]);
-        }
+      }else{
 
-        for(let i = 0; i < JsonMedidas.director.length; i++) {
-          this.medidasDInterfaz.push(JsonMedidas.director[i]);
-        }
+        this.proceso();
 
-        for(let i = 0; i < JsonMedidas.copasst.length; i++) {
-          this.medidasCoInterfaz.push(JsonMedidas.copasst[i]);
-        }
+      }
 
-        for(let i = 0; i < JsonMedidas.ccl.length; i++) {
-          this.medidasCclInterfaz.push(JsonMedidas.ccl[i]);
-        }
-      });
+      
     });
   }
+
+  proceso(){
+
+    this.informeMejora.get(this.idInforme).subscribe(data => {
+      let informe: InformeMejora = new InformeMejora();
+      informe.temas = data.temas;
+      informe.medidas = data.medidas;
+
+      let JSONTemas = JSON.parse(informe.temas);
+      let JsonMedidas = JSON.parse(informe.medidas);
+
+      for (let i = 0; i < JSONTemas.length; i++) {
+        this.temasInterfaz.push(JSONTemas[i]);
+      }
+
+      for (let i = 0; i < JsonMedidas.empleador.length; i++) {
+        this.medidasEInterfaz.push(JsonMedidas.empleador[i]);
+      }
+
+      for (let i = 0; i < JsonMedidas.director.length; i++) {
+        this.medidasDInterfaz.push(JsonMedidas.director[i]);
+      }
+
+      for (let i = 0; i < JsonMedidas.copasst.length; i++) {
+        this.medidasCoInterfaz.push(JsonMedidas.copasst[i]);
+      }
+
+      for (let i = 0; i < JsonMedidas.ccl.length; i++) {
+        this.medidasCclInterfaz.push(JsonMedidas.ccl[i]);
+      }
+    });
+    
+  }
+
 }
 
 class TemaInterfaz {

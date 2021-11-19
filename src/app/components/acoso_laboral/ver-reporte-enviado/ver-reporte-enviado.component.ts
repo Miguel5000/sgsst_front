@@ -28,7 +28,7 @@ export class VerReporteEnviadoComponent implements OnInit {
       this.caso = JSON.parse(casoJson);
       this.caso.fecha = new Date(this.caso.fecha).toLocaleString().split(",")[0];
 
-      this.casosAcosoLaboralService.getCausa(this.caso.id).subscribe(data => {
+      this.casosAcosoLaboralService.getCausa(this.caso.idCausa).subscribe(data => {
 
         this.usuariosService.getPorId(this.caso.idCreador).subscribe(data2 => {
 

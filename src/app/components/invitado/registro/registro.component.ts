@@ -185,7 +185,9 @@ export class RegistroComponent implements OnInit {
             duration: 3000
           });
         })
-        this.onResetForm();
+        
+        this.router.navigate(["/iniciarSesion"])
+
       });
     } else {
       let error = this.getMensajeError();

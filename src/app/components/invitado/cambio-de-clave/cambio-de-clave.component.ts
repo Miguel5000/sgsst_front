@@ -82,7 +82,7 @@ export class CambioDeClaveComponent implements OnInit {
       
         let paquete={clave:this.contraseña}
         this.usuariosService.cambiarClave(this.token,paquete).subscribe(data => {
-          this._snackBar.open('cambio de contraseña excelente', 'Cancel  ', {
+          this._snackBar.open('Cambio de contraseña exitoso', 'Cancel  ', {
             duration: 5000
           });
           this.router.navigate(['/iniciarSesion']);
@@ -108,7 +108,7 @@ export class CambioDeClaveComponent implements OnInit {
         console.log(this.nombre);
         let paquete={clave:this.contraseña,nombre:this.nombre}
         this.usuariosService.cambiarcontrasena(paquete).subscribe(data => {
-          this._snackBar.open('cambio de contraseña excelente', 'Cancel  ', {
+          this._snackBar.open('Cambio de contraseña exitoso', 'Cancel  ', {
             duration: 5000
           });
           this.router.navigate(["/espacioDeTrabajoYServicio"]);

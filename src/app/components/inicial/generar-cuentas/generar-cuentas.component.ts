@@ -186,6 +186,8 @@ export class GenerarCuentasComponent implements OnInit {
 
               this._snackBar.open("Usuario creado exitosamente", "close", { duration: 3000 });
               this.creacionForm.reset();
+              this.usuariosInterfaz = [];
+              this.usuariosInterfazFiltrados = [];
               this.actualizar();
 
             })
